@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoScrapbookingAPI.Presentation", "EcoScrapbookingAPI.Presentation\EcoScrapbookingAPI.Presentation.csproj", "{20B8C1D5-E1EF-4CB3-858E-0364EEFDCCE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoScrapbookingAPI.Business", "EcoScrapbookingAPI.Business\EcoScrapbookingAPI.Business.csproj", "{D960E57C-F48A-4BA6-971A-10CC5862A4A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoScrapbookingAPI.Data", "EcoScrapbookingAPI.Data\EcoScrapbookingAPI.Data.csproj", "{B11FA539-126F-4C44-B181-3D259BCFFB99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoScrapbookingAPI.Domain", "EcoScrapbookingAPI.Domain\EcoScrapbookingAPI.Domain.csproj", "{DFE8F7D3-C26D-4974-A8A5-6D5DE1173A7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20B8C1D5-E1EF-4CB3-858E-0364EEFDCCE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B8C1D5-E1EF-4CB3-858E-0364EEFDCCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B8C1D5-E1EF-4CB3-858E-0364EEFDCCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B8C1D5-E1EF-4CB3-858E-0364EEFDCCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D960E57C-F48A-4BA6-971A-10CC5862A4A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D960E57C-F48A-4BA6-971A-10CC5862A4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D960E57C-F48A-4BA6-971A-10CC5862A4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D960E57C-F48A-4BA6-971A-10CC5862A4A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11FA539-126F-4C44-B181-3D259BCFFB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11FA539-126F-4C44-B181-3D259BCFFB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11FA539-126F-4C44-B181-3D259BCFFB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11FA539-126F-4C44-B181-3D259BCFFB99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFE8F7D3-C26D-4974-A8A5-6D5DE1173A7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE8F7D3-C26D-4974-A8A5-6D5DE1173A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFE8F7D3-C26D-4974-A8A5-6D5DE1173A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFE8F7D3-C26D-4974-A8A5-6D5DE1173A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
