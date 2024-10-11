@@ -1,0 +1,6 @@
+@EcoScrapbookingAPI.Presentation_HostAddress = http://localhost:5199
+
+GET {{EcoScrapbookingAPI.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
