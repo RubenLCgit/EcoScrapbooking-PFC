@@ -1,4 +1,4 @@
-using EcoScrapbookingAPI.Data;
+using EcoScrapbookingAPI.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
