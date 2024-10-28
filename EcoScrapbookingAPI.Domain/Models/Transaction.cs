@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using EcoScrapbookingAPI.Domain.Models.Abstracts;
+using EcoScrapbookingAPI.Domain.Models.Enums;
 
 namespace EcoScrapbookingAPI.Domain.Models;
 
@@ -9,30 +10,32 @@ public class Transaction
   [Key]
   public int TransactionID { get; set; }
   [Required]
-  public int Quantity { get; set; }
+  public TransactionType Type { get; set; }
   [Required]
-  public DateTime Date { get; set; }
+  public TransactionStatus Status { get; set; }
   [Required]
-  public int OldOwnerUserID { get; set; }
+  public DateTime DateInitiated { get; set; }
+  public DateTime? DateCompleted { get; set; }
 
-  [ForeignKey("OldOwnerUserID")]
-  public User OldOwnerUser { get; set; }
-  public int NewOwnerUserID { get; set; }
+  //User that initiated the transaction
+  public int InitiatorUserID { get; set; }
+  [ForeignKey("InitiatorUserID")]
+  public User InitiatorUser { get; set; }
 
-  [ForeignKey("NewOwnerUserID")]
-  public User NewOwnerUser { get; set; }
-  public int ResourceID { get; set; }
-  
-  [ForeignKey("ResourceID")]
-  public Resource TransferredResource { get; set; }
+  //User that received the transaction
+  public int? ReceiverUserID { get; set; }
+  [ForeignKey("ReceiverUserID")]
+  public User ReceiverUser { get; set; }
+  public ICollection<Resource> Resources { get; set; }
   public Transaction() { }
 
-  public Transaction(int quantity, DateTime date, int oldOwnerUserID, int newOwnerUserID, int resourceID)
+  public Transaction(TransactionType type, int initiatorUserID, int? receiverUserID)
   {
-    Quantity = quantity;
-    Date = date;
-    OldOwnerUserID = oldOwnerUserID;
-    NewOwnerUserID = newOwnerUserID;
-    ResourceID = resourceID;
+    Type = type;
+    Status = TransactionStatus.Pending;
+    DateInitiated = DateTime.Now;
+    InitiatorUserID = initiatorUserID;
+    ReceiverUserID = receiverUserID;
+    Resources = new List<Resource>();
   }
 }

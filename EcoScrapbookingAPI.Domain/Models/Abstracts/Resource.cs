@@ -17,17 +17,20 @@ public abstract class Resource
   public int Quantity { get; set; }
   [Required]
   public string Description { get; set; }
+  public string ImageResourceUrl { get; set; }
 
   [Required]
-  public int? OwnerUserId { get; set; }
+  public int OwnerUserId { get; set; }
 
   [ForeignKey("OwnerUserId")]
   public User OwnerUser { get; set; }
 
-  public int? ActivityId { get; set; }
+  public ICollection<Activity> Activities { get; set; }
 
-  [ForeignKey("ActivityId")]
-  public Activity Activity { get; set; }
+  public int? TransactionId { get; set; }
+
+  [ForeignKey("TransactionId")]
+  public Transaction Transaction { get; set; }
 
   protected Resource() { }
 
@@ -39,5 +42,7 @@ public abstract class Resource
     Quantity = quantity;
     Description = description;
     OwnerUserId = ownerUserId;
+    ImageResourceUrl = "https://default-image.com";
+    Activities = new List<Activity>();
   }
 }

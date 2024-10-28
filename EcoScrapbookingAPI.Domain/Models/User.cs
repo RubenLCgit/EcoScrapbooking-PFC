@@ -25,12 +25,14 @@ public class User
   public DateTime RegistrationDate { get; set; }
   public bool IsActive { get; set; }
   public decimal GreenPoints { get; set; }
+  public string AvatarImageUrl { get; set; }
 
   public ICollection<Address> Addresses { get; set; }
   public ICollection<Activity> ActivitiesParticipated { get; set; }
   public ICollection<Activity> ActivitiesCreated { get; set; }
   public ICollection<Resource> Resources { get; set; }
-  public ICollection<Transaction> Transactions { get; set; }
+  public ICollection<Transaction> TransactionsInitiated { get; set; }
+  public ICollection<Transaction> TransactionsReceived { get; set; }
   public ICollection<Publication> Posts { get; set; }
 
   public User() { }
@@ -46,11 +48,13 @@ public class User
     RegistrationDate = DateTime.Now;
     IsActive = true;
     GreenPoints = 0.0m;
+    AvatarImageUrl = "https://default-avatar.com";
     Addresses = new List<Address>();
     ActivitiesParticipated = new List<Activity>();
     ActivitiesCreated = new List<Activity>();
     Resources = new List<Resource>();
-    Transactions = new List<Transaction>();
+    TransactionsInitiated = new List<Transaction>();
+    TransactionsReceived = new List<Transaction>();
     Posts = new List<Publication>();
   }
    

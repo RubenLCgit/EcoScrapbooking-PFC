@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using EcoScrapbookingAPI.Domain.Models;
 using EcoScrapbookingAPI.Domain.Models.Abstracts;
-using System;
+using Microsoft.Extensions.Logging;
+using EcoScrapbookingAPI.Domain.Models.Enums;
 
 namespace EcoScrapbookingAPI.Data.Context
 {
@@ -13,35 +14,139 @@ namespace EcoScrapbookingAPI.Data.Context
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<Publication> Publications { get; set; }
-
+    public DbSet<Activity> Activities { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<SustainableActivity> SustainableActivities { get; set; }
     public DbSet<Tutorial> Tutorials { get; set; }
-
+    public DbSet<Resource> Resources { get; set; }
     public DbSet<Tool> Tools { get; set; }
     public DbSet<Material> Materials { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      // Configuración de la herencia para Activity (TPH)
+
+      // Inheritance configuration for Activity
       modelBuilder.Entity<Activity>()
           .HasDiscriminator<string>("ActivityType")
           .HasValue<Project>("Project")
           .HasValue<SustainableActivity>("SustainableActivity")
           .HasValue<Tutorial>("Tutorial");
 
-      // Configuración de la herencia para Resource (TPH)
+      // Inheritance configuration for Resource
       modelBuilder.Entity<Resource>()
           .HasDiscriminator<string>("ResourceType")
           .HasValue<Tool>("Tool")
           .HasValue<Material>("Material");
 
-      // Configuración de índice único para Email
+      // Single index configuration for Email
       modelBuilder.Entity<User>()
           .HasIndex(u => u.Email)
           .IsUnique();
 
-      // Semilla de datos para Users
+      // One to Many Relationships: User -> Addresses
+      modelBuilder.Entity<User>()
+          .HasMany(u => u.Addresses)
+          .WithOne(a => a.AddressUser)
+          .HasForeignKey(a => a.UserId);
+
+      // One to Many Relationships: User -> ActivitiesCreated
+      modelBuilder.Entity<User>()
+          .HasMany(u => u.ActivitiesCreated)
+          .WithOne(a => a.CreatorUser)
+          .HasForeignKey(a => a.CreatorUserId);
+
+      // Many-to-many relationship: User -> ActivitiesParticipated
+      modelBuilder.Entity<User>()
+          .HasMany(u => u.ActivitiesParticipated)
+          .WithMany(a => a.Participants)
+          .UsingEntity<Dictionary<string, object>>(
+              "UserActivities",
+              j => j.HasOne<Activity>()
+                    .WithMany()
+                    .HasForeignKey("ActivitiesParticipatedActivityId")
+                    .OnDelete(DeleteBehavior.Restrict), // O DeleteBehavior.Restrict según prefieras
+              j => j.HasOne<User>()
+                    .WithMany()
+                    .HasForeignKey("ParticipantsUserId")
+                    .OnDelete(DeleteBehavior.Restrict), // Cambiar de Cascade a Restrict
+              j =>
+              {
+                j.HasKey("ActivitiesParticipatedActivityId", "ParticipantsUserId");
+                j.ToTable("UserActivities");
+              }
+          );
+
+      // One to Many Relationships: User -> Resources
+      modelBuilder.Entity<User>()
+          .HasMany(u => u.Resources)
+          .WithOne(r => r.OwnerUser)
+          .HasForeignKey(r => r.OwnerUserId);
+
+      // One to Many Relationships: User -> Transactions Iniciadas
+      modelBuilder.Entity<User>()
+          .HasMany(u => u.TransactionsInitiated)
+          .WithOne(t => t.InitiatorUser)
+          .HasForeignKey(t => t.InitiatorUserID);
+
+      // One to Many Relationships: User -> Transactions Recibidas
+      modelBuilder.Entity<User>()
+          .HasMany(u => u.TransactionsReceived)
+          .WithOne(t => t.ReceiverUser)
+          .HasForeignKey(t => t.ReceiverUserID);
+
+      // One to Many Relationships: User -> Publication
+      modelBuilder.Entity<User>()
+          .HasMany(u => u.Posts)
+          .WithOne(p => p.Author)
+          .HasForeignKey(p => p.AuthorId);
+
+      // One to Many Relationships: Publication -> Replies
+      modelBuilder.Entity<Publication>()
+          .HasMany(p => p.Replies)
+          .WithOne(p => p.ReplyTo)
+          .HasForeignKey(p => p.ReplyPostID);
+
+      // One to Many Relationships: Publication -> Activity
+      modelBuilder.Entity<Publication>()
+          .HasOne(p => p.Activity)
+          .WithMany(a => a.Publications)
+          .HasForeignKey(p => p.ActivityId);
+
+      // One to Many Relationships: Address -> SustainableActivity
+      modelBuilder.Entity<Address>()
+          .HasMany(a => a.SustainableActivities)
+          .WithOne(sa => sa.Ubication)
+          .HasForeignKey(sa => sa.AddressId);
+
+      // One to Many Relationships: Transaction -> Resources
+      modelBuilder.Entity<Transaction>()
+          .HasMany(t => t.Resources)
+          .WithOne(r => r.Transaction)
+          .HasForeignKey(r => r.TransactionId);
+
+      // Many-to-many relationship: Activity -> Resources
+      modelBuilder.Entity<Activity>()
+          .HasMany(a => a.ActivityResources)
+          .WithMany(r => r.Activities)
+          .UsingEntity<Dictionary<string, object>>(
+              "ActivityResources",
+              j => j.HasOne<Resource>()
+                    .WithMany()
+                    .HasForeignKey("ActivityResourcesResourceId")
+                    .OnDelete(DeleteBehavior.Restrict), // Cambiar a Restrict
+              j => j.HasOne<Activity>()
+                    .WithMany()
+                    .HasForeignKey("ActivitiesActivityId")
+                    .OnDelete(DeleteBehavior.Restrict), // Cambiar a Restrict
+              j =>
+              {
+                j.HasKey("ActivitiesActivityId", "ActivityResourcesResourceId");
+                j.ToTable("ActivityResources");
+              }
+          );
+
+
+      // Data seed for Users
       modelBuilder.Entity<User>().HasData(
           new User
           {
@@ -50,7 +155,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Name = "Juan",
             Lastname = "Pérez",
             Email = "juan.perez@example.com",
-            Password = "$2a$12$KIX9sQw9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAe", // Hash de "Contraseña1"
+            Password = "$2a$12$KIX9sQw9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAe", // Hash "Contraseña1"
             Gender = "Masculino",
             BirthDate = new DateTime(1985, 5, 20),
             RegistrationDate = new DateTime(2023, 1, 10),
@@ -64,7 +169,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Name = "María",
             Lastname = "Gómez",
             Email = "maria.gomez@example.com",
-            Password = "$2a$12$7Hj3Lr9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAf", // Hash de "Contraseña2"
+            Password = "$2a$12$7Hj3Lr9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAf", // Hash "Contraseña2"
             Gender = "Femenino",
             BirthDate = new DateTime(1990, 8, 15),
             RegistrationDate = new DateTime(2023, 2, 5),
@@ -78,7 +183,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Name = "Carlos",
             Lastname = "López",
             Email = "carlos.lopez@example.com",
-            Password = "$2a$12$9Hk4Ms8k1m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAg", // Hash de "Contraseña3"
+            Password = "$2a$12$9Hk4Ms8k1m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAg", // Hash "Contraseña3"
             Gender = "Masculino",
             BirthDate = new DateTime(1992, 12, 1),
             RegistrationDate = new DateTime(2023, 3, 12),
@@ -87,7 +192,7 @@ namespace EcoScrapbookingAPI.Data.Context
           }
       );
 
-      // Semilla de datos para Addresses
+      // Data seed for Addresses
       modelBuilder.Entity<Address>().HasData(
           new Address
           {
@@ -101,7 +206,6 @@ namespace EcoScrapbookingAPI.Data.Context
             Description = "Residencia Principal",
             ContactPhone = "555-1234",
             UserId = 1,
-            SustainableActivityId = null
           },
           new Address
           {
@@ -115,7 +219,6 @@ namespace EcoScrapbookingAPI.Data.Context
             Description = "Oficina",
             ContactPhone = "555-5678",
             UserId = 2,
-            SustainableActivityId = null
           },
           new Address
           {
@@ -129,15 +232,15 @@ namespace EcoScrapbookingAPI.Data.Context
             Description = "Lugar de Eventos",
             ContactPhone = "555-9012",
             UserId = 3,
-            SustainableActivityId = null
           }
       );
 
-      // Semilla de datos para Tools
+      // Data seed for Tools
       modelBuilder.Entity<Tool>().HasData(
           new Tool
           {
             ResourceId = 1,
+            TransactionId = 1,
             Name = "Pala",
             Type = "Jardinería",
             Brand = "HerramientasPro",
@@ -146,7 +249,6 @@ namespace EcoScrapbookingAPI.Data.Context
             Condition = "Nueva",
             Warranty = true,
             OwnerUserId = 1,
-            ActivityId = null
           },
           new Tool
           {
@@ -159,128 +261,141 @@ namespace EcoScrapbookingAPI.Data.Context
             Condition = "Usada",
             Warranty = false,
             OwnerUserId = 2,
-            ActivityId = null
           }
       );
 
-      // Semilla de datos para Materials
+      // Data seed for Materials
       modelBuilder.Entity<Material>().HasData(
           new Material
           {
             ResourceId = 3,
-            Name = "Compost",
-            Type = "Orgánico",
-            Brand = "EcoSustentable",
+            TransactionId = 2,
+            Name = "Papel de muestrario de Pinturas",
+            Type = "Reciclaje",
+            Brand = "PinturasVerdes",
             Quantity = 50,
-            Description = "Compost rico en nutrientes.",
-            duration = 30,
+            Description = "Papel de muestrario de pinturas para reutilizar.",
             OwnerUserId = 3,
-            ActivityId = null
           }
       );
 
-      // Semilla de datos para Publications
+      // Data seed for Publications
       modelBuilder.Entity<Publication>().HasData(
           new Publication
           {
             PublicationID = 1,
+            AuthorId = 1,
             Category = "Reciclaje",
             Title = "Consejos para Reciclar",
             Description = "Métodos efectivos para reciclar en casa.",
-            ReplyPostID = null
           },
           new Publication
           {
             PublicationID = 2,
+            AuthorId = 2,
             Category = "Jardinería",
             Title = "Plantando Árboles",
             Description = "Cómo y dónde plantar árboles.",
-            ReplyPostID = null
           },
           new Publication
           {
             PublicationID = 3,
+            AuthorId = 3,
             Category = "Jardinería",
             Title = "Respuesta: Plantando Árboles",
             Description = "¡Me encantaría participar!",
             ReplyPostID = 2
+          },
+          new Publication
+          {
+            PublicationID = 4,
+            AuthorId = 1,
+            ActivityId = 1,
+            Category = "Paso de proyecto",
+            Title = "Avance: Caja de recuerdos",
+            Description = "Hemos terminado de cortar las piezas.",
+            ImagePostUrl = "https://image-post.com"
           }
       );
 
-      // Semilla de datos para Transactions
+      // Data seed for Transactions
       modelBuilder.Entity<Transaction>().HasData(
           new Transaction
           {
             TransactionID = 1,
-            Quantity = 2,
-            Date = new DateTime(2023, 4, 10),
-            OldOwnerUserID = 1,
-            NewOwnerUserID = 2,
-            ResourceID = 1
+            Type = TransactionType.Exchange,
+            Status = TransactionStatus.Completed,
+            DateInitiated = new DateTime(2023, 4, 10),
+            DateCompleted = new DateTime(2023, 4, 15),
+            InitiatorUserID = 1,
+            ReceiverUserID = 2,
           },
           new Transaction
           {
             TransactionID = 2,
-            Quantity = 1,
-            Date = new DateTime(2023, 5, 15),
-            OldOwnerUserID = 2,
-            NewOwnerUserID = 3,
-            ResourceID = 2
+            Type = TransactionType.Gift,
+            Status = TransactionStatus.Pending,
+            DateInitiated = new DateTime(2023, 5, 20),
+            InitiatorUserID = 2,
+            ReceiverUserID = 3,
           }
       );
 
-      // Semilla de datos para Projects
+      // Data seed for Projects
       modelBuilder.Entity<Project>().HasData(
           new Project
           {
             ActivityId = 1,
-            Title = "Huerto Comunitario",
-            Description = "Creación y mantenimiento de un huerto comunitario.",
-            MaxParticipants = 25,
+            Title = "Caja de recuerdos",
+            Description = "Creación de una cajita para guardar recuerdos.",
             StartDate = new DateTime(2024, 1, 5),
             FinishDate = new DateTime(2024, 6, 5),
             IsActive = true,
             GreenPointsValue = 100.0m,
-            ProjectType = "Agricultura Urbana",
-            CreatorUserId = 1 // Renombrado
+            ProjectType = "Manualidades",
+            CreatorUserId = 1,
+            HomeImageUrl = "https://default-homepage.com",
           }
       );
 
-      // Semilla de datos para SustainableActivities
+      // Data seed for SustainableActivities
       modelBuilder.Entity<SustainableActivity>().HasData(
           new SustainableActivity
           {
             ActivityId = 2,
-            Title = "Limpieza de Playa",
-            Description = "Organización de jornadas para limpiar la playa local.",
-            MaxParticipants = 40,
+            Title = "Plantación de Árboles",
+            Description = "Actividad para plantar árboles en parques.",
+            MaxParticipants = 30,
             StartDate = new DateTime(2024, 2, 10),
-            FinishDate = new DateTime(2024, 2, 10),
+            FinishDate = new DateTime(2024, 2, 11),
             IsActive = true,
             GreenPointsValue = 75.0m,
-            NameCollaborator = "ONG Verde",
-            CreatorUserId = 2 // Renombrado
+            HomeImageUrl = "https://default-homepage.com",
+            NameCollaborator = "Parques y Jardines",
+            AddressId = 1,
+            CreatorUserId = 2
           }
       );
 
-      // Semilla de datos para Tutorials
+      // Data seed for Tutorials
       modelBuilder.Entity<Tutorial>().HasData(
           new Tutorial
           {
             ActivityId = 3,
-            Title = "Compostaje Casero",
-            Description = "Guía para hacer compost en casa.",
+            Title = "Pegamento Casero Reciclado",
+            Description = "Tutorial para hacer pegamento casero con materiales reciclados.",
             MaxParticipants = 20,
             StartDate = new DateTime(2024, 3, 15),
             FinishDate = new DateTime(2024, 3, 16),
             IsActive = true,
             GreenPointsValue = 50.0m,
-            Duration = 3, // Duración en horas
-            CreatorUserId = 3 // Renombrado
+            HomeImageUrl = "https://default-homepage.com",
+            Duration = 300,
+            CreatorUserId = 3
           }
       );
 
-      // Configuración de tipos de datos para decimales
+      // Data type settings for decimals
       modelBuilder.Entity<User>()
           .Property(u => u.GreenPoints)
           .HasColumnType("decimal(18,2)");
@@ -297,22 +412,23 @@ namespace EcoScrapbookingAPI.Data.Context
           .Property(t => t.GreenPointsValue)
           .HasColumnType("decimal(18,2)");
 
+      // Data type settings for types and status
       modelBuilder.Entity<Transaction>()
-          .Property(t => t.Quantity)
-          .IsRequired();
+          .Property(t => t.Type)
+          .HasConversion<string>();
+
+      modelBuilder.Entity<Transaction>()
+          .Property(t => t.Status)
+          .HasConversion<string>();
 
       base.OnModelCreating(modelBuilder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      // Si estás utilizando inyección de dependencias, puedes dejar este método vacío
-      // Si no, configura la cadena de conexión aquí
-      // Ejemplo sin DI:
-      // if (!optionsBuilder.IsConfigured)
-      // {
-      //     optionsBuilder.UseSqlServer("Your_Connection_String_Here");
-      // }
+      optionsBuilder
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging();
     }
   }
 }

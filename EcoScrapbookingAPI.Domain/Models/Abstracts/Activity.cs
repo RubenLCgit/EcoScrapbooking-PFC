@@ -10,8 +10,7 @@ public abstract class Activity
   public string Title { get; set; }
   [Required]
   public string Description { get; set; }
-  [Required]
-  public int MaxParticipants { get; set; }
+  public int? MaxParticipants { get; set; }
   [Required]
   public DateTime StartDate { get; set; }
   [Required]
@@ -19,12 +18,14 @@ public abstract class Activity
   public bool IsActive { get; set; }
   [Required] 
   public decimal GreenPointsValue { get; set; }
+  public string HomeImageUrl { get; set; }
+  public ICollection<Publication> Publications { get; set; }
   public ICollection<User> Participants { get; set; }
   public ICollection<Resource> ActivityResources { get; set; }
   public int CreatorUserId { get; set; }
 
   [ForeignKey("CreatorUserId")] 
-  public User CreatorActivity { get; set; }
+  public User CreatorUser { get; set; }
 
   protected Activity() { }
 
@@ -37,5 +38,9 @@ public abstract class Activity
     FinishDate = finishDate;
     GreenPointsValue = greenPointsValue;
     CreatorUserId = creatorUserId;
+    IsActive = true;
+    HomeImageUrl = "https://default-homepage.com";
+    Participants = new List<User>();
+    ActivityResources = new List<Resource>();
   }
 }

@@ -27,11 +27,8 @@ public class Address
   public int? UserId { get; set; }
 
   [ForeignKey("UserId")]
-  public User User { get; set; }
-  public int? SustainableActivityId { get; set; }
-
-  [ForeignKey("SustainableActivityId")]
-  public SustainableActivity SustainableActivity { get; set; }
+  public User AddressUser { get; set; }
+  public ICollection<SustainableActivity> SustainableActivities { get; set; }
 
 
   public Address() { }
@@ -46,5 +43,6 @@ public class Address
     ZipCode = zipCode;
     Description = description;
     ContactPhone = contactPhone;
+    SustainableActivities = new List<SustainableActivity>();
   }
 }
