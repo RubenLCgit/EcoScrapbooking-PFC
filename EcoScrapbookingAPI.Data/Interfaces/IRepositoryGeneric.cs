@@ -5,10 +5,10 @@ namespace EcoScrapbookingAPI.Data.Interfaces;
 
 public interface IRepositoryGeneric<T> where T : class
 {
-  Task AddEntityAsync(T entity);
-  Task<T?> GetByIdEntityAsync(int entityId);
-  Task UpdateEntityAsync(T entity);
-  Task DeleteEntityAsync(T entity);
-  Task SaveChangesAsync();
-  Task<List<T>> GetAllEntitiesAsync();
+  void AddEntity(T entity);
+  T? GetByIdEntity(int entityId);
+  void UpdateEntity(T entity);
+  void DeleteEntity(T entity);
+  void SaveChanges();
+  List<T> GetAllEntities();
 }
