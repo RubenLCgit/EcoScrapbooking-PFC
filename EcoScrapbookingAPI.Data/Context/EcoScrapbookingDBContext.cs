@@ -64,11 +64,11 @@ namespace EcoScrapbookingAPI.Data.Context
               j => j.HasOne<Activity>()
                     .WithMany()
                     .HasForeignKey("ActivitiesParticipatedActivityId")
-                    .OnDelete(DeleteBehavior.Restrict), // O DeleteBehavior.Restrict según prefieras
+                    .OnDelete(DeleteBehavior.Restrict),
               j => j.HasOne<User>()
                     .WithMany()
                     .HasForeignKey("ParticipantsUserId")
-                    .OnDelete(DeleteBehavior.Restrict), // Cambiar de Cascade a Restrict
+                    .OnDelete(DeleteBehavior.Restrict),
               j =>
               {
                 j.HasKey("ActivitiesParticipatedActivityId", "ParticipantsUserId");
@@ -133,11 +133,11 @@ namespace EcoScrapbookingAPI.Data.Context
               j => j.HasOne<Resource>()
                     .WithMany()
                     .HasForeignKey("ActivityResourcesResourceId")
-                    .OnDelete(DeleteBehavior.Restrict), // Cambiar a Restrict
+                    .OnDelete(DeleteBehavior.Restrict),
               j => j.HasOne<Activity>()
                     .WithMany()
                     .HasForeignKey("ActivitiesActivityId")
-                    .OnDelete(DeleteBehavior.Restrict), // Cambiar a Restrict
+                    .OnDelete(DeleteBehavior.Restrict),
               j =>
               {
                 j.HasKey("ActivitiesActivityId", "ActivityResourcesResourceId");
@@ -154,6 +154,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Role = "Admin",
             Name = "Juan",
             Lastname = "Pérez",
+            Nickname = "juanito123",
             Email = "juan.perez@example.com",
             Password = "$2a$12$KIX9sQw9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAe", // Hash "Contraseña1"
             Gender = "Masculino",
@@ -168,6 +169,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Role = "User",
             Name = "María",
             Lastname = "Gómez",
+            Nickname = "maryg",
             Email = "maria.gomez@example.com",
             Password = "$2a$12$7Hj3Lr9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAf", // Hash "Contraseña2"
             Gender = "Femenino",
@@ -181,6 +183,7 @@ namespace EcoScrapbookingAPI.Data.Context
             UserId = 3,
             Role = "User",
             Name = "Carlos",
+            Nickname = "carlosl",
             Lastname = "López",
             Email = "carlos.lopez@example.com",
             Password = "$2a$12$9Hk4Ms8k1m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAg", // Hash "Contraseña3"

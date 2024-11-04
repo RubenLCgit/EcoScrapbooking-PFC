@@ -20,6 +20,7 @@ public class UserRepository : IRepositoryGeneric<User>
     try
     {
       _context.Users.Add(user);
+      _context.SaveChanges();
     }
     catch (DbUpdateException dbEx)
     {
@@ -50,7 +51,6 @@ public class UserRepository : IRepositoryGeneric<User>
 
   public void UpdateEntity(User user)
   {
-    if (user == null) throw new ArgumentNullException(nameof(user));
     try
     {
       _context.Users.Update(user);
@@ -68,10 +68,10 @@ public class UserRepository : IRepositoryGeneric<User>
 
   public void DeleteEntity(User user)
   {
-    if (user == null) throw new ArgumentNullException(nameof(user));
     try
     {
       _context.Users.Remove(user);
+      _context.SaveChanges();
     }
     catch (DbUpdateException dbEx)
     {

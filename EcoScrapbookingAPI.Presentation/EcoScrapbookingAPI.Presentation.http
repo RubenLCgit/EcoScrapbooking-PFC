@@ -1,4 +1,19 @@
-@EcoScrapbookingAPI.Presentation_HostAddress = http://localhost:5199
+@EcoScrapbookingAPIHostAddress = https://localhost:7052
+
+### Obtener todos los usuarios
+GET {{EcoScrapbookingAPIHostAddress}}/User
+Accept: text/plain
 
 ###
 
+### Obtener un usuario por su id
+
+GET {{EcoScrapbookingAPIHostAddress}}/User/1
+Accept: text/plain
+
+###
+
+### Crear un usuario
+
+POST {{EcoScrapbookingAPIHostAddress}}/User
+Content-Type: application/json
