@@ -10,6 +10,8 @@ public class User
   [Required]
   public string Role { get; set; }
   [Required]
+  public string Nickname { get; set; }
+  [Required]
   public string Password { get; set; }
   [Required]
   [EmailAddress]
@@ -37,10 +39,11 @@ public class User
 
   public User() { }
   
-  public User(String name, String lastname, String email, String password,  String gender, DateTime birthDate)
+  public User(String name, String lastname, String nickname ,String email, String password,  String gender, DateTime birthDate, String avatarImageUrl)
   {
     Name = name;
     Lastname = lastname;
+    Nickname = nickname;
     Email = email;
     Password = password;
     Gender = gender;
@@ -48,7 +51,7 @@ public class User
     RegistrationDate = DateTime.Now;
     IsActive = true;
     GreenPoints = 0.0m;
-    AvatarImageUrl = "https://default-avatar.com";
+    AvatarImageUrl = avatarImageUrl;
     Addresses = new List<Address>();
     ActivitiesParticipated = new List<Activity>();
     ActivitiesCreated = new List<Activity>();

@@ -1,4 +1,9 @@
+using EcoScrapbookingAPI.Business.Interfaces;
+using EcoScrapbookingAPI.Business.Services;
 using EcoScrapbookingAPI.Data.Context;
+using EcoScrapbookingAPI.Data.Interfaces;
+using EcoScrapbookingAPI.Data.Repositories;
+using EcoScrapbookingAPI.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +17,10 @@ builder.Services.AddDbContext<EcoScrapbookingDBContext>(options => options.UseSq
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add services to the container.
+builder.Services.AddScoped<IRepositoryGeneric<User>, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +32,6 @@ if (app.Environment.IsDevelopment()) // Delete if the API is in Docker
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", () => "Welcome to the EcoScrapbooking API!");
+app.MapControllers();
 
 app.Run();
