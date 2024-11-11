@@ -5,7 +5,7 @@ namespace EcoScrapbookingAPI.Business.Interfaces;
 
 public interface IUserService
 {
-  User RegisterUser(UserCreateDTO userCreateDTO);
+  User CreateUser(UserCreateDTO userCreateDTO);
   void UpdateUser(int userId, UserUpdateDTO userCreateUpdateDTO);
   void DeleteUser(int userId);
   List<UserGetDTO> GetAllUsers();

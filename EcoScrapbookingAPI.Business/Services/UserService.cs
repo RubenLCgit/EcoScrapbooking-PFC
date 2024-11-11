@@ -25,12 +25,12 @@ public class UserService : IUserService
     var user = _userRepository.GetByIdEntity(userId);
     if (user == null) throw new ArgumentNullException($"User with ID {userId} not found.");
     _userRepository.DeleteEntity(user);
+    _userRepository.SaveChanges();
   }
 
   public List<UserGetDTO> GetAllUsers()
   {
     var users = _userRepository.GetAllEntities();
-    if (users == null) throw new ArgumentNullException("There are no users in the database.");
     return MapUsersToDTOs(users);
   }
 
@@ -41,7 +41,7 @@ public class UserService : IUserService
     return new UserGetDTO(user);
   }
 
-  public User RegisterUser(UserCreateDTO userCreateDTO)
+  public User CreateUser(UserCreateDTO userCreateDTO)
   {
     var passwordHashed = BCrypt.Net.BCrypt.HashPassword(userCreateDTO.Password);
     User user = new User( userCreateDTO.Name, userCreateDTO.Lastname, userCreateDTO.Nickname ,userCreateDTO.Email, passwordHashed, userCreateDTO.Gender, userCreateDTO.BirthDate, userCreateDTO.AvatarImageUrl);
@@ -49,6 +49,7 @@ public class UserService : IUserService
     if(users.Any(u => u.Nickname == user.Nickname || u.Email == user.Email)) throw new ArgumentException("User already exists.");
     AssignRole(user);
     _userRepository.AddEntity(user);
+    _userRepository.SaveChanges();
     return user;
   }
 
@@ -70,12 +71,7 @@ public class UserService : IUserService
 
   private List<UserGetDTO> MapUsersToDTOs(List<User> users)
   {
-    List<UserGetDTO> usersDTO = new List<UserGetDTO>();
-    foreach (var user in users)
-    {
-      usersDTO.Add(new UserGetDTO(user));
-    }
-    return usersDTO;
+    return users.Select(u => new UserGetDTO(u)).ToList();
   }
 
   private void AssignRole(User user)

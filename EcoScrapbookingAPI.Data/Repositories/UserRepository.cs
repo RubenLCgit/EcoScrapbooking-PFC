@@ -1,7 +1,7 @@
+using EcoScrapbookingAPI.Data.Context;
 using EcoScrapbookingAPI.Domain.Models;
 using EcoScrapbookingAPI.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using EcoScrapbookingAPI.Data.Context;
 
 namespace EcoScrapbookingAPI.Data.Repositories;
 
@@ -20,7 +20,6 @@ public class UserRepository : IRepositoryGeneric<User>
     try
     {
       _context.Users.Add(user);
-      _context.SaveChanges();
     }
     catch (DbUpdateException dbEx)
     {
@@ -71,7 +70,6 @@ public class UserRepository : IRepositoryGeneric<User>
     try
     {
       _context.Users.Remove(user);
-      _context.SaveChanges();
     }
     catch (DbUpdateException dbEx)
     {
@@ -120,5 +118,3 @@ public class UserRepository : IRepositoryGeneric<User>
     }
   }
 }
-
-//Guardar Cambios en una Capa Superior (Servicio o Controlador) llamando al método SaveChanges()
