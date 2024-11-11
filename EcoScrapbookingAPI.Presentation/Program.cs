@@ -21,9 +21,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepositoryGeneric<User>, UserRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<Address>, AddressRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<SustainableActivity>, SustainableActivityRepository>();
+builder.Services.AddScoped<IRepositoryGeneric<Project>, ProjectRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<ISustainableActivityService, SustainableActivityService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 var app = builder.Build();
 
