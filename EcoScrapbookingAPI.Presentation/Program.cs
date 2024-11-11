@@ -19,7 +19,11 @@ builder.Services.AddSwaggerGen();
 
 // Add services to the container.
 builder.Services.AddScoped<IRepositoryGeneric<User>, UserRepository>();
+builder.Services.AddScoped<IRepositoryGeneric<Address>, AddressRepository>();
+builder.Services.AddScoped<IRepositoryGeneric<SustainableActivity>, SustainableActivityRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
+builder.Services.AddScoped<ISustainableActivityService, SustainableActivityService>();
 
 var app = builder.Build();
 

@@ -16,13 +16,9 @@ public class Transaction
   [Required]
   public DateTime DateInitiated { get; set; }
   public DateTime? DateCompleted { get; set; }
-
-  //User that initiated the transaction
   public int InitiatorUserID { get; set; }
   [ForeignKey("InitiatorUserID")]
   public User InitiatorUser { get; set; }
-
-  //User that received the transaction
   public int? ReceiverUserID { get; set; }
   [ForeignKey("ReceiverUserID")]
   public User ReceiverUser { get; set; }

@@ -56,7 +56,7 @@ public class UserController : ControllerBase
   {
     try
     {
-      var user = _userService.RegisterUser(userCreateDTO);
+      var user = _userService.CreateUser(userCreateDTO);
       return CreatedAtAction(nameof(Get), new { userId = user.UserId }, user);
     }
     catch (ArgumentNullException anEx)
