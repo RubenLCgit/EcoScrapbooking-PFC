@@ -1,5 +1,7 @@
-namespace EcoScrapbookingAPI.Business.DTOs.SustainableActivityDTOs;
 using System.ComponentModel.DataAnnotations;
+using EcoScrapbookingAPI.Domain.Models;
+
+namespace EcoScrapbookingAPI.Business.DTOs.SustainableActivityDTOs;
 
 public class SustainableActivityUpdateDTO
 {
@@ -22,17 +24,17 @@ public class SustainableActivityUpdateDTO
 
   public SustainableActivityUpdateDTO() { }
 
-  public SustainableActivityUpdateDTO(string title, string description, int? maxParticipants, DateTime startDate, DateTime finishDate, bool isActive, decimal greenPointsValue, string homeImageUrl, string nameCollaborator, int addressId)
+  public SustainableActivityUpdateDTO(SustainableActivity sustainableActivity)
   {
-    Title = title;
-    Description = description;
-    MaxParticipants = maxParticipants;
-    StartDate = startDate;
-    FinishDate = finishDate;
-    IsActive = isActive;
-    GreenPointsValue = greenPointsValue;
-    HomeImageUrl = homeImageUrl;
-    NameCollaborator = nameCollaborator;
-    AddressId = addressId;
+    Title = sustainableActivity.Title;
+    Description = sustainableActivity.Description;
+    MaxParticipants = sustainableActivity.MaxParticipants;
+    StartDate = sustainableActivity.StartDate;
+    FinishDate = sustainableActivity.FinishDate;
+    IsActive = sustainableActivity.IsActive;
+    GreenPointsValue = sustainableActivity.GreenPointsValue;
+    HomeImageUrl = sustainableActivity.HomeImageUrl;
+    NameCollaborator = sustainableActivity.NameCollaborator;
+    AddressId = sustainableActivity.AddressId;
   }
 }

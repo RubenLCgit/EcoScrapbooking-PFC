@@ -1,6 +1,7 @@
-namespace EcoScrapbookingAPI.Business.DTOs.SustainableActivityDTOs;
 using System.ComponentModel.DataAnnotations;
 using EcoScrapbookingAPI.Domain.Models;
+
+namespace EcoScrapbookingAPI.Business.DTOs.SustainableActivityDTOs;
 
 public class SustainableActivityCreateDTO
 {
