@@ -24,6 +24,7 @@ builder.Services.AddScoped<IRepositoryGeneric<SustainableActivity>, SustainableA
 builder.Services.AddScoped<IRepositoryGeneric<Project>, ProjectRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<Tutorial>, TutorialRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<Material>, MaterialRepository>();
+builder.Services.AddScoped<IRepositoryGeneric<Tool>, ToolRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAddressService, AddressService>();
@@ -31,6 +32,7 @@ builder.Services.AddScoped<ISustainableActivityService, SustainableActivityServi
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITutorialService, TutorialService>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
+builder.Services.AddScoped<IToolService, ToolService>();
 
 var app = builder.Build();
 
