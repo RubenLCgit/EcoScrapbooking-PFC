@@ -5,7 +5,6 @@ namespace EcoScrapbookingAPI.Business.DTOs.PublicationDTOs;
 
 public class PublicationUpdateDTO
 {
-  public int? PublicationId { get; set; }
   public int? AuthorId { get; set; }
   public int? ReplyPostID { get; set; }
   [Required]
@@ -23,7 +22,6 @@ public class PublicationUpdateDTO
 
   public PublicationUpdateDTO(Publication publication)
   {
-    PublicationId = publication.PublicationID;
     AuthorId = publication.AuthorId;
     ReplyPostID = publication.ReplyPostID;
     Category = publication.Category;

@@ -7,5 +7,5 @@ public class Material : Resource
 {
   public Material() { }
 
-  public Material(string name, string type, string brand, int quantity, string description, int ownerUserId, string imageResourceUrl) : base(name, type, brand, quantity, description, ownerUserId, imageResourceUrl) { }
+  public Material(string name, string type, string brand, int quantity, string description, int ownerUserId, string imageResourceUrl, int? transactionId) : base(name, type, brand, quantity, description, ownerUserId, imageResourceUrl, transactionId) { }
 }
