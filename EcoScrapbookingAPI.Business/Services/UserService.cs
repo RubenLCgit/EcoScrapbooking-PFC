@@ -9,10 +9,16 @@ namespace EcoScrapbookingAPI.Business.Services;
 public class UserService : IUserService
 {
   private readonly IRepositoryGeneric<User> _userRepository;
+  private readonly IRepositoryGeneric<Project> _projectRepository;
+  private readonly IRepositoryGeneric<Tutorial> _tutorialRepository;
+  private readonly IRepositoryGeneric<SustainableActivity> _sustainableActivityRepository;
 
-  public UserService(IRepositoryGeneric<User> userRepository)
+  public UserService(IRepositoryGeneric<User> userRepository, IRepositoryGeneric<Project> projectRepository, IRepositoryGeneric<Tutorial> tutorialRepository, IRepositoryGeneric<SustainableActivity> sustainableActivityRepository)
   {
     _userRepository = userRepository;
+    _projectRepository = projectRepository;
+    _tutorialRepository = tutorialRepository;
+    _sustainableActivityRepository = sustainableActivityRepository;
   }
 
   public User CheckLogin(string userName, string userPassword)
@@ -65,6 +71,46 @@ public class UserService : IUserService
     user.Gender = userUpdateDTO.Gender ?? user.Gender;
     user.BirthDate = userUpdateDTO.BirthDate ?? user.BirthDate;
     user.AvatarImageUrl = userUpdateDTO.AvatarImageUrl ?? user.AvatarImageUrl;
+    _userRepository.UpdateEntity(user);
+    _userRepository.SaveChanges();
+  }
+
+  public void AddUserToActivity(int userId, int activityId)
+  {
+    var user = _userRepository.GetByIdEntity(userId);
+    if (user == null) throw new ArgumentNullException($"User with ID {userId} not found.");
+
+    var project = _projectRepository.GetByIdEntity(activityId);
+    if (project != null)
+    {
+      user.ActivitiesParticipated.Add(project);
+      project.Participants.Add(user);
+      _projectRepository.UpdateEntity(project);
+    }
+    else
+    {
+      var tutorial = _tutorialRepository.GetByIdEntity(activityId);
+      if (tutorial != null)
+      {
+        user.ActivitiesParticipated.Add(tutorial);
+        tutorial.Participants.Add(user);
+        _tutorialRepository.UpdateEntity(tutorial);
+      }
+      else
+      {
+        var sustainableActivity = _sustainableActivityRepository.GetByIdEntity(activityId);
+        if (sustainableActivity != null)
+        {
+          user.ActivitiesParticipated.Add(sustainableActivity);
+          sustainableActivity.Participants.Add(user);
+          _sustainableActivityRepository.UpdateEntity(sustainableActivity);
+        }
+        else
+        {
+          throw new ArgumentNullException($"Activity with ID {activityId} not found.");
+        }
+      }
+    }
     _userRepository.UpdateEntity(user);
     _userRepository.SaveChanges();
   }

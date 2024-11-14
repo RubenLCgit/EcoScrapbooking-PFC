@@ -36,7 +36,11 @@ public class SustainableActivityRepository : IRepositoryGeneric<SustainableActiv
     if (sustainableActivityId <= 0) throw new ArgumentException("Sustainable activity ID must be greater than zero.", nameof(sustainableActivityId));
     try
     {
-      return _context.SustainableActivities.FirstOrDefault(sa => sa.ActivityId == sustainableActivityId);
+      return _context.SustainableActivities
+        .Include(sa => sa.Publications)
+        .Include(sa => sa.Participants)
+        .Include(sa => sa.ActivityResources)
+        .FirstOrDefault(sa => sa.ActivityId == sustainableActivityId);
     }
     catch (ObjectDisposedException odEx)
     {
@@ -84,7 +88,11 @@ public class SustainableActivityRepository : IRepositoryGeneric<SustainableActiv
   {
     try
     {
-      return _context.SustainableActivities.ToList();
+      return _context.SustainableActivities
+        .Include(sa => sa.Publications)
+        .Include(sa => sa.Participants)
+        .Include(sa => sa.ActivityResources)
+        .ToList();
     }
     catch (ObjectDisposedException odEx)
     {

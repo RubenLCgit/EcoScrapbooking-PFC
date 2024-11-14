@@ -2,16 +2,23 @@ using EcoScrapbookingAPI.Business.DTOs.SustainableActivityDTOs;
 using EcoScrapbookingAPI.Business.Interfaces;
 using EcoScrapbookingAPI.Data.Interfaces;
 using EcoScrapbookingAPI.Domain.Models;
+using EcoScrapbookingAPI.Domain.Models.Abstracts;
 
 namespace EcoScrapbookingAPI.Business.Services;
 
 public class SustainableActivityService : ISustainableActivityService
 {
   private readonly IRepositoryGeneric<SustainableActivity> _sustainableActivityRepository;
+  private readonly IRepositoryGeneric<Project> _projectRepository;
+  private readonly IRepositoryGeneric<Tutorial> _tutorialRepository;
+  private readonly IRepositoryGeneric<User> _userRepository;
 
-  public SustainableActivityService(IRepositoryGeneric<SustainableActivity> sustainableActivityRepository)
+  public SustainableActivityService(IRepositoryGeneric<SustainableActivity> sustainableActivityRepository, IRepositoryGeneric<Project> projectRepository, IRepositoryGeneric<Tutorial> tutorialRepository, IRepositoryGeneric<User> userRepository)
   {
     _sustainableActivityRepository = sustainableActivityRepository;
+    _projectRepository = projectRepository;
+    _tutorialRepository = tutorialRepository;
+    _userRepository = userRepository;
   }
 
   public SustainableActivity CreateSustainableActivity(SustainableActivityCreateDTO sustainableActivityCreateDTO)

@@ -104,4 +104,22 @@ public class UserController : ControllerBase
       return BadRequest(ex.Message);
     }
   }
+
+  [HttpPost("{userId}/activities/{activityId}")]
+  public ActionResult AddUserToActivity(int userId, int activityId)
+  {
+    try
+    {
+      _userService.AddUserToActivity(userId, activityId);
+      return Ok();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
 }
