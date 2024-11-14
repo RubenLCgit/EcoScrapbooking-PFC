@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EcoScrapbookingAPI.Domain.Models.Abstracts;
 public abstract class Activity
@@ -18,8 +19,9 @@ public abstract class Activity
   public bool IsActive { get; set; }
   [Required] 
   public decimal GreenPointsValue { get; set; }
-  public string HomeImageUrl { get; set; }
-  public ICollection<Publication> Publications { get; set; }
+  public string HomeImageUrl { get; set; } = "https://defaultimage.com";
+  [JsonIgnore]
+  public ICollection<Publication> Publications { get; set; } = new List<Publication>();
   public ICollection<User> Participants { get; set; }
   public ICollection<Resource> ActivityResources { get; set; }
   public int CreatorUserId { get; set; }
@@ -29,7 +31,7 @@ public abstract class Activity
 
   protected Activity() { }
 
-  protected Activity(string title, string description, int maxParticipants, DateTime startDate, DateTime finishDate, decimal greenPointsValue, int creatorUserId)
+  protected Activity(string title, string description, int maxParticipants, DateTime startDate, DateTime finishDate, decimal greenPointsValue, string homeImageUrl ,int creatorUserId)
   {
     Title = title;
     Description = description;
@@ -39,7 +41,8 @@ public abstract class Activity
     GreenPointsValue = greenPointsValue;
     CreatorUserId = creatorUserId;
     IsActive = true;
-    HomeImageUrl = "https://default-homepage.com";
+    HomeImageUrl = homeImageUrl;
+    Publications = new List<Publication>();
     Participants = new List<User>();
     ActivityResources = new List<Resource>();
   }

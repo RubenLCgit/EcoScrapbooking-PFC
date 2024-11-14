@@ -16,7 +16,7 @@ public class SustainableActivityService : ISustainableActivityService
 
   public SustainableActivity CreateSustainableActivity(SustainableActivityCreateDTO sustainableActivityCreateDTO)
   {
-    var sustainableActivity = new SustainableActivity(sustainableActivityCreateDTO.Title, sustainableActivityCreateDTO.Description, sustainableActivityCreateDTO.MaxParticipants ?? 0, sustainableActivityCreateDTO.StartDate, sustainableActivityCreateDTO.FinishDate, sustainableActivityCreateDTO.GreenPointsValue, sustainableActivityCreateDTO.NameCollaborator, sustainableActivityCreateDTO.CreatorUserId, sustainableActivityCreateDTO.AddressId);
+    var sustainableActivity = new SustainableActivity(sustainableActivityCreateDTO.Title, sustainableActivityCreateDTO.Description, sustainableActivityCreateDTO.MaxParticipants ?? 0, sustainableActivityCreateDTO.StartDate, sustainableActivityCreateDTO.FinishDate, sustainableActivityCreateDTO.GreenPointsValue, sustainableActivityCreateDTO.HomeImageUrl, sustainableActivityCreateDTO.NameCollaborator, sustainableActivityCreateDTO.CreatorUserId, sustainableActivityCreateDTO.AddressId);
     _sustainableActivityRepository.AddEntity(sustainableActivity);
     _sustainableActivityRepository.SaveChanges();
     return sustainableActivity;

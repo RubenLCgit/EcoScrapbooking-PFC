@@ -15,7 +15,7 @@ public class SustainableActivity : Activity
 
   public SustainableActivity() { }
 
-  public SustainableActivity(String title, String description, int maxParticipants, DateTime startDate, DateTime finishDate, decimal greenPointsValue, string nameCollaborator, int creatorUserId, int addressId) : base(title, description, maxParticipants, startDate, finishDate, greenPointsValue, creatorUserId)
+  public SustainableActivity(String title, String description, int maxParticipants, DateTime startDate, DateTime finishDate, decimal greenPointsValue, string homeImageUrl, string nameCollaborator, int creatorUserId, int addressId) : base(title, description, maxParticipants, startDate, finishDate, greenPointsValue, homeImageUrl, creatorUserId)
   {
     NameCollaborator = nameCollaborator;
     AddressId = addressId;

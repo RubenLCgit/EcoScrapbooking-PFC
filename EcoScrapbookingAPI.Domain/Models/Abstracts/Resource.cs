@@ -34,7 +34,7 @@ public abstract class Resource
 
   protected Resource() { }
 
-  protected Resource(string name, string type, string brand, int quantity, string description, int ownerUserId)
+  protected Resource(string name, string type, string brand, int quantity, string description, int ownerUserId, string imageResourceUrl)
   {
     Name = name;
     Type = type;
@@ -42,7 +42,7 @@ public abstract class Resource
     Quantity = quantity;
     Description = description;
     OwnerUserId = ownerUserId;
-    ImageResourceUrl = "https://default-image.com";
+    ImageResourceUrl = imageResourceUrl;
     Activities = new List<Activity>();
   }
 }

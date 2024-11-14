@@ -22,7 +22,7 @@ public class TutorialCreateDTO
   public decimal GreenPointsValue { get; set; }
   [Required]
   [Url(ErrorMessage = "Invalid URL.")]
-  public string HomeImageUrl { get; set; }
+  public string? HomeImageUrl { get; set; }
   [Required]
   public int CreatorUserId { get; set; }
   [Required]

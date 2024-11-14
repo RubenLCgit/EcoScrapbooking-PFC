@@ -16,8 +16,7 @@ public class ToolService : IToolService
 
   public Tool CreateTool(ToolCreateDTO toolCreateDTO)
   {
-    var tool = new Tool(toolCreateDTO.Name, toolCreateDTO.Type, toolCreateDTO.Brand, toolCreateDTO.Quantity, toolCreateDTO.Description, toolCreateDTO.Condition, toolCreateDTO.Warranty, toolCreateDTO.OwnerUserId);
-    if (toolCreateDTO.ImageResourceUrl != null) tool.ImageResourceUrl = toolCreateDTO.ImageResourceUrl;
+    var tool = new Tool(toolCreateDTO.Name, toolCreateDTO.Type, toolCreateDTO.Brand, toolCreateDTO.Quantity, toolCreateDTO.Description, toolCreateDTO.OwnerUserId, toolCreateDTO.ImageResourceUrl, toolCreateDTO.Condition, toolCreateDTO.Warranty);
     _toolRepository.AddEntity(tool);
     _toolRepository.SaveChanges();
     return tool;

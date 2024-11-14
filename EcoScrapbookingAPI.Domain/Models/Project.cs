@@ -10,7 +10,7 @@ public class Project : Activity
 
   public Project() { }
 
-  public Project(String title, String description, int maxParticipants, DateTime startDate, DateTime finishDate, decimal greenPointsValue, string projectType, int creatorUserId) : base(title, description, maxParticipants, startDate, finishDate, greenPointsValue, creatorUserId)
+  public Project(String title, String description, int maxParticipants, DateTime startDate, DateTime finishDate, decimal greenPointsValue, string homeImageUrl, string projectType, int creatorUserId) : base(title, description, maxParticipants, startDate, finishDate, greenPointsValue, homeImageUrl, creatorUserId)
   {
     ProjectType = projectType;
   }

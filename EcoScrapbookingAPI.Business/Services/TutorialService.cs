@@ -16,7 +16,7 @@ public class TutorialService : ITutorialService
 
   public Tutorial CreateTutorial(TutorialCreateDTO tutorialCreateDTO)
   {
-    var tutorial = new Tutorial(tutorialCreateDTO.Title, tutorialCreateDTO.Description, tutorialCreateDTO.MaxParticipants ?? 0, tutorialCreateDTO.StartDate, tutorialCreateDTO.FinishDate, tutorialCreateDTO.GreenPointsValue, tutorialCreateDTO.Duration, tutorialCreateDTO.CreatorUserId);
+    var tutorial = new Tutorial(tutorialCreateDTO.Title, tutorialCreateDTO.Description, tutorialCreateDTO.MaxParticipants ?? 0, tutorialCreateDTO.StartDate, tutorialCreateDTO.FinishDate, tutorialCreateDTO.GreenPointsValue, tutorialCreateDTO.HomeImageUrl, tutorialCreateDTO.Duration, tutorialCreateDTO.CreatorUserId);
     _tutorialRepository.AddEntity(tutorial);
     _tutorialRepository.SaveChanges();
     return tutorial;
