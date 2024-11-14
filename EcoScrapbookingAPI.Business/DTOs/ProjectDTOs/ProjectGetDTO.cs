@@ -4,7 +4,7 @@ namespace EcoScrapbookingAPI.Business.DTOs.ProjectDTOs;
 
 public class ProjectGetDTO
 {
-  public int ProjectId { get; set; }
+  public int ActivityId { get; set; }
   public string Title { get; set; }
   public string Description { get; set; }
   public int? MaxParticipants { get; set; }
@@ -23,7 +23,7 @@ public class ProjectGetDTO
 
   public ProjectGetDTO(Project project)
   {
-    ProjectId = project.ActivityId;
+    ActivityId = project.ActivityId;
     Title = project.Title;
     Description = project.Description;
     MaxParticipants = project.MaxParticipants;

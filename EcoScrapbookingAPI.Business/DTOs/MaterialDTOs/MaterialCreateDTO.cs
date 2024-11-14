@@ -24,7 +24,7 @@ public class MaterialCreateDTO
   public int OwnerUserId { get; set; }
   [Required]
   [Url(ErrorMessage = "Invalid URL.")]
-  public string ImageResourceUrl { get; set; }
+  public string? ImageResourceUrl { get; set; }
   public int? TransactionId { get; set; }
 
   public MaterialCreateDTO() { }

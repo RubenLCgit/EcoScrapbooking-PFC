@@ -36,15 +36,15 @@ public class ProjectRepository : IRepositoryGeneric<Project>
     if (projectId <= 0) throw new ArgumentException("Project ID must be greater than zero.", nameof(projectId));
     try
     {
-      return _context.Projects.FirstOrDefault(p => p.ActivityId == projectId);
+      return _context.Projects
+          .Include(p => p.Publications)
+          .Include(p => p.Participants)
+          .Include(p => p.ActivityResources)
+          .FirstOrDefault(p => p.ActivityId == projectId);
     }
-    catch (ObjectDisposedException odEx)
+    catch (Exception ex)
     {
-      throw new ObjectDisposedException($"Error getting project with ID {projectId}.", odEx);
-    }
-    catch (DbUpdateException dbEx)
-    {
-      throw new DbUpdateException($"Error getting project with ID {projectId}.", dbEx);
+      throw new Exception($"Error getting project with ID {projectId}.", ex);
     }
   }
 
@@ -100,7 +100,11 @@ public class ProjectRepository : IRepositoryGeneric<Project>
   {
     try
     {
-      return _context.Projects.ToList();
+      return _context.Projects
+          .Include(p => p.Publications)
+          .Include(p => p.Participants)
+          .Include(p => p.ActivityResources)
+          .ToList();
     }
     catch (ObjectDisposedException odEx)
     {

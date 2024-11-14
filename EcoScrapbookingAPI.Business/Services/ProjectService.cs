@@ -16,7 +16,7 @@ public class ProjectService : IProjectService
 
   public Project CreateProject(ProjectCreateDTO projectCreateDTO)
   {
-    var project = new Project(projectCreateDTO.Title, projectCreateDTO.Description, projectCreateDTO.MaxParticipants ?? 0, projectCreateDTO.StartDate, projectCreateDTO.FinishDate, projectCreateDTO.GreenPointsValue, projectCreateDTO.ProjectType, projectCreateDTO.CreatorUserId);
+    var project = new Project(projectCreateDTO.Title, projectCreateDTO.Description, projectCreateDTO.MaxParticipants ?? 0, projectCreateDTO.StartDate, projectCreateDTO.FinishDate, projectCreateDTO.GreenPointsValue, projectCreateDTO.HomeImageUrl, projectCreateDTO.ProjectType, projectCreateDTO.CreatorUserId);
     _projectRepository.AddEntity(project);
     _projectRepository.SaveChanges();
     return project;

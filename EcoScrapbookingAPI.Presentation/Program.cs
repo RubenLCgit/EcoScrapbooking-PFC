@@ -4,6 +4,7 @@ using EcoScrapbookingAPI.Data.Context;
 using EcoScrapbookingAPI.Data.Interfaces;
 using EcoScrapbookingAPI.Data.Repositories;
 using EcoScrapbookingAPI.Domain.Models;
+using EcoScrapbookingAPI.Domain.Models.Abstracts;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,7 @@ builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITutorialService, TutorialService>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<IToolService, ToolService>();
+builder.Services.AddScoped<IPublicationService, PublicationService>();
 
 var app = builder.Build();
 

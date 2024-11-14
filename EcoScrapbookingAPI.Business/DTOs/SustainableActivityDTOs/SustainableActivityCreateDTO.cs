@@ -22,7 +22,7 @@ public class SustainableActivityCreateDTO
   public decimal GreenPointsValue { get; set; }
   [Required]
   [Url(ErrorMessage = "Invalid URL.")]
-  public string HomeImageUrl { get; set; }
+  public string? HomeImageUrl { get; set; }
   [Required]
   [MinLength(3, ErrorMessage = "Name collaborator must be at least 3 characters long.")]
   public string NameCollaborator { get; set; }

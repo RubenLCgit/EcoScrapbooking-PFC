@@ -16,8 +16,7 @@ public class MaterialService : IMaterialService
 
   public Material CreateMaterial(MaterialCreateDTO materialCreateDTO)
   {
-    var material = new Material(materialCreateDTO.Name, materialCreateDTO.Type, materialCreateDTO.Brand, materialCreateDTO.Quantity, materialCreateDTO.Description, materialCreateDTO.OwnerUserId);
-    if (materialCreateDTO.ImageResourceUrl != null) material.ImageResourceUrl = materialCreateDTO.ImageResourceUrl;
+    var material = new Material(materialCreateDTO.Name, materialCreateDTO.Type, materialCreateDTO.Brand, materialCreateDTO.Quantity, materialCreateDTO.Description, materialCreateDTO.OwnerUserId, materialCreateDTO.ImageResourceUrl);
     _materialRepository.AddEntity(material);
     _materialRepository.SaveChanges();
     return material;
