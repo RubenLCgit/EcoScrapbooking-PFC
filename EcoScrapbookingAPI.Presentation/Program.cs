@@ -26,6 +26,8 @@ builder.Services.AddScoped<IRepositoryGeneric<Project>, ProjectRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<Tutorial>, TutorialRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<Material>, MaterialRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<Tool>, ToolRepository>();
+builder.Services.AddScoped<IRepositoryGeneric<Publication>, PublicationRepository>();
+builder.Services.AddScoped<IRepositoryGeneric<Transaction>, TransactionRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAddressService, AddressService>();
@@ -35,6 +37,7 @@ builder.Services.AddScoped<ITutorialService, TutorialService>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<IToolService, ToolService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 var app = builder.Build();
 
