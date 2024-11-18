@@ -36,7 +36,10 @@ public class ToolRepository : IRepositoryGeneric<Tool>
     if (toolId <= 0) throw new ArgumentException("Tool ID must be greater than zero.", nameof(toolId));
     try
     {
-      return _context.Tools.FirstOrDefault(t => t.ResourceId == toolId);
+      return _context.Tools
+        .Include(t => t.OwnerUser)
+        .Include(t => t.Activities)
+        .FirstOrDefault(t => t.ResourceId== toolId);
     }
     catch (ObjectDisposedException odEx)
     {
@@ -84,7 +87,10 @@ public class ToolRepository : IRepositoryGeneric<Tool>
   {
     try
     {
-      return _context.Tools.ToList();
+      return _context.Tools
+        .Include(t => t.OwnerUser)
+        .Include(t => t.Activities)
+        .ToList();
     }
     catch (ObjectDisposedException odEx)
     {

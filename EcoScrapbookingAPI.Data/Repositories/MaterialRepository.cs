@@ -36,7 +36,9 @@ public class MaterialRepository : IRepositoryGeneric<Material>
     if (materialId <= 0) throw new ArgumentException("Material ID must be greater than zero.", nameof(materialId));
     try
     {
-      return _context.Materials.FirstOrDefault(m => m.ResourceId == materialId);
+      return _context.Materials
+        .Include(m => m.Activities)
+        .FirstOrDefault(m => m.ResourceId == materialId);
     }
     catch (ObjectDisposedException odEx)
     {
@@ -84,7 +86,9 @@ public class MaterialRepository : IRepositoryGeneric<Material>
   {
     try
     {
-      return _context.Materials.ToList();
+      return _context.Materials
+        .Include(m => m.Activities)
+        .ToList();
     }
     catch (ObjectDisposedException odEx)
     {

@@ -11,6 +11,7 @@ public class Publication
   public int PublicationID { get; set; }
   public int AuthorId { get; set; }
   public int? ReplyPostID { get; set; }
+  public DateTime CreatedAt { get; set; }
   [Required]
   public string Category { get; set; }
   [Required]
@@ -42,6 +43,6 @@ public class Publication
     Description = description;
     ImagePostUrl = imagePostUrl;
     ActivityId = activityId;
-    Replies = new List<Publication>();
+    CreatedAt = DateTime.Now;
   }
 }

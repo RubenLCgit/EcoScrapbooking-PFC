@@ -8,10 +8,14 @@ namespace EcoScrapbookingAPI.Business.Services;
 public class ProjectService : IProjectService
 {
   private readonly IRepositoryGeneric<Project> _projectRepository;
+  private readonly IRepositoryGeneric<Material> _materialRepository;
+  private readonly IRepositoryGeneric<Tool> _toolRepository;
 
-  public ProjectService(IRepositoryGeneric<Project> projectRepository)
+  public ProjectService(IRepositoryGeneric<Project> projectRepository, IRepositoryGeneric<Material> materialRepository, IRepositoryGeneric<Tool> toolRepository)
   {
     _projectRepository = projectRepository;
+    _materialRepository = materialRepository;
+    _toolRepository = toolRepository;
   }
 
   public Project CreateProject(ProjectCreateDTO projectCreateDTO)
@@ -63,5 +67,63 @@ public class ProjectService : IProjectService
     var project = _projectRepository.GetByIdEntity(projectId);
     if (project == null) throw new Exception("Project not found");
     return new ProjectGetDTO(project);
+  }
+
+  public void AddResourceToProject(int projectId, int resourceId)
+  {
+    var project = _projectRepository.GetByIdEntity(projectId);
+    if (project == null) throw new Exception("Project not found");
+    var material = _materialRepository.GetByIdEntity(resourceId);
+    if (material != null)
+    {
+      if (project.ActivityResources.Contains(material)) throw new Exception("Resource already added to project");
+      project.ActivityResources.Add(material);
+      material.Activities.Add(project);
+      _materialRepository.UpdateEntity(material);
+      _projectRepository.UpdateEntity(project);
+      _projectRepository.SaveChanges();
+      return;
+    }
+    var tool = _toolRepository.GetByIdEntity(resourceId);
+    if (tool != null)
+    {
+      if (project.ActivityResources.Contains(tool)) throw new Exception("Resource already added to project");
+      project.ActivityResources.Add(tool);
+      tool.Activities.Add(project);
+      _toolRepository.UpdateEntity(tool);
+      _projectRepository.UpdateEntity(project);
+      _projectRepository.SaveChanges();
+      return;
+    }
+    throw new Exception("Resource not found");
+  }
+
+  public void RemoveResourceFromProject(int projectId, int resourceId)
+  {
+    var project = _projectRepository.GetByIdEntity(projectId);
+    if (project == null) throw new Exception("Project not found");
+    var material = _materialRepository.GetByIdEntity(resourceId);
+    if (material != null)
+    {
+      if (!project.ActivityResources.Contains(material)) throw new Exception("Resource not added to project");
+      project.ActivityResources.Remove(material);
+      material.Activities.Remove(project);
+      _materialRepository.UpdateEntity(material);
+      _projectRepository.UpdateEntity(project);
+      _projectRepository.SaveChanges();
+      return;
+    }
+    var tool = _toolRepository.GetByIdEntity(resourceId);
+    if (tool != null)
+    {
+      if (!project.ActivityResources.Contains(tool)) throw new Exception("Resource not added to project");
+      project.ActivityResources.Remove(tool);
+      tool.Activities.Remove(project);
+      _toolRepository.UpdateEntity(tool);
+      _projectRepository.UpdateEntity(project);
+      _projectRepository.SaveChanges();
+      return;
+    }
+    throw new Exception("Resource not found");
   }
 }

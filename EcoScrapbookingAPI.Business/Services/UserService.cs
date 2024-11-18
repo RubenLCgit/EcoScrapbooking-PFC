@@ -30,6 +30,11 @@ public class UserService : IUserService
   {
     var user = _userRepository.GetByIdEntity(userId);
     if (user == null) throw new ArgumentNullException($"User with ID {userId} not found.");
+    var activities = user.ActivitiesParticipated;
+    foreach (var activity in activities)
+    {
+      activity.Participants.Remove(user);
+    }
     _userRepository.DeleteEntity(user);
     _userRepository.SaveChanges();
   }
@@ -103,6 +108,46 @@ public class UserService : IUserService
         {
           user.ActivitiesParticipated.Add(sustainableActivity);
           sustainableActivity.Participants.Add(user);
+          _sustainableActivityRepository.UpdateEntity(sustainableActivity);
+        }
+        else
+        {
+          throw new ArgumentNullException($"Activity with ID {activityId} not found.");
+        }
+      }
+    }
+    _userRepository.UpdateEntity(user);
+    _userRepository.SaveChanges();
+  }
+
+  public void RemoveUserFromActivity(int userId, int activityId)
+  {
+    var user = _userRepository.GetByIdEntity(userId);
+    if (user == null) throw new ArgumentNullException($"User with ID {userId} not found.");
+
+    var project = _projectRepository.GetByIdEntity(activityId);
+    if (project != null)
+    {
+      user.ActivitiesParticipated.Remove(project);
+      project.Participants.Remove(user);
+      _projectRepository.UpdateEntity(project);
+    }
+    else
+    {
+      var tutorial = _tutorialRepository.GetByIdEntity(activityId);
+      if (tutorial != null)
+      {
+        user.ActivitiesParticipated.Remove(tutorial);
+        tutorial.Participants.Remove(user);
+        _tutorialRepository.UpdateEntity(tutorial);
+      }
+      else
+      {
+        var sustainableActivity = _sustainableActivityRepository.GetByIdEntity(activityId);
+        if (sustainableActivity != null)
+        {
+          user.ActivitiesParticipated.Remove(sustainableActivity);
+          sustainableActivity.Participants.Remove(user);
           _sustainableActivityRepository.UpdateEntity(sustainableActivity);
         }
         else

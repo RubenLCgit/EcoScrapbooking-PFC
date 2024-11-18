@@ -12,6 +12,7 @@ public abstract class Activity
   [Required]
   public string Description { get; set; }
   public int? MaxParticipants { get; set; }
+  public DateTime CreatedAt { get; set; }
   [Required]
   public DateTime StartDate { get; set; }
   [Required]
@@ -42,8 +43,6 @@ public abstract class Activity
     CreatorUserId = creatorUserId;
     IsActive = true;
     HomeImageUrl = homeImageUrl;
-    Publications = new List<Publication>();
-    Participants = new List<User>();
-    ActivityResources = new List<Resource>();
+    CreatedAt = DateTime.Now;
   }
 }

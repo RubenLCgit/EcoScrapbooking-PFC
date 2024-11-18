@@ -14,7 +14,7 @@ public class SustainableActivityGetDTO
   public decimal GreenPointsValue { get; set; }
   public string HomeImageUrl { get; set; }
   public string NameCollaborator { get; set; }
-  public int AddressId { get; set; }
+  public int? AddressId { get; set; }
   public int CreatorUserId { get; set; }
   public List<int> PublicationsIds { get; set; }
   public List<int> ParticipantsIds { get; set; }

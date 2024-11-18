@@ -104,4 +104,40 @@ public class ProjectController : ControllerBase
       return BadRequest(ex.Message);
     }
   }
+
+  [HttpPost("{projectId}/resources/{resourceId}")]
+  public ActionResult AddResource(int projectId, int resourceId)
+  {
+    try
+    {
+      _projectService.AddResourceToProject(projectId, resourceId);
+      return NoContent();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+
+  [HttpDelete("{projectId}/resources/{resourceId}")]
+  public ActionResult RemoveResource(int projectId, int resourceId)
+  {
+    try
+    {
+      _projectService.RemoveResourceFromProject(projectId, resourceId);
+      return NoContent();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
 }

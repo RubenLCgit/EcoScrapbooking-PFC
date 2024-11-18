@@ -22,7 +22,7 @@ public class Transaction
   public int? ReceiverUserID { get; set; }
   [ForeignKey("ReceiverUserID")]
   public User ReceiverUser { get; set; }
-  public ICollection<Resource> Resources { get; set; }
+  public ICollection<Resource> Resources { get; set; } = new List<Resource>();
   public Transaction() { }
 
   public Transaction(TransactionType type, int initiatorUserID, int? receiverUserID)
@@ -32,6 +32,5 @@ public class Transaction
     DateInitiated = DateTime.Now;
     InitiatorUserID = initiatorUserID;
     ReceiverUserID = receiverUserID;
-    Resources = new List<Resource>();
   }
 }

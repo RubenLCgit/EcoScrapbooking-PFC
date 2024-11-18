@@ -36,7 +36,11 @@ public class TutorialRepository : IRepositoryGeneric<Tutorial>
     if (tutorialId <= 0) throw new ArgumentException("Tutorial ID must be greater than zero.", nameof(tutorialId));
     try
     {
-      return _context.Tutorials.FirstOrDefault(t => t.ActivityId == tutorialId);
+      return _context.Tutorials
+          .Include(t => t.Publications)
+          .Include(t => t.Participants)
+          .Include(t => t.ActivityResources)
+          .FirstOrDefault(t => t.ActivityId == tutorialId);
     }
     catch (ObjectDisposedException odEx)
     {
@@ -84,7 +88,11 @@ public class TutorialRepository : IRepositoryGeneric<Tutorial>
   {
     try
     {
-      return _context.Tutorials.ToList();
+      return _context.Tutorials
+          .Include(t => t.Publications)
+          .Include(t => t.Participants)
+          .Include(t => t.ActivityResources)
+          .ToList();
     }
     catch (ObjectDisposedException odEx)
     {

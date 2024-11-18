@@ -29,13 +29,13 @@ public class User
   public decimal GreenPoints { get; set; }
   public string AvatarImageUrl { get; set; }
 
-  public ICollection<Address> Addresses { get; set; }
-  public ICollection<Activity> ActivitiesParticipated { get; set; }
-  public ICollection<Activity> ActivitiesCreated { get; set; }
-  public ICollection<Resource> Resources { get; set; }
-  public ICollection<Transaction> TransactionsInitiated { get; set; }
-  public ICollection<Transaction> TransactionsReceived { get; set; }
-  public ICollection<Publication> Posts { get; set; }
+  public ICollection<Address> Addresses { get; set; } = new List<Address>();
+  public ICollection<Activity> ActivitiesParticipated { get; set; } = new List<Activity>();
+  public ICollection<Activity> ActivitiesCreated { get; set; } = new List<Activity>();
+  public ICollection<Resource> Resources { get; set; } = new List<Resource>();
+  public ICollection<Transaction> TransactionsInitiated { get; set; } = new List<Transaction>();
+  public ICollection<Transaction> TransactionsReceived { get; set; } = new List<Transaction>();
+  public ICollection<Publication> Posts { get; set; } = new List<Publication>();
 
   public User() { }
   
@@ -52,13 +52,6 @@ public class User
     IsActive = true;
     GreenPoints = 0.0m;
     AvatarImageUrl = avatarImageUrl;
-    Addresses = new List<Address>();
-    ActivitiesParticipated = new List<Activity>();
-    ActivitiesCreated = new List<Activity>();
-    Resources = new List<Resource>();
-    TransactionsInitiated = new List<Transaction>();
-    TransactionsReceived = new List<Transaction>();
-    Posts = new List<Publication>();
   }
    
 }

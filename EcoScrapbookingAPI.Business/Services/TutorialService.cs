@@ -8,12 +8,15 @@ namespace EcoScrapbookingAPI.Business.Services;
 public class TutorialService : ITutorialService
 {
   private readonly IRepositoryGeneric<Tutorial> _tutorialRepository;
+  private readonly IRepositoryGeneric<Material> _materialRepository;
+  private readonly IRepositoryGeneric<Tool> _toolRepository;
 
-  public TutorialService(IRepositoryGeneric<Tutorial> tutorialRepository)
+  public TutorialService(IRepositoryGeneric<Tutorial> tutorialRepository, IRepositoryGeneric<Material> materialRepository, IRepositoryGeneric<Tool> toolRepository)
   {
     _tutorialRepository = tutorialRepository;
+    _materialRepository = materialRepository;
+    _toolRepository = toolRepository;
   }
-
   public Tutorial CreateTutorial(TutorialCreateDTO tutorialCreateDTO)
   {
     var tutorial = new Tutorial(tutorialCreateDTO.Title, tutorialCreateDTO.Description, tutorialCreateDTO.MaxParticipants ?? 0, tutorialCreateDTO.StartDate, tutorialCreateDTO.FinishDate, tutorialCreateDTO.GreenPointsValue, tutorialCreateDTO.HomeImageUrl, tutorialCreateDTO.Duration, tutorialCreateDTO.CreatorUserId);
@@ -63,5 +66,63 @@ public class TutorialService : ITutorialService
     var tutorial = _tutorialRepository.GetByIdEntity(tutorialId);
     if (tutorial == null) throw new Exception("Tutorial not found");
     return new TutorialGetDTO(tutorial);
+  }
+
+  public void AddResourceToTutorial(int tutorialId, int resourceId)
+  {
+    var tutorial = _tutorialRepository.GetByIdEntity(tutorialId);
+    if (tutorial == null) throw new Exception("Tutorial not found");
+    var material = _materialRepository.GetByIdEntity(resourceId);
+    if (material != null)
+    {
+      if (tutorial.ActivityResources.Contains(material)) throw new Exception("Resource already added to tutorial");
+      tutorial.ActivityResources.Add(material);
+      material.Activities.Add(tutorial);
+      _materialRepository.UpdateEntity(material);
+      _tutorialRepository.UpdateEntity(tutorial);
+      _tutorialRepository.SaveChanges();
+      return;
+    }
+    var tool = _toolRepository.GetByIdEntity(resourceId);
+    if (tool != null)
+    {
+      if (tutorial.ActivityResources.Contains(tool)) throw new Exception("Resource already added to tutorial");
+      tutorial.ActivityResources.Add(tool);
+      tool.Activities.Add(tutorial);
+      _toolRepository.UpdateEntity(tool);
+      _tutorialRepository.UpdateEntity(tutorial);
+      _tutorialRepository.SaveChanges();
+      return;
+    }
+    throw new Exception("Resource not found");
+  }
+
+  public void RemoveResourceFromTutorial(int tutorialId, int resourceId)
+  {
+    var tutorial = _tutorialRepository.GetByIdEntity(tutorialId);
+    if (tutorial == null) throw new Exception("Tutorial not found");
+    var material = _materialRepository.GetByIdEntity(resourceId);
+    if (material != null)
+    {
+      if (!tutorial.ActivityResources.Contains(material)) throw new Exception("Resource not added to tutorial");
+      tutorial.ActivityResources.Remove(material);
+      material.Activities.Remove(tutorial);
+      _materialRepository.UpdateEntity(material);
+      _tutorialRepository.UpdateEntity(tutorial);
+      _tutorialRepository.SaveChanges();
+      return;
+    }
+    var tool = _toolRepository.GetByIdEntity(resourceId);
+    if (tool != null)
+    {
+      if (!tutorial.ActivityResources.Contains(tool)) throw new Exception("Resource not added to tutorial");
+      tutorial.ActivityResources.Remove(tool);
+      tool.Activities.Remove(tutorial);
+      _toolRepository.UpdateEntity(tool);
+      _tutorialRepository.UpdateEntity(tutorial);
+      _tutorialRepository.SaveChanges();
+      return;
+    }
+    throw new Exception("Resource not found");
   }
 }

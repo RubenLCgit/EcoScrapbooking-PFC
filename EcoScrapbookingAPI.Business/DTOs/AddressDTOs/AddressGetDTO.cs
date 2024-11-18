@@ -5,6 +5,7 @@ namespace EcoScrapbookingAPI.Business.DTOs.AddressDTOs;
 public class AddressGetDTO
 {
   public int Id { get; set; }
+  public int? UserId { get; set; }
   public string Street { get; set; }
   public string Number { get; set; }
   public string City { get; set; }
@@ -21,6 +22,7 @@ public class AddressGetDTO
   public AddressGetDTO(Address address)
   {
     Id = address.AddressId;
+    UserId = address.UserId;
     Street = address.Street;
     Number = address.Number;
     City = address.City;

@@ -37,9 +37,20 @@ public class PublicationService : IPublicationService
   public void DeletePublication(int publicationId)
   {
     var publication = _publicationRepository.GetByIdEntity(publicationId);
-    if (publication == null) throw new Exception("Publication not found");
-    _publicationRepository.DeleteEntity(publication);
-    _publicationRepository.SaveChanges();
+    if (publication != null)
+    {
+      foreach (var reply in publication.Replies.ToList())
+      {
+        DeletePublication(reply.PublicationID);
+      }
+
+      _publicationRepository.DeleteEntity(publication);
+      _publicationRepository.SaveChanges();
+    }
+    else
+    {
+      throw new Exception("Publication not found");
+    }
   }
 
   public List<PublicationGetDTO> GetAllPublications()

@@ -47,13 +47,15 @@ namespace EcoScrapbookingAPI.Data.Context
       modelBuilder.Entity<User>()
           .HasMany(u => u.Addresses)
           .WithOne(a => a.AddressUser)
-          .HasForeignKey(a => a.UserId);
+          .HasForeignKey(a => a.UserId)
+          .OnDelete(DeleteBehavior.NoAction);
 
       // One to Many Relationships: User -> ActivitiesCreated
       modelBuilder.Entity<User>()
           .HasMany(u => u.ActivitiesCreated)
           .WithOne(a => a.CreatorUser)
-          .HasForeignKey(a => a.CreatorUserId);
+          .HasForeignKey(a => a.CreatorUserId)
+          .OnDelete(DeleteBehavior.Cascade);
 
       // Many-to-many relationship: User -> ActivitiesParticipated
       modelBuilder.Entity<User>()
@@ -64,11 +66,11 @@ namespace EcoScrapbookingAPI.Data.Context
               j => j.HasOne<Activity>()
                     .WithMany()
                     .HasForeignKey("ActivitiesParticipatedActivityId")
-                    .OnDelete(DeleteBehavior.Restrict),
+                    .OnDelete(DeleteBehavior.Cascade),
               j => j.HasOne<User>()
                     .WithMany()
                     .HasForeignKey("ParticipantsUserId")
-                    .OnDelete(DeleteBehavior.Restrict),
+                    .OnDelete(DeleteBehavior.NoAction),
               j =>
               {
                 j.HasKey("ActivitiesParticipatedActivityId", "ParticipantsUserId");
@@ -80,49 +82,57 @@ namespace EcoScrapbookingAPI.Data.Context
       modelBuilder.Entity<User>()
           .HasMany(u => u.Resources)
           .WithOne(r => r.OwnerUser)
-          .HasForeignKey(r => r.OwnerUserId);
+          .HasForeignKey(r => r.OwnerUserId)
+          .OnDelete(DeleteBehavior.Cascade);
 
       // One to Many Relationships: User -> Transactions Iniciadas
       modelBuilder.Entity<User>()
           .HasMany(u => u.TransactionsInitiated)
           .WithOne(t => t.InitiatorUser)
-          .HasForeignKey(t => t.InitiatorUserID);
+          .HasForeignKey(t => t.InitiatorUserID)
+          .OnDelete(DeleteBehavior.NoAction);
 
       // One to Many Relationships: User -> Transactions Recibidas
       modelBuilder.Entity<User>()
           .HasMany(u => u.TransactionsReceived)
           .WithOne(t => t.ReceiverUser)
-          .HasForeignKey(t => t.ReceiverUserID);
+          .HasForeignKey(t => t.ReceiverUserID)
+          .OnDelete(DeleteBehavior.NoAction);
 
       // One to Many Relationships: User -> Publication
       modelBuilder.Entity<User>()
           .HasMany(u => u.Posts)
           .WithOne(p => p.Author)
-          .HasForeignKey(p => p.AuthorId);
+          .HasForeignKey(p => p.AuthorId)
+          .OnDelete(DeleteBehavior.NoAction);
 
       // One to Many Relationships: Publication -> Replies
       modelBuilder.Entity<Publication>()
           .HasMany(p => p.Replies)
           .WithOne(p => p.ReplyTo)
-          .HasForeignKey(p => p.ReplyPostID);
+          .HasForeignKey(p => p.ReplyPostID)
+          .OnDelete(DeleteBehavior.NoAction);
 
       // One to Many Relationships: Publication -> Activity
       modelBuilder.Entity<Publication>()
           .HasOne(p => p.Activity)
           .WithMany(a => a.Publications)
-          .HasForeignKey(p => p.ActivityId);
+          .HasForeignKey(p => p.ActivityId)
+          .OnDelete(DeleteBehavior.NoAction);
 
       // One to Many Relationships: Address -> SustainableActivity
       modelBuilder.Entity<Address>()
           .HasMany(a => a.SustainableActivities)
           .WithOne(sa => sa.Ubication)
-          .HasForeignKey(sa => sa.AddressId);
+          .HasForeignKey(sa => sa.AddressId)
+          .OnDelete(DeleteBehavior.SetNull);
 
       // One to Many Relationships: Transaction -> Resources
       modelBuilder.Entity<Transaction>()
           .HasMany(t => t.Resources)
           .WithOne(r => r.Transaction)
-          .HasForeignKey(r => r.TransactionId);
+          .HasForeignKey(r => r.TransactionId)
+          .OnDelete(DeleteBehavior.NoAction);
 
       // Many-to-many relationship: Activity -> Resources
       modelBuilder.Entity<Activity>()
@@ -137,7 +147,7 @@ namespace EcoScrapbookingAPI.Data.Context
               j => j.HasOne<Activity>()
                     .WithMany()
                     .HasForeignKey("ActivitiesActivityId")
-                    .OnDelete(DeleteBehavior.Restrict),
+                    .OnDelete(DeleteBehavior.Cascade),
               j =>
               {
                 j.HasKey("ActivitiesActivityId", "ActivityResourcesResourceId");
@@ -152,6 +162,7 @@ namespace EcoScrapbookingAPI.Data.Context
           {
             UserId = 1,
             Role = "Admin",
+            AvatarImageUrl = "https://juanito123.com/avatar.jpg",
             Name = "Juan",
             Lastname = "Pérez",
             Nickname = "juanito123",
@@ -167,6 +178,7 @@ namespace EcoScrapbookingAPI.Data.Context
           {
             UserId = 2,
             Role = "User",
+            AvatarImageUrl = "https://maryg.com/avatar.jpg",
             Name = "María",
             Lastname = "Gómez",
             Nickname = "maryg",
@@ -182,6 +194,7 @@ namespace EcoScrapbookingAPI.Data.Context
           {
             UserId = 3,
             Role = "User",
+            AvatarImageUrl = "https://carlosl.com/avatar.jpg",
             Name = "Carlos",
             Nickname = "carlosl",
             Lastname = "López",
@@ -288,6 +301,7 @@ namespace EcoScrapbookingAPI.Data.Context
           {
             PublicationID = 1,
             AuthorId = 1,
+            CreatedAt = new DateTime(2023, 4, 5, 10, 20, 15),
             Category = "Reciclaje",
             Title = "Consejos para Reciclar",
             Description = "Métodos efectivos para reciclar en casa.",
@@ -296,6 +310,7 @@ namespace EcoScrapbookingAPI.Data.Context
           {
             PublicationID = 2,
             AuthorId = 2,
+            CreatedAt = new DateTime(2023, 4, 8, 12, 15, 30),
             Category = "Jardinería",
             Title = "Plantando Árboles",
             Description = "Cómo y dónde plantar árboles.",
@@ -304,6 +319,7 @@ namespace EcoScrapbookingAPI.Data.Context
           {
             PublicationID = 3,
             AuthorId = 3,
+            CreatedAt = new DateTime(2023, 4, 12, 15, 30, 20),
             Category = "Jardinería",
             Title = "Respuesta: Plantando Árboles",
             Description = "¡Me encantaría participar!",
@@ -313,6 +329,7 @@ namespace EcoScrapbookingAPI.Data.Context
           {
             PublicationID = 4,
             AuthorId = 1,
+            CreatedAt = new DateTime(2023, 4, 15, 10, 30, 45),
             ActivityId = 1,
             Category = "Paso de proyecto",
             Title = "Avance: Caja de recuerdos",
@@ -351,6 +368,7 @@ namespace EcoScrapbookingAPI.Data.Context
             ActivityId = 1,
             Title = "Caja de recuerdos",
             Description = "Creación de una cajita para guardar recuerdos.",
+            CreatedAt = new DateTime(2024, 1, 1, 10, 20, 35),
             StartDate = new DateTime(2024, 1, 5),
             FinishDate = new DateTime(2024, 6, 5),
             IsActive = true,
@@ -368,6 +386,7 @@ namespace EcoScrapbookingAPI.Data.Context
             ActivityId = 2,
             Title = "Plantación de Árboles",
             Description = "Actividad para plantar árboles en parques.",
+            CreatedAt = new DateTime(2024, 2, 1, 10, 10, 12),
             MaxParticipants = 30,
             StartDate = new DateTime(2024, 2, 10),
             FinishDate = new DateTime(2024, 2, 11),
@@ -387,6 +406,7 @@ namespace EcoScrapbookingAPI.Data.Context
             ActivityId = 3,
             Title = "Pegamento Casero Reciclado",
             Description = "Tutorial para hacer pegamento casero con materiales reciclados.",
+            CreatedAt = new DateTime(2024, 3, 1, 10, 15, 20),
             MaxParticipants = 20,
             StartDate = new DateTime(2024, 3, 15),
             FinishDate = new DateTime(2024, 3, 16),
