@@ -10,4 +10,6 @@ public interface IProjectService
   void DeleteProject(int projectId);
   List<ProjectGetDTO> GetAllProjects();
   ProjectGetDTO GetProject(int projectId);
+  void AddResourceToProject(int projectId, int resourceId);
+  void RemoveResourceFromProject(int projectId, int resourceId);
 }

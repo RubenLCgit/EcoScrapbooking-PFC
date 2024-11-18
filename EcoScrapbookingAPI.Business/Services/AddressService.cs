@@ -18,7 +18,8 @@ public class AddressService : IAddressService
 
   public Address CreateAddress(AddressCreateDTO addressCreateDTO, int? userId, int? sustainableActivityId)
   {
-    var addressExist = _addressRepository.GetAllEntities().FirstOrDefault(a =>
+    if (userId == null && sustainableActivityId == null) throw new Exception("User ID or Sustainable Activity ID must be provided.");
+    var newAddress = _addressRepository.GetAllEntities().FirstOrDefault(a =>
       a.Street == addressCreateDTO.Street &&
       a.Number == addressCreateDTO.Number &&
       a.City == addressCreateDTO.City &&
@@ -28,14 +29,14 @@ public class AddressService : IAddressService
       a.Description == addressCreateDTO.Description &&
       a.ContactPhone == addressCreateDTO.ContactPhone
     );
-    if (addressExist != null && sustainableActivityId != null) {
+    if (newAddress != null && sustainableActivityId != null) {
       var sustainableActivity = _sustainableActivityRepository.GetByIdEntity(sustainableActivityId.Value);
-      if (sustainableActivity != null && !addressExist.SustainableActivities.Contains(sustainableActivity))
+      if (sustainableActivity != null && !newAddress.SustainableActivities.Contains(sustainableActivity))
       {
-        addressExist.SustainableActivities.Add(sustainableActivity);
-        _addressRepository.UpdateEntity(addressExist);
+        newAddress.SustainableActivities.Add(sustainableActivity);
+        _addressRepository.UpdateEntity(newAddress);
         _addressRepository.SaveChanges();
-        return addressExist;
+        return newAddress;
       }
       else
       {
@@ -73,6 +74,7 @@ public class AddressService : IAddressService
   {
     var address = _addressRepository.GetByIdEntity(addressId);
     if (address == null) throw new ArgumentNullException(nameof(address), "The address to be updated cannot be null.");
+    address.UserId = addressUpdateDTO.UserId ?? address.UserId;
     address.Street = addressUpdateDTO.Street ?? address.Street;
     address.Number = addressUpdateDTO.Number ?? address.Number;
     address.City = addressUpdateDTO.City ?? address.City;

@@ -25,7 +25,7 @@ public abstract class Resource
   [ForeignKey("OwnerUserId")]
   public User OwnerUser { get; set; }
 
-  public ICollection<Activity> Activities { get; set; }
+  public ICollection<Activity> Activities { get; set; } = new List<Activity>();
 
   public int? TransactionId { get; set; }
 
@@ -44,6 +44,5 @@ public abstract class Resource
     OwnerUserId = ownerUserId;
     ImageResourceUrl = imageResourceUrl;
     TransactionId = transactionId;
-    Activities = new List<Activity>();
   }
 }

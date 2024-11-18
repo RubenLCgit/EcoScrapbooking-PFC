@@ -11,4 +11,6 @@ public interface IUserService
   List<UserGetDTO> GetAllUsers();
   UserGetDTO GetUser(int userId);
   User CheckLogin(string userName, string userPassword);
+  void AddUserToActivity(int userId, int activityId);
+  void RemoveUserFromActivity(int userId, int activityId);
 }

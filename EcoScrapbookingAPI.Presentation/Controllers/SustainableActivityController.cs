@@ -104,4 +104,40 @@ public class SustainableActivityController : ControllerBase
       return BadRequest(ex.Message);
     }
   }
+
+  [HttpPost("{sustainableActivityId}/resources/{resourceId}")]
+  public ActionResult AddResource(int sustainableActivityId, int resourceId)
+  {
+    try
+    {
+      _sustainableActivityService.AddResourceToSustainableActivity(sustainableActivityId, resourceId);
+      return NoContent();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+
+  [HttpDelete("{sustainableActivityId}/resources/{resourceId}")]
+  public ActionResult RemoveResource(int sustainableActivityId, int resourceId)
+  {
+    try
+    {
+      _sustainableActivityService.RemoveResourceFromSustainableActivity(sustainableActivityId, resourceId);
+      return NoContent();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
 }

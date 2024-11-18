@@ -10,4 +10,6 @@ public interface ITutorialService
   void DeleteTutorial(int tutorialId);
   List<TutorialGetDTO> GetAllTutorials();
   TutorialGetDTO GetTutorial(int tutorialId);
+  void AddResourceToTutorial(int tutorialId, int resourceId);
+  void RemoveResourceFromTutorial(int tutorialId, int resourceId);
 }

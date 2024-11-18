@@ -104,4 +104,40 @@ public class TutorialController : ControllerBase
       return BadRequest(ex.Message);
     }
   }
+
+  [HttpPost("{tutorialId}/resources/{resourceId}")]
+  public ActionResult AddResource(int tutorialId, int resourceId)
+  {
+    try
+    {
+      _tutorialService.AddResourceToTutorial(tutorialId, resourceId);
+      return NoContent();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+
+  [HttpDelete("{tutorialId}/resources/{resourceId}")]
+  public ActionResult RemoveResource(int tutorialId, int resourceId)
+  {
+    try
+    {
+      _tutorialService.RemoveResourceFromTutorial(tutorialId, resourceId);
+      return NoContent();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
 }

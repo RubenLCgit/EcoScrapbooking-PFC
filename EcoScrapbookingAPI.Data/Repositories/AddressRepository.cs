@@ -36,7 +36,9 @@ public class AddressRepository : IRepositoryGeneric<Address>
     if (addressId <= 0) throw new ArgumentException("Address ID must be greater than zero.", nameof(addressId));
     try
     {
-      return _context.Addresses.FirstOrDefault(a => a.AddressId == addressId);
+      return _context.Addresses
+        .Include(a => a.SustainableActivities)
+        .FirstOrDefault(a => a.AddressId == addressId);
     }
     catch (ObjectDisposedException odEx)
     {
@@ -100,7 +102,9 @@ public class AddressRepository : IRepositoryGeneric<Address>
   {
     try
     {
-      return _context.Addresses.ToList();
+      return _context.Addresses
+        .Include(a => a.SustainableActivities)
+        .ToList();
     }
     catch (ObjectDisposedException odEx)
     {

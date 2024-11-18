@@ -5,6 +5,7 @@ namespace EcoScrapbookingAPI.Business.DTOs.AddressDTOs;
 
 public class AddressUpdateDTO
 {
+  public int? UserId { get; set; }
   [MinLength(2, ErrorMessage = "Street must be at least 2 characters long.")]
   public string? Street { get; set; }
   [MinLength(1, ErrorMessage = "Number must be at least 1 character long.")]
@@ -26,6 +27,7 @@ public class AddressUpdateDTO
 
   public AddressUpdateDTO(Address address)
   {
+    UserId = address.UserId;
     Street = address.Street;
     Number = address.Number;
     City = address.City;

@@ -12,6 +12,7 @@ public abstract class Activity
   [Required]
   public string Description { get; set; }
   public int? MaxParticipants { get; set; }
+  public DateTime CreatedAt { get; set; }
   [Required]
   public DateTime StartDate { get; set; }
   [Required]
@@ -22,8 +23,8 @@ public abstract class Activity
   public string HomeImageUrl { get; set; } = "https://defaultimage.com";
   [JsonIgnore]
   public ICollection<Publication> Publications { get; set; } = new List<Publication>();
-  public ICollection<User> Participants { get; set; }
-  public ICollection<Resource> ActivityResources { get; set; }
+  public ICollection<User> Participants { get; set; } = new List<User>();
+  public ICollection<Resource> ActivityResources { get; set; } = new List<Resource>();
   public int CreatorUserId { get; set; }
 
   [ForeignKey("CreatorUserId")] 
@@ -42,8 +43,6 @@ public abstract class Activity
     CreatorUserId = creatorUserId;
     IsActive = true;
     HomeImageUrl = homeImageUrl;
-    Publications = new List<Publication>();
-    Participants = new List<User>();
-    ActivityResources = new List<Resource>();
+    CreatedAt = DateTime.Now;
   }
 }

@@ -30,6 +30,8 @@ public class AddressCreateDTO
   [MinLength(9, ErrorMessage = "ContactPhone must be at least 9 characters long.")]
   public string ContactPhone { get; set; }
 
+  public int? UserId { get; set; }
+  public int? SustainableActivityId { get; set; }
 
   public AddressCreateDTO() { }
 

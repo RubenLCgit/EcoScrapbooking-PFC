@@ -36,7 +36,15 @@ public class UserRepository : IRepositoryGeneric<User>
     if (userId <= 0) throw new ArgumentException("User ID must be greater than zero.", nameof(userId));
     try
     {
-      return _context.Users.FirstOrDefault(u => u.UserId == userId);
+      return _context.Users
+        .Include(u => u.Addresses)
+        .Include(u => u.ActivitiesParticipated)
+        .Include(u => u.ActivitiesCreated)
+        .Include(u => u.Resources)
+        .Include(u => u.TransactionsInitiated)
+        .Include(u => u.TransactionsReceived)
+        .Include(u => u.Posts)
+        .FirstOrDefault(u => u.UserId == userId);
     }
     catch (ObjectDisposedException odEx)
     {
@@ -102,7 +110,15 @@ public class UserRepository : IRepositoryGeneric<User>
   {
     try
     {
-      return _context.Users.ToList();
+      return _context.Users
+        .Include(u => u.Addresses)
+        .Include(u => u.ActivitiesParticipated)
+        .Include(u => u.ActivitiesCreated)
+        .Include(u => u.Resources)
+        .Include(u => u.TransactionsInitiated)
+        .Include(u => u.TransactionsReceived)
+        .Include(u => u.Posts)
+        .ToList();
     }
     catch (InvalidOperationException ioEx)
     {

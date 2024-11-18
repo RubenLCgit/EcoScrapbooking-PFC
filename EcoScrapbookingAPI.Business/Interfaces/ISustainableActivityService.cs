@@ -10,4 +10,6 @@ public interface ISustainableActivityService
   void DeleteSustainableActivity(int sustainableActivityId);
   List<SustainableActivityGetDTO> GetAllSustainableActivities();
   SustainableActivityGetDTO GetSustainableActivity(int sustainableActivityId);
+  void AddResourceToSustainableActivity(int sustainableActivityId, int resourceId);
+  void RemoveResourceFromSustainableActivity(int sustainableActivityId, int resourceId);
 }

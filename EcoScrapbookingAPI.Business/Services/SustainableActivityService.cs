@@ -2,16 +2,21 @@ using EcoScrapbookingAPI.Business.DTOs.SustainableActivityDTOs;
 using EcoScrapbookingAPI.Business.Interfaces;
 using EcoScrapbookingAPI.Data.Interfaces;
 using EcoScrapbookingAPI.Domain.Models;
+using EcoScrapbookingAPI.Domain.Models.Abstracts;
 
 namespace EcoScrapbookingAPI.Business.Services;
 
 public class SustainableActivityService : ISustainableActivityService
 {
   private readonly IRepositoryGeneric<SustainableActivity> _sustainableActivityRepository;
+  private readonly IRepositoryGeneric<Material> _materialRepository;
+  private readonly IRepositoryGeneric<Tool> _toolRepository;
 
-  public SustainableActivityService(IRepositoryGeneric<SustainableActivity> sustainableActivityRepository)
+  public SustainableActivityService(IRepositoryGeneric<SustainableActivity> sustainableActivityRepository, IRepositoryGeneric<Material> materialRepository, IRepositoryGeneric<Tool> toolRepository)
   {
     _sustainableActivityRepository = sustainableActivityRepository;
+    _materialRepository = materialRepository;
+    _toolRepository = toolRepository;
   }
 
   public SustainableActivity CreateSustainableActivity(SustainableActivityCreateDTO sustainableActivityCreateDTO)
@@ -64,5 +69,63 @@ public class SustainableActivityService : ISustainableActivityService
     var sustainableActivity = _sustainableActivityRepository.GetByIdEntity(sustainableActivityId);
     if (sustainableActivity == null) throw new Exception("Sustainable activity not found");
     return new SustainableActivityGetDTO(sustainableActivity);
+  }
+
+  public void AddResourceToSustainableActivity(int sustainableActivityId, int resourceId)
+  {
+    var sustainableActivity = _sustainableActivityRepository.GetByIdEntity(sustainableActivityId);
+    if (sustainableActivity == null) throw new Exception("SustainableActivity not found");
+    var material = _materialRepository.GetByIdEntity(resourceId);
+    if (material != null)
+    {
+      if (sustainableActivity.ActivityResources.Contains(material)) throw new Exception("Resource already added to project");
+      sustainableActivity.ActivityResources.Add(material);
+      material.Activities.Add(sustainableActivity);
+      _materialRepository.UpdateEntity(material);
+      _sustainableActivityRepository.UpdateEntity(sustainableActivity);
+      _sustainableActivityRepository.SaveChanges();
+      return;
+    }
+    var tool = _toolRepository.GetByIdEntity(resourceId);
+    if (tool != null)
+    {
+      if (sustainableActivity.ActivityResources.Contains(tool)) throw new Exception("Resource already added to project");
+      sustainableActivity.ActivityResources.Add(tool);
+      tool.Activities.Add(sustainableActivity);
+      _toolRepository.UpdateEntity(tool);
+      _sustainableActivityRepository.UpdateEntity(sustainableActivity);
+      _sustainableActivityRepository.SaveChanges();
+      return;
+    }
+    throw new Exception("Resource not found");
+  }
+
+  public void RemoveResourceFromSustainableActivity(int sustainableActivityId, int resourceId)
+  {
+    var sustainableActivity = _sustainableActivityRepository.GetByIdEntity(sustainableActivityId);
+    if (sustainableActivity == null) throw new Exception("SustainableActivity not found");
+    var material = _materialRepository.GetByIdEntity(resourceId);
+    if (material != null)
+    {
+      if (!sustainableActivity.ActivityResources.Contains(material)) throw new Exception("Resource not added to project");
+      sustainableActivity.ActivityResources.Remove(material);
+      material.Activities.Remove(sustainableActivity);
+      _materialRepository.UpdateEntity(material);
+      _sustainableActivityRepository.UpdateEntity(sustainableActivity);
+      _sustainableActivityRepository.SaveChanges();
+      return;
+    }
+    var tool = _toolRepository.GetByIdEntity(resourceId);
+    if (tool != null)
+    {
+      if (!sustainableActivity.ActivityResources.Contains(tool)) throw new Exception("Resource not added to project");
+      sustainableActivity.ActivityResources.Remove(tool);
+      tool.Activities.Remove(sustainableActivity);
+      _toolRepository.UpdateEntity(tool);
+      _sustainableActivityRepository.UpdateEntity(sustainableActivity);
+      _sustainableActivityRepository.SaveChanges();
+      return;
+    }
+    throw new Exception("Resource not found");
   }
 }

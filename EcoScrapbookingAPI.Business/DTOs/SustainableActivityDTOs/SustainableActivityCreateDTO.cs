@@ -27,7 +27,7 @@ public class SustainableActivityCreateDTO
   [MinLength(3, ErrorMessage = "Name collaborator must be at least 3 characters long.")]
   public string NameCollaborator { get; set; }
   [Required]
-  public int AddressId { get; set; }
+  public int? AddressId { get; set; }
   [Required]
   public int CreatorUserId { get; set; }
 

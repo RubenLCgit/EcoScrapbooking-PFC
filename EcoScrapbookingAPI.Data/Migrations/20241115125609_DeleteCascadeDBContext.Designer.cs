@@ -4,6 +4,7 @@ using EcoScrapbookingAPI.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoScrapbookingAPI.Data.Migrations
 {
     [DbContext(typeof(EcoScrapbookingDBContext))]
-    partial class EcoScrapbookingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241115125609_DeleteCascadeDBContext")]
+    partial class DeleteCascadeDBContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,9 +52,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(21)
                         .HasColumnType("nvarchar(21)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
@@ -254,9 +254,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -287,7 +284,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             PublicationID = 1,
                             AuthorId = 1,
                             Category = "Reciclaje",
-                            CreatedAt = new DateTime(2023, 4, 5, 10, 20, 15, 0, DateTimeKind.Unspecified),
                             Description = "Métodos efectivos para reciclar en casa.",
                             Title = "Consejos para Reciclar"
                         },
@@ -296,7 +292,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             PublicationID = 2,
                             AuthorId = 2,
                             Category = "Jardinería",
-                            CreatedAt = new DateTime(2023, 4, 8, 12, 15, 30, 0, DateTimeKind.Unspecified),
                             Description = "Cómo y dónde plantar árboles.",
                             Title = "Plantando Árboles"
                         },
@@ -305,7 +300,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             PublicationID = 3,
                             AuthorId = 3,
                             Category = "Jardinería",
-                            CreatedAt = new DateTime(2023, 4, 12, 15, 30, 20, 0, DateTimeKind.Unspecified),
                             Description = "¡Me encantaría participar!",
                             ReplyPostID = 2,
                             Title = "Respuesta: Plantando Árboles"
@@ -316,7 +310,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ActivityId = 1,
                             AuthorId = 1,
                             Category = "Paso de proyecto",
-                            CreatedAt = new DateTime(2023, 4, 15, 10, 30, 45, 0, DateTimeKind.Unspecified),
                             Description = "Hemos terminado de cortar las piezas.",
                             ImagePostUrl = "https://image-post.com",
                             Title = "Avance: Caja de recuerdos"
@@ -443,7 +436,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             UserId = 1,
-                            AvatarImageUrl = "https://juanito123.com/avatar.jpg",
                             BirthDate = new DateTime(1985, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "juan.perez@example.com",
                             Gender = "Masculino",
@@ -459,7 +451,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             UserId = 2,
-                            AvatarImageUrl = "https://maryg.com/avatar.jpg",
                             BirthDate = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "maria.gomez@example.com",
                             Gender = "Femenino",
@@ -475,7 +466,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             UserId = 3,
-                            AvatarImageUrl = "https://carlosl.com/avatar.jpg",
                             BirthDate = new DateTime(1992, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "carlos.lopez@example.com",
                             Gender = "Masculino",
@@ -519,7 +509,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             ActivityId = 1,
-                            CreatedAt = new DateTime(2024, 1, 1, 10, 20, 35, 0, DateTimeKind.Unspecified),
                             CreatorUserId = 1,
                             Description = "Creación de una cajita para guardar recuerdos.",
                             FinishDate = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -551,7 +540,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             ActivityId = 2,
-                            CreatedAt = new DateTime(2024, 2, 1, 10, 10, 12, 0, DateTimeKind.Unspecified),
                             CreatorUserId = 2,
                             Description = "Actividad para plantar árboles en parques.",
                             FinishDate = new DateTime(2024, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -579,7 +567,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             ActivityId = 3,
-                            CreatedAt = new DateTime(2024, 3, 1, 10, 15, 20, 0, DateTimeKind.Unspecified),
                             CreatorUserId = 3,
                             Description = "Tutorial para hacer pegamento casero con materiales reciclados.",
                             FinishDate = new DateTime(2024, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
