@@ -167,7 +167,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Lastname = "Pérez",
             Nickname = "juanito123",
             Email = "juan.perez@example.com",
-            Password = "$2a$12$KIX9sQw9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAe", // Hash "Contraseña1"
+            Password = BCrypt.Net.BCrypt.HashPassword("password1"),
             Gender = "Masculino",
             BirthDate = new DateTime(1985, 5, 20),
             RegistrationDate = new DateTime(2023, 1, 10),
@@ -183,7 +183,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Lastname = "Gómez",
             Nickname = "maryg",
             Email = "maria.gomez@example.com",
-            Password = "$2a$12$7Hj3Lr9l3m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAf", // Hash "Contraseña2"
+            Password = BCrypt.Net.BCrypt.HashPassword("password2"),
             Gender = "Femenino",
             BirthDate = new DateTime(1990, 8, 15),
             RegistrationDate = new DateTime(2023, 2, 5),
@@ -199,7 +199,7 @@ namespace EcoScrapbookingAPI.Data.Context
             Nickname = "carlosl",
             Lastname = "López",
             Email = "carlos.lopez@example.com",
-            Password = "$2a$12$9Hk4Ms8k1m3Hj1fYjGmFeGq9FhS/jl5kH5Qe6y1UOZk2ZbqYJxAg", // Hash "Contraseña3"
+            Password = BCrypt.Net.BCrypt.HashPassword("password3"),
             Gender = "Masculino",
             BirthDate = new DateTime(1992, 12, 1),
             RegistrationDate = new DateTime(2023, 3, 12),

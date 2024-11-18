@@ -21,9 +21,12 @@ public class UserService : IUserService
     _sustainableActivityRepository = sustainableActivityRepository;
   }
 
-  public User CheckLogin(string userName, string userPassword)
+  public User LoginUser(string userEmail, string userPassword)
   {
-    throw new NotImplementedException();
+    var user = _userRepository.GetAllEntities().FirstOrDefault(u => u.Email == userEmail);
+    if (user == null) throw new ArgumentNullException("User not found.");
+    if (!BCrypt.Net.BCrypt.Verify(userPassword, user.Password)) throw new ArgumentException("Invalid password.");
+    return user;
   }
 
   public void DeleteUser(int userId)

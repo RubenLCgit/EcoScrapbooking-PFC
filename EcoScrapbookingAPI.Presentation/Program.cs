@@ -1,3 +1,4 @@
+using System.Text;
 using EcoScrapbookingAPI.Business.Interfaces;
 using EcoScrapbookingAPI.Business.Services;
 using EcoScrapbookingAPI.Data.Context;
@@ -5,7 +6,10 @@ using EcoScrapbookingAPI.Data.Interfaces;
 using EcoScrapbookingAPI.Data.Repositories;
 using EcoScrapbookingAPI.Domain.Models;
 using EcoScrapbookingAPI.Domain.Models.Abstracts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +54,51 @@ builder.Services.AddScoped<IToolService, ToolService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
+var key = builder.Configuration["JwtSettings:SecretKey"];
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+      options.TokenValidationParameters = new TokenValidationParameters
+      {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
+        ClockSkew = TimeSpan.Zero
+      };
+    });
+
+
+builder.Services.AddSwaggerGen(options =>
+{
+  options.SwaggerDoc("v1", new OpenApiInfo { Title = "PetPal API", Version = "v1" });
+
+  var securitySchema = new OpenApiSecurityScheme
+  {
+    Description = "JWT Authorization header using the Bearer scheme. Example: 'Bearer {token}'",
+    Name = "Authorization",
+    In = ParameterLocation.Header,
+    Type = SecuritySchemeType.Http,
+    Scheme = "bearer",
+    BearerFormat = "JWT",
+    Reference = new OpenApiReference
+    {
+      Type = ReferenceType.SecurityScheme,
+      Id = "Bearer"
+    }
+  };
+
+  options.AddSecurityDefinition("Bearer", securitySchema);
+
+  var securityRequirement = new OpenApiSecurityRequirement
+    {
+        { securitySchema, new[] { "Bearer" } }
+    };
+
+  options.AddSecurityRequirement(securityRequirement);
+});
+
 var app = builder.Build();
 
 app.UseCors("MyPolicy");
@@ -62,6 +111,9 @@ if (app.Environment.IsDevelopment()) // Delete if the API is in Docker
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
