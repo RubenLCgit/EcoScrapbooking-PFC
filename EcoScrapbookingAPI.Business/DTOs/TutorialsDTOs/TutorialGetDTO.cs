@@ -37,7 +37,7 @@ public class TutorialGetDTO
 
     if (tutorial.Publications != null)
     {
-      PublicationsIds = tutorial.Publications.Select(p => p.PublicationID).ToList();
+      PublicationsIds = tutorial.Publications.Select(p => p.PublicationId).ToList();
     }
     if (tutorial.Participants != null)
     {

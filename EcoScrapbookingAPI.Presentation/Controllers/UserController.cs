@@ -38,16 +38,16 @@ public class UserController : ControllerBase
     }
   }
 
-  [Authorize]
+  [AllowAnonymous]
   [HttpGet("{userId}")]
   public ActionResult<UserGetDTO> Get(int userId)
   {
     try
     {
-      if(!ControlUserAccess.UserHasAccess(User.FindFirst(ClaimTypes.Role).Value, User.FindFirst(ClaimTypes.NameIdentifier).Value, userId))
-      {
-        return Unauthorized("You do not have access to this user.");
-      }
+      // if(!ControlUserAccess.UserHasAccess(User.FindFirst(ClaimTypes.Role).Value, User.FindFirst(ClaimTypes.NameIdentifier).Value, userId))
+      // {
+      //   return Unauthorized("You do not have access to this user.");
+      // }
       return Ok(_userService.GetUser(userId));
     }
     catch (ArgumentNullException anEx)

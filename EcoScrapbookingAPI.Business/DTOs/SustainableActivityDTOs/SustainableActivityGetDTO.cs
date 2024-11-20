@@ -39,7 +39,7 @@ public class SustainableActivityGetDTO
 
     if (sustainableActivity.Publications != null)
     {
-      PublicationsIds = sustainableActivity.Publications.Select(p => p.PublicationID).ToList();
+      PublicationsIds = sustainableActivity.Publications.Select(p => p.PublicationId).ToList();
     }
     if (sustainableActivity.Participants != null)
     {

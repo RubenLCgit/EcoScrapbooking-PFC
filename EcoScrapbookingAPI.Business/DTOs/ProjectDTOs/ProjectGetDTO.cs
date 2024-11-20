@@ -39,7 +39,7 @@ public class ProjectGetDTO
 
     if (project.Publications != null)
     {
-      PublicationsIds = project.Publications.Select(p => p.PublicationID).ToList();
+      PublicationsIds = project.Publications.Select(p => p.PublicationId).ToList();
     }
     if (project.Participants != null)
     {

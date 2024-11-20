@@ -8,8 +8,8 @@ public class PublicationGetDTO
   public int AuthorId { get; set; }
   public int? ReplyPostID { get; set; }
   public DateTime CreatedAt { get; set; }
-  public string Category { get; set; }
-  public string Title { get; set; }
+  public string? Category { get; set; }
+  public string? Title { get; set; }
   public string Description { get; set; }
   public string? ImagePostUrl { get; set; }
   public int? ActivityId { get; set; }
@@ -19,7 +19,7 @@ public class PublicationGetDTO
 
   public PublicationGetDTO(Publication publication)
   {
-    PublicationId = publication.PublicationID;
+    PublicationId = publication.PublicationId;
     AuthorId = publication.AuthorId;
     ReplyPostID = publication.ReplyPostID;
     CreatedAt = publication.CreatedAt;
@@ -31,7 +31,7 @@ public class PublicationGetDTO
 
     if (publication.Replies != null)
     {
-      RepliesIds = publication.Replies.Select(r => r.PublicationID).ToList() ?? new List<int>();
+      RepliesIds = publication.Replies.Select(r => r.PublicationId).ToList() ?? new List<int>();
     }
   }
 }

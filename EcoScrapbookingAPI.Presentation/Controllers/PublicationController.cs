@@ -57,7 +57,7 @@ public class PublicationController : ControllerBase
     try
     {
       var publication = _publicationService.CreatePublication(publicationCreateDTO);
-      return CreatedAtAction(nameof(Get), new { publicationId = publication.PublicationID }, publication);
+      return CreatedAtAction(nameof(Get), new { publicationId = publication.PublicationId }, publication);
     }
     catch (ArgumentNullException anEx)
     {

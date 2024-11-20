@@ -299,7 +299,7 @@ namespace EcoScrapbookingAPI.Data.Context
       modelBuilder.Entity<Publication>().HasData(
           new Publication
           {
-            PublicationID = 1,
+            PublicationId = 1,
             AuthorId = 1,
             CreatedAt = new DateTime(2023, 4, 5, 10, 20, 15),
             Category = "Reciclaje",
@@ -308,7 +308,7 @@ namespace EcoScrapbookingAPI.Data.Context
           },
           new Publication
           {
-            PublicationID = 2,
+            PublicationId = 2,
             AuthorId = 2,
             CreatedAt = new DateTime(2023, 4, 8, 12, 15, 30),
             Category = "Jardinería",
@@ -317,7 +317,7 @@ namespace EcoScrapbookingAPI.Data.Context
           },
           new Publication
           {
-            PublicationID = 3,
+            PublicationId = 3,
             AuthorId = 3,
             CreatedAt = new DateTime(2023, 4, 12, 15, 30, 20),
             Category = "Jardinería",
@@ -327,7 +327,7 @@ namespace EcoScrapbookingAPI.Data.Context
           },
           new Publication
           {
-            PublicationID = 4,
+            PublicationId = 4,
             AuthorId = 1,
             CreatedAt = new DateTime(2023, 4, 15, 10, 30, 45),
             ActivityId = 1,

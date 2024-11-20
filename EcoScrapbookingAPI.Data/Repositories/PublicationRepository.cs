@@ -36,7 +36,9 @@ public class PublicationRepository : IRepositoryGeneric<Publication>
     if (publicationId <= 0) throw new ArgumentException("Publication ID must be greater than zero.", nameof(publicationId));
     try
     {
-      return _context.Publications.FirstOrDefault(p => p.PublicationID == publicationId);
+      return _context.Publications
+        .Include(p => p.Replies)
+        .FirstOrDefault(p => p.PublicationId == publicationId);
     }
     catch (ObjectDisposedException odEx)
     {
@@ -84,7 +86,9 @@ public class PublicationRepository : IRepositoryGeneric<Publication>
   {
     try
     {
-      return _context.Publications.ToList();
+      return _context.Publications
+        .Include(p => p.Replies)
+        .ToList();
     }
     catch (ObjectDisposedException odEx)
     {

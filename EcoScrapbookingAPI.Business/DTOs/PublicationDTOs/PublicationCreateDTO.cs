@@ -8,12 +8,10 @@ public class PublicationCreateDTO
   [Required]
   public int AuthorId { get; set; }
   public int? ReplyPostID { get; set; }
-  [Required]
   [MinLength(3, ErrorMessage = "Category must be at least 3 characters long.")]
-  public string Category { get; set; }
-  [Required]
+  public string? Category { get; set; }
   [MinLength(3, ErrorMessage = "Title must be at least 3 characters long.")]
-  public string Title { get; set; }
+  public string? Title { get; set; }
   [Required]
   [MinLength(10, ErrorMessage = "Description must be at least 10 characters long.")]
   public string Description { get; set; }
