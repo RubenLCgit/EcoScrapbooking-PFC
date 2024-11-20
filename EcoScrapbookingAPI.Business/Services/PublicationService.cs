@@ -41,7 +41,7 @@ public class PublicationService : IPublicationService
     {
       foreach (var reply in publication.Replies.ToList())
       {
-        DeletePublication(reply.PublicationID);
+        DeletePublication(reply.PublicationId);
       }
 
       _publicationRepository.DeleteEntity(publication);

@@ -4,6 +4,7 @@ using EcoScrapbookingAPI.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoScrapbookingAPI.Data.Migrations
 {
     [DbContext(typeof(EcoScrapbookingDBContext))]
-    partial class EcoScrapbookingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241118191619_HashSeeds")]
+    partial class HashSeeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,11 +241,11 @@ namespace EcoScrapbookingAPI.Data.Migrations
 
             modelBuilder.Entity("EcoScrapbookingAPI.Domain.Models.Publication", b =>
                 {
-                    b.Property<int>("PublicationId")
+                    b.Property<int>("PublicationID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PublicationId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PublicationID"));
 
                     b.Property<int?>("ActivityId")
                         .HasColumnType("int");
@@ -251,12 +254,14 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Category")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePostUrl")
@@ -266,9 +271,10 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PublicationId");
+                    b.HasKey("PublicationID");
 
                     b.HasIndex("ActivityId");
 
@@ -281,7 +287,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                     b.HasData(
                         new
                         {
-                            PublicationId = 1,
+                            PublicationID = 1,
                             AuthorId = 1,
                             Category = "Reciclaje",
                             CreatedAt = new DateTime(2023, 4, 5, 10, 20, 15, 0, DateTimeKind.Unspecified),
@@ -290,7 +296,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         },
                         new
                         {
-                            PublicationId = 2,
+                            PublicationID = 2,
                             AuthorId = 2,
                             Category = "Jardinería",
                             CreatedAt = new DateTime(2023, 4, 8, 12, 15, 30, 0, DateTimeKind.Unspecified),
@@ -299,7 +305,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         },
                         new
                         {
-                            PublicationId = 3,
+                            PublicationID = 3,
                             AuthorId = 3,
                             Category = "Jardinería",
                             CreatedAt = new DateTime(2023, 4, 12, 15, 30, 20, 0, DateTimeKind.Unspecified),
@@ -309,7 +315,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         },
                         new
                         {
-                            PublicationId = 4,
+                            PublicationID = 4,
                             ActivityId = 1,
                             AuthorId = 1,
                             Category = "Paso de proyecto",
@@ -449,7 +455,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Pérez",
                             Name = "Juan",
                             Nickname = "juanito123",
-                            Password = "$2a$11$RJKXCuIvsQulJj6O41hmCeV7eleRn4IWeMLK.9dSPd3zqejUzMPCu",
+                            Password = "$2a$11$D2h2a7dlZueAjnA6s3QAjOaisYZxMKpNaF0n/BIOCN5/AEF5/JHMy",
                             RegistrationDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Admin"
                         },
@@ -465,7 +471,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Gómez",
                             Name = "María",
                             Nickname = "maryg",
-                            Password = "$2a$11$AzCEsse4u1a9s3z0Q2obh.yI.YxTxiAa0//CzGhDzVPFFn5uw03PG",
+                            Password = "$2a$11$JXjkEOFqvABvmVGYIsKva.RY9jRtQ/.adDlccTaPGd2B2S37yNLeu",
                             RegistrationDate = new DateTime(2023, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -481,7 +487,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "López",
                             Name = "Carlos",
                             Nickname = "carlosl",
-                            Password = "$2a$11$35nw9rCzOFYYDi0rVWE.Euy6Qij.NyRYUqU4teniJ4tf4gycpTX4O",
+                            Password = "$2a$11$Pp9pQam0ruqIXultJd.V8eEB/TdKDPgxZVWEusseEOB13Fz.Myiee",
                             RegistrationDate = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         });

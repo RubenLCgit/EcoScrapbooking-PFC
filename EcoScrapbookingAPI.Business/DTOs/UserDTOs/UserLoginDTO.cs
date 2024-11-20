@@ -6,8 +6,8 @@ namespace EcoScrapbookingAPI.Business.DTOs.UserDTOs
     public class UserLoginDTO
     {
         [Required]
-        [MinLength(3, ErrorMessage = "Nickname must be at least 3 characters long.")]
-        public string Nickname { get; set; }
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
+        public string Email { get; set; }
         [Required]
         [MinLength(8, ErrorMessage = "Password must be at least 8 characters long.")]
         public string Password { get; set; }
@@ -16,7 +16,7 @@ namespace EcoScrapbookingAPI.Business.DTOs.UserDTOs
 
         public UserLoginDTO(User user)
         {
-          Nickname = user.Nickname;
+          Email = user.Email;
           Password = user.Password;
         }
     }

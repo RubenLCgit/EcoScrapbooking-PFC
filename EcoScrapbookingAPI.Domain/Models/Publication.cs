@@ -8,15 +8,12 @@ namespace EcoScrapbookingAPI.Domain.Models;
 public class Publication
 {
   [Key]
-  public int PublicationID { get; set; }
+  public int PublicationId { get; set; }
   public int AuthorId { get; set; }
   public int? ReplyPostID { get; set; }
   public DateTime CreatedAt { get; set; }
-  [Required]
-  public string Category { get; set; }
-  [Required]
-  public string Title { get; set; }
-  [Required]
+  public string? Category { get; set; }
+  public string? Title { get; set; }
   public string Description { get; set; }
   public string? ImagePostUrl { get; set; }
 

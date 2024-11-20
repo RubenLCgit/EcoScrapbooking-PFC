@@ -4,6 +4,7 @@ using EcoScrapbookingAPI.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoScrapbookingAPI.Data.Migrations
 {
     [DbContext(typeof(EcoScrapbookingDBContext))]
-    partial class EcoScrapbookingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241120104803_RefactorPublicationId")]
+    partial class RefactorPublicationId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -449,7 +452,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Pérez",
                             Name = "Juan",
                             Nickname = "juanito123",
-                            Password = "$2a$11$RJKXCuIvsQulJj6O41hmCeV7eleRn4IWeMLK.9dSPd3zqejUzMPCu",
+                            Password = "$2a$11$cyXDg/ISaH/d4Xg00ZTEAe4.xdoSprtVoYS1hoVvP7IBQkOFzTT/m",
                             RegistrationDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Admin"
                         },
@@ -465,7 +468,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Gómez",
                             Name = "María",
                             Nickname = "maryg",
-                            Password = "$2a$11$AzCEsse4u1a9s3z0Q2obh.yI.YxTxiAa0//CzGhDzVPFFn5uw03PG",
+                            Password = "$2a$11$ugQmwa9foZGYu5DURGRDouo4V0GSdjuy6ovc3YpxkcBfaVmllYIRK",
                             RegistrationDate = new DateTime(2023, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -481,7 +484,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "López",
                             Name = "Carlos",
                             Nickname = "carlosl",
-                            Password = "$2a$11$35nw9rCzOFYYDi0rVWE.Euy6Qij.NyRYUqU4teniJ4tf4gycpTX4O",
+                            Password = "$2a$11$neC7xAFDdZ8UmrvaPb6GtuH8bDZRdpKT0tnYGEPvw.CbwG6BmD2Ke",
                             RegistrationDate = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         });

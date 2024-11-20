@@ -66,7 +66,7 @@ public class UserGetDTO
     }
     if (user.Posts != null)
     {
-      PostsIds = user.Posts.Select(p => p.PublicationID).ToList();
+      PostsIds = user.Posts.Select(p => p.PublicationId).ToList();
     }
   }
 }
