@@ -25,7 +25,7 @@ public class UserController : ControllerBase
   {
     try
     {
-      var users = _userService.GetAllUsers();
+      var users = _userService.GetAllUsers(User.FindFirst(ClaimTypes.Role).Value);
       return Ok(users);
     }
     catch (ArgumentNullException anEx)
@@ -44,10 +44,6 @@ public class UserController : ControllerBase
   {
     try
     {
-      // if(!ControlUserAccess.UserHasAccess(User.FindFirst(ClaimTypes.Role).Value, User.FindFirst(ClaimTypes.NameIdentifier).Value, userId))
-      // {
-      //   return Unauthorized("You do not have access to this user.");
-      // }
       return Ok(_userService.GetUser(userId));
     }
     catch (ArgumentNullException anEx)

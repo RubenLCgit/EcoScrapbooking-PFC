@@ -52,12 +52,24 @@ public class AuthController : ControllerBase
       }
       else
       {
-        return Unauthorized("Invalid user name or password");
+        return Unauthorized(new { errorCode = "INVALID_CREDENTIALS", message = "Invalid user name or password." });
       }
     }
-    catch (Exception ex)
+    catch (ArgumentNullException)
     {
-      return BadRequest($"Error logging in: {ex.Message}");
+      return NotFound(new { errorCode = "USER_NOT_FOUND", message = "User not found." });
+    }
+    catch (ArgumentException ex)
+    {
+      if (ex.Message.Contains("deleted"))
+      {
+        return BadRequest(new { errorCode = "ACCOUNT_DELETED", message = "This account has been deleted. Please recover your account." });
+      }
+      return BadRequest(new { errorCode = "INVALID_PASSWORD", message = "Invalid password." });
+    }
+    catch (Exception)
+    {
+      return StatusCode(500, new { errorCode = "SERVER_ERROR", message = "An unexpected error occurred." });
     }
   }
 
@@ -69,9 +81,39 @@ public class AuthController : ControllerBase
       var user = userService.CreateUser(userCreateDTO);
       return CreatedAtAction("Get", "User", new { userId = user.UserId }, user);
     }
-    catch (Exception ex)
+    catch (ArgumentException ex)
     {
-      return BadRequest($"Error registering user: {ex.Message}");
+      if (ex.Message.Contains("Nickname"))
+      {
+        return BadRequest(new { errorCode = "NICKNAME_IN_USE", message = "Nickname already in use." });
+      }
+      return BadRequest(new { errorCode = "EMAIL_IN_USE", message = "Email already in use. Please recover your account or use another email." });
+    }
+    catch (Exception)
+    {
+      return StatusCode(500, new { errorCode = "SERVER_ERROR", message = "An unexpected error occurred." });
+    }
+  }
+
+  [HttpPost("recover")]
+  public IActionResult RecoverAccount([FromBody] UserLoginDTO userLoginDTO)
+  {
+    try
+    {
+      userService.RecoverAccount(userLoginDTO.Email, userLoginDTO.Password);
+      return Ok();
+    }
+    catch (ArgumentNullException)
+    {
+      return NotFound(new { errorCode = "USER_NOT_FOUND", message = "User not found." });
+    }
+    catch (ArgumentException)
+    {
+      return BadRequest(new { errorCode = "INVALID_PASSWORD", message = "Invalid password." });
+    }
+    catch (Exception)
+    {
+      return StatusCode(500, new { errorCode = "SERVER_ERROR", message = "An unexpected error occurred." });
     }
   }
 }
