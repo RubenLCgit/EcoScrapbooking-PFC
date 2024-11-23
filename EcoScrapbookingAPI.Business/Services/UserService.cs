@@ -25,26 +25,28 @@ public class UserService : IUserService
   {
     var user = _userRepository.GetAllEntities().FirstOrDefault(u => u.Email == userEmail);
     if (user == null) throw new ArgumentNullException("User not found.");
-    if (!BCrypt.Net.BCrypt.Verify(userPassword, user.Password)) throw new ArgumentException("Invalid password.");
-    return user;
+    if (user.IsActive != false)
+    {
+      if (!BCrypt.Net.BCrypt.Verify(userPassword, user.Password)) throw new ArgumentException("Invalid password.");
+      return user;
+    }
+    
+    throw new ArgumentException("This account has been deleted. Please recover your account.");
   }
 
   public void DeleteUser(int userId)
   {
     var user = _userRepository.GetByIdEntity(userId);
     if (user == null) throw new ArgumentNullException($"User with ID {userId} not found.");
-    var activities = user.ActivitiesParticipated;
-    foreach (var activity in activities)
-    {
-      activity.Participants.Remove(user);
-    }
-    _userRepository.DeleteEntity(user);
+    user.IsActive = false;
+    _userRepository.UpdateEntity(user);
     _userRepository.SaveChanges();
   }
 
-  public List<UserGetDTO> GetAllUsers()
+  public List<UserGetDTO> GetAllUsers(string role)
   {
     var users = _userRepository.GetAllEntities();
+    if (role == "User") users = users.Where(u => u.IsActive).ToList();
     return MapUsersToDTOs(users);
   }
 
@@ -60,11 +62,22 @@ public class UserService : IUserService
     var passwordHashed = BCrypt.Net.BCrypt.HashPassword(userCreateDTO.Password);
     User user = new User( userCreateDTO.Name, userCreateDTO.Lastname, userCreateDTO.Nickname ,userCreateDTO.Email, passwordHashed, userCreateDTO.Gender, userCreateDTO.BirthDate, userCreateDTO.AvatarImageUrl);
     var users = _userRepository.GetAllEntities();
-    if(users.Any(u => u.Nickname == user.Nickname || u.Email == user.Email)) throw new ArgumentException("User already exists.");
+    if(users.Any(u => u.Nickname == user.Nickname)) throw new ArgumentException("Nickname already in use.");
+    if(users.Any(u => u.Email == user.Email)) throw new ArgumentException("Email already in use. Please recover your account or use another email.");
     AssignRole(user);
     _userRepository.AddEntity(user);
     _userRepository.SaveChanges();
     return user;
+  }
+
+  public void RecoverAccount(string userEmail, string userPassword)
+  {
+    var user = _userRepository.GetAllEntities().FirstOrDefault(u => u.Email == userEmail);
+    if (user == null) throw new ArgumentNullException("User not found.");
+    if (!BCrypt.Net.BCrypt.Verify(userPassword, user.Password)) throw new ArgumentException("Invalid password.");
+    user.IsActive = true;
+    _userRepository.UpdateEntity(user);
+    _userRepository.SaveChanges();
   }
 
   public void UpdateUser(int userId, UserUpdateDTO userUpdateDTO)

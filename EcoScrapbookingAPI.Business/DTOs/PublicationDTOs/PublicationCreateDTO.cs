@@ -13,7 +13,7 @@ public class PublicationCreateDTO
   [MinLength(3, ErrorMessage = "Title must be at least 3 characters long.")]
   public string? Title { get; set; }
   [Required]
-  [MinLength(10, ErrorMessage = "Description must be at least 10 characters long.")]
+  [MinLength(3, ErrorMessage = "Description must be at least 3 characters long.")]
   public string Description { get; set; }
   [Url(ErrorMessage = "Invalid URL.")]
   public string? ImagePostUrl { get; set; }
