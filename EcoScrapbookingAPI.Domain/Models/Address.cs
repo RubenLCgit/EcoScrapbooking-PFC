@@ -22,8 +22,6 @@ public class Address
   public string Description { get; set; }
   public string ContactPhone { get; set; }
 
-  //Relaciones
-
   public int? UserId { get; set; }
 
   [ForeignKey("UserId")]
@@ -33,8 +31,9 @@ public class Address
 
   public Address() { }
 
-  public Address(string street, string number, string city, string state, string country, string zipCode, string description, string contactPhone)
+  public Address(int? userId ,string street, string number, string city, string state, string country, string zipCode, string description, string contactPhone)
   {
+    UserId = userId;
     Street = street;
     Number = number;
     City = city;

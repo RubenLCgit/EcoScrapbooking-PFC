@@ -5,9 +5,10 @@ namespace EcoScrapbookingAPI.Business.Interfaces;
 
 public interface IAddressService
 {
-  Address CreateAddress(AddressCreateDTO addressCreateDTO, int? userId, int? sustainableActivityId);
+  AddressGetDTO CreateAddress(AddressCreateDTO addressCreateDTO);
   void UpdateAddress(int addressId, AddressUpdateDTO addressUpdateDTO);
   void DeleteAddress(int addressId);
   List<AddressGetDTO> GetAllAddresses();
   AddressGetDTO GetAddress(int addressId);
+  void AddAddressToSustainableActivity(int addressId, int sustainableActivityId);
 }

@@ -21,8 +21,8 @@ public class AddressController : ControllerBase
   {
     try
     {
-      var addresses = _addressService.GetAllAddresses();
-      return Ok(addresses);
+      var addressesDTO = _addressService.GetAllAddresses();
+      return Ok(addressesDTO);
     }
     catch (ArgumentNullException anEx)
     {
@@ -39,7 +39,8 @@ public class AddressController : ControllerBase
   {
     try
     {
-      return Ok(_addressService.GetAddress(addressId));
+      var addressDTO = _addressService.GetAddress(addressId);
+      return Ok(addressDTO);
     }
     catch (ArgumentNullException anEx)
     {
@@ -52,13 +53,12 @@ public class AddressController : ControllerBase
   }
 
   [HttpPost]
-  public ActionResult<Address> Create([FromBody] AddressCreateDTO addressCreateDTO, [FromQuery] int? userId, [FromQuery] int? sustainableActivityId)
+  public ActionResult<Address> Create([FromBody] AddressCreateDTO addressCreateDTO)
   {
     try
     {
-      // Crear dirección y asociar con usuario o actividad sostenible si es necesario
-      var address = _addressService.CreateAddress(addressCreateDTO, userId, sustainableActivityId);
-      return CreatedAtAction(nameof(Get), new { addressId = address.AddressId }, address);
+      var addressDTO = _addressService.CreateAddress(addressCreateDTO);
+      return CreatedAtAction(nameof(Get), new { addressId = addressDTO.Id }, addressDTO);
     }
     catch (ArgumentNullException anEx)
     {
@@ -94,6 +94,24 @@ public class AddressController : ControllerBase
     try
     {
       _addressService.DeleteAddress(addressId);
+      return NoContent();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+
+  [HttpPost("{addressId}/sustainableActivity/{sustainableActivityId}")]
+  public ActionResult AddToSustainableActivity(int addressId, int sustainableActivityId)
+  {
+    try
+    {
+      _addressService.AddAddressToSustainableActivity(addressId, sustainableActivityId);
       return NoContent();
     }
     catch (ArgumentNullException anEx)
