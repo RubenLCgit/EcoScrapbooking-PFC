@@ -31,12 +31,12 @@ public class AddressCreateDTO
   public string ContactPhone { get; set; }
 
   public int? UserId { get; set; }
-  public int? SustainableActivityId { get; set; }
 
   public AddressCreateDTO() { }
 
   public AddressCreateDTO(Address address)
   {
+    UserId = address.UserId;
     Street = address.Street;
     Number = address.Number;
     City = address.City;
