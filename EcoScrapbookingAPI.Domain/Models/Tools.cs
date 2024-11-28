@@ -11,7 +11,7 @@ public class Tool : Resource
 
   public Tool() { }
 
-  public Tool(string name, string type, string brand, int quantity, string description, int ownerUserId, string imageResourceUrl, int transactionId, string condition, bool warranty) : base(name, type, brand, quantity, description, ownerUserId, imageResourceUrl, transactionId)
+  public Tool(string name, string type, string brand, int quantity, string description, int ownerUserId, string imageResourceUrl, int? transactionId, string condition, bool warranty) : base(name, type, brand, quantity, description, ownerUserId, imageResourceUrl, transactionId)
   {
     Condition = condition;
     Warranty = warranty;

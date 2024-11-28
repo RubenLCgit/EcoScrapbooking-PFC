@@ -18,7 +18,7 @@ public class ProjectGetDTO
   public string ProjectType { get; set; }
   public List<int> PublicationsIds { get; set; }
   public List<int> ParticipantsIds { get; set; }
-  public List<int> ProjectResourcesIds { get; set; }
+  public List<ProjectResourceDTO> ProjectResources { get; set; }
 
   public ProjectGetDTO() { }
 
@@ -47,7 +47,7 @@ public class ProjectGetDTO
     }
     if (project.ActivityResources != null)
     {
-      ProjectResourcesIds = project.ActivityResources.Select(r => r.ResourceId).ToList();
+      ProjectResources = project.ActivityResources.Select(r => new ProjectResourceDTO(r.ResourceId, r.ResourceType)).ToList();
     }
   }
 }
