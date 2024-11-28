@@ -32,6 +32,8 @@ public abstract class Resource
   [ForeignKey("TransactionId")]
   public Transaction Transaction { get; set; }
 
+  public string ResourceType { get; protected set; }
+
   protected Resource() { }
 
   protected Resource(string name, string type, string brand, int quantity, string description, int ownerUserId, string imageResourceUrl, int? transactionId)

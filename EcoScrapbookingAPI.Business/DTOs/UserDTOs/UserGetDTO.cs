@@ -1,3 +1,4 @@
+using EcoScrapbookingAPI.Business.DTOs.ProjectDTOs;
 using EcoScrapbookingAPI.Domain.Models;
 
 namespace EcoScrapbookingAPI.Business.DTOs.UserDTOs;
@@ -20,7 +21,7 @@ public class UserGetDTO
   public List<int> AddressesIds { get; set; }
   public List<int> ActivitiesParticipatedIds { get; set; }
   public List<int> ActivitiesCreatedIds { get; set; }
-  public List<int> ResourcesIds { get; set; }
+  public List<ProjectResourceDTO> ProjectResources { get; set; }
   public List<int> TransactionsInitiatedIds { get; set; }
   public List<int> TransactionsReceivedIds { get; set; }
   public List<int> PostsIds { get; set; }
@@ -56,7 +57,7 @@ public class UserGetDTO
     }
     if (user.Resources != null)
     {
-      ResourcesIds = user.Resources.Select(r => r.ResourceId).ToList();
+      ProjectResources = user.Resources.Select(r => new ProjectResourceDTO(r.ResourceId, r.ResourceType)).ToList();
     }
     if (user.TransactionsInitiated != null)
     {
