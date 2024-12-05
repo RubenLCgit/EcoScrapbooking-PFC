@@ -20,6 +20,7 @@ public class TutorialUpdateDTO
   public string? HomeImageUrl { get; set; }
   [Range(15, 60, ErrorMessage = "Duration must be between 15 and 60 minutes.")]
   public int? Duration { get; set; }
+  public string? VideoUrl { get; set; }
 
   public TutorialUpdateDTO() { }
 
@@ -34,5 +35,6 @@ public class TutorialUpdateDTO
     GreenPointsValue = tutorial.GreenPointsValue;
     HomeImageUrl = tutorial.HomeImageUrl;
     Duration = tutorial.Duration;
+    VideoUrl = tutorial.VideoUrl;
   }
 }

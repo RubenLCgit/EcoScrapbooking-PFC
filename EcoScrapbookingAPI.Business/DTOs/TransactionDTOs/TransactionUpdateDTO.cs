@@ -6,9 +6,13 @@ namespace EcoScrapbookingAPI.Business.DTOs.TransactionDTOs
 {
     public class TransactionUpdateDTO
     {
+      [MinLength(5)]
+      [MaxLength(100)]
+      public string? ArticlesDescription { get; set; }
       [EnumDataType(typeof(TransactionType))]
       public TransactionType? Type { get; set; }
       public int? ReceiverUserID { get; set; }
+      public string? ImageTransactionUrl { get; set; }
 
       public TransactionUpdateDTO() { }
 
@@ -16,6 +20,7 @@ namespace EcoScrapbookingAPI.Business.DTOs.TransactionDTOs
       {
           Type = transaction.Type;
           ReceiverUserID = transaction.ReceiverUserID;
+          ImageTransactionUrl = transaction.ImageTransactionUrl;
       }
     }
 }

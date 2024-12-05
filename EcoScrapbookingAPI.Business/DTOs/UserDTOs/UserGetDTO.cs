@@ -1,3 +1,4 @@
+using EcoScrapbookingAPI.Business.DTOs.ActivityDTOs;
 using EcoScrapbookingAPI.Business.DTOs.ProjectDTOs;
 using EcoScrapbookingAPI.Domain.Models;
 
@@ -19,8 +20,8 @@ public class UserGetDTO
   public string AvatarImageUrl { get; set; }
 
   public List<int> AddressesIds { get; set; }
-  public List<int> ActivitiesParticipatedIds { get; set; }
-  public List<int> ActivitiesCreatedIds { get; set; }
+  public List<ActivityTypeDTO> ActivitiesParticipatedIds { get; set; }
+  public List<ActivityTypeDTO> ActivitiesCreatedIds { get; set; }
   public List<ProjectResourceDTO> ProjectResources { get; set; }
   public List<int> TransactionsInitiatedIds { get; set; }
   public List<int> TransactionsReceivedIds { get; set; }
@@ -49,11 +50,11 @@ public class UserGetDTO
     }
     if (user.ActivitiesParticipated != null)
     {
-      ActivitiesParticipatedIds = user.ActivitiesParticipated.Select(a => a.ActivityId).ToList();
+      ActivitiesParticipatedIds = user.ActivitiesParticipated.Select(a => new ActivityTypeDTO(a.ActivityId, a.ActivityType)).ToList();
     }
     if (user.ActivitiesCreated != null)
     {
-      ActivitiesCreatedIds = user.ActivitiesCreated.Select(a => a.ActivityId).ToList();
+      ActivitiesCreatedIds = user.ActivitiesCreated.Select(a => new ActivityTypeDTO(a.ActivityId, a.ActivityType)).ToList();
     }
     if (user.Resources != null)
     {

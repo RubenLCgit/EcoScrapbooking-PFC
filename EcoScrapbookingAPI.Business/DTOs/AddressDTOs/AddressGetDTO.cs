@@ -14,6 +14,7 @@ public class AddressGetDTO
   public string ZipCode { get; set; }
   public string Description { get; set; }
   public string ContactPhone { get; set; }
+  public bool IsMainDeliveryAddress { get; set; }
 
   public List<int> SustainableActivityIds { get; set; }
 
@@ -31,6 +32,7 @@ public class AddressGetDTO
     ZipCode = address.ZipCode;
     Description = address.Description;
     ContactPhone = address.ContactPhone;
+    IsMainDeliveryAddress = address.IsMainDeliveryAddress;
 
     if (address.SustainableActivities != null)
     {

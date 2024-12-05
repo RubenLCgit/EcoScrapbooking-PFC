@@ -21,6 +21,7 @@ public class Address
   public string ZipCode { get; set; }
   public string Description { get; set; }
   public string ContactPhone { get; set; }
+  public bool IsMainDeliveryAddress { get; set; }
 
   public int? UserId { get; set; }
 
@@ -31,7 +32,7 @@ public class Address
 
   public Address() { }
 
-  public Address(int? userId ,string street, string number, string city, string state, string country, string zipCode, string description, string contactPhone)
+  public Address(int? userId ,string street, string number, string city, string state, string country, string zipCode, string description, string contactPhone, bool isMainDeliveryAddress)
   {
     UserId = userId;
     Street = street;
@@ -42,5 +43,7 @@ public class Address
     ZipCode = zipCode;
     Description = description;
     ContactPhone = contactPhone;
+    IsMainDeliveryAddress = false;
   }
+
 }

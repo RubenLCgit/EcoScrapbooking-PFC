@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using EcoScrapbookingAPI.Business.DTOs.ActivityDTOs;
 using EcoScrapbookingAPI.Domain.Models;
 
 namespace EcoScrapbookingAPI.Business.DTOs.MaterialDTOs;
@@ -12,9 +14,11 @@ public class MaterialGetDTO
   public string Description { get; set; }
   public string ImageResourceUrl { get; set; }
   public int OwnerUserId { get; set; }
+  public bool IsSent { get; set; }
   public int? TransactionId { get; set; }
-  
-  public List<int> ActivitiesIds { get; set; }
+  public string ResourceType { get; protected set; } = "Material";
+
+  public List<ActivityTypeDTO> ActivitiesIds { get; set; }
 
   public MaterialGetDTO() { }
 
@@ -24,15 +28,15 @@ public class MaterialGetDTO
     Name = material.Name;
     Type = material.Type;
     Brand = material.Brand;
-    Quantity = material.Quantity;
     Description = material.Description;
     ImageResourceUrl = material.ImageResourceUrl;
     OwnerUserId = material.OwnerUserId;
     TransactionId = material.TransactionId;
+    IsSent = material.IsSent;
 
     if (material.Activities != null)
     {
-      ActivitiesIds = material.Activities.Select(a => a.ActivityId).ToList();
+      ActivitiesIds = material.Activities.Select(a => new ActivityTypeDTO(a.ActivityId, a.ActivityType)).ToList();
     }
   }
 }

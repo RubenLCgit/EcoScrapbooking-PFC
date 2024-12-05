@@ -72,7 +72,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddSwaggerGen(options =>
 {
-  options.SwaggerDoc("v1", new OpenApiInfo { Title = "PetPal API", Version = "v1" });
+  options.SwaggerDoc("v1", new OpenApiInfo { Title = "EcoScrapbooking API", Version = "v1" });
 
   var securitySchema = new OpenApiSecurityScheme
   {

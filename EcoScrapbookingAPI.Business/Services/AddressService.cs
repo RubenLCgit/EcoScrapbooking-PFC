@@ -99,6 +99,7 @@ public class AddressService : IAddressService
     address.ZipCode = addressUpdateDTO.ZipCode ?? address.ZipCode;
     address.Description = addressUpdateDTO.Description ?? address.Description;
     address.ContactPhone = addressUpdateDTO.ContactPhone ?? address.ContactPhone;
+    address.IsMainDeliveryAddress = addressUpdateDTO.IsMainDeliveryAddress ?? address.IsMainDeliveryAddress;
     
     if(addressUpdateDTO.UserId != null)
     {

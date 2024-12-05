@@ -19,7 +19,7 @@ public class TutorialService : ITutorialService
   }
   public Tutorial CreateTutorial(TutorialCreateDTO tutorialCreateDTO)
   {
-    var tutorial = new Tutorial(tutorialCreateDTO.Title, tutorialCreateDTO.Description, tutorialCreateDTO.MaxParticipants ?? 0, tutorialCreateDTO.StartDate, tutorialCreateDTO.FinishDate, tutorialCreateDTO.GreenPointsValue, tutorialCreateDTO.HomeImageUrl, tutorialCreateDTO.Duration, tutorialCreateDTO.CreatorUserId);
+    var tutorial = new Tutorial(tutorialCreateDTO.Title, tutorialCreateDTO.Description, tutorialCreateDTO.MaxParticipants ?? 0, tutorialCreateDTO.StartDate, tutorialCreateDTO.FinishDate, tutorialCreateDTO.GreenPointsValue, tutorialCreateDTO.HomeImageUrl, tutorialCreateDTO.Duration, tutorialCreateDTO.VideoUrl, tutorialCreateDTO.CreatorUserId);
     _tutorialRepository.AddEntity(tutorial);
     _tutorialRepository.SaveChanges();
     return tutorial;
@@ -38,6 +38,7 @@ public class TutorialService : ITutorialService
     tutorial.GreenPointsValue = tutorialUpdateDTO.GreenPointsValue ?? tutorial.GreenPointsValue;
     tutorial.HomeImageUrl = tutorialUpdateDTO.HomeImageUrl ?? tutorial.HomeImageUrl;
     tutorial.Duration = tutorialUpdateDTO.Duration ?? tutorial.Duration;
+    tutorial.VideoUrl = tutorialUpdateDTO.VideoUrl ?? tutorial.VideoUrl;
     _tutorialRepository.UpdateEntity(tutorial);
     _tutorialRepository.SaveChanges();
   }
