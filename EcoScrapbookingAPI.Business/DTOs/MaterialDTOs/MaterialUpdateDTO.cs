@@ -16,6 +16,7 @@ public class MaterialUpdateDTO
   [MinLength(10, ErrorMessage = "Description must be at least 10 characters long.")]
   public string? Description { get; set; }
   public int? OwnerUserId { get; set; }
+  public bool? IsSent { get; set; }
   [Url(ErrorMessage = "Invalid URL.")]
   public string? ImageResourceUrl { get; set; }
   public int? TransactionId { get; set; }
@@ -32,5 +33,6 @@ public class MaterialUpdateDTO
     OwnerUserId = material.OwnerUserId;
     ImageResourceUrl = material.ImageResourceUrl;
     TransactionId = material.TransactionId;
+    IsSent = material.IsSent;
   }
 }

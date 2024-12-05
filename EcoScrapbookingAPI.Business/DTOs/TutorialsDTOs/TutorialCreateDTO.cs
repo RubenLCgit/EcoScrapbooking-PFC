@@ -28,6 +28,9 @@ public class TutorialCreateDTO
   [Required]
   [Range(15, 60, ErrorMessage = "Duration must be between 15 and 60 minutes.")]
   public int Duration { get; set; }
+  [Required]
+  [Url(ErrorMessage = "Invalid URL.")]
+  public string VideoUrl { get; set; }
 
   public TutorialCreateDTO() { }
 
@@ -42,5 +45,6 @@ public class TutorialCreateDTO
     HomeImageUrl = tutorial.HomeImageUrl;
     CreatorUserId = tutorial.CreatorUserId;
     Duration = tutorial.Duration;
+    VideoUrl = tutorial.VideoUrl;
   }
 }

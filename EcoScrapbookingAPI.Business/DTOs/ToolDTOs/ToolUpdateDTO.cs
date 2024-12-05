@@ -16,6 +16,7 @@ public class ToolUpdateDTO
   [MinLength(10, ErrorMessage = "Description must be at least 10 characters long.")]
   public string? Description { get; set; }
   public int? OwnerUserId { get; set; }
+  public bool? IsSent { get; set; }
   [MinLength(4, ErrorMessage = "Condition must be at least 4 characters long.")]
   public string? Condition { get; set; }
   public bool? Warranty { get; set; }
@@ -37,5 +38,6 @@ public class ToolUpdateDTO
     Warranty = tool.Warranty;
     ImageResourceUrl = tool.ImageResourceUrl;
     TransactionId = tool.TransactionId;
+    IsSent = tool.IsSent;
   }
 }

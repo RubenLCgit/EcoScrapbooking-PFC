@@ -15,6 +15,7 @@ public class TutorialGetDTO
   public string HomeImageUrl { get; set; }
   public int CreatorUserId { get; set; }
   public int Duration { get; set; }
+  public string VideoUrl { get; set; }
   public List<int> PublicationsIds { get; set; }
   public List<int> ParticipantsIds { get; set; }
   public List<int> ActivityResourcesIds { get; set; }
@@ -34,6 +35,7 @@ public class TutorialGetDTO
     HomeImageUrl = tutorial.HomeImageUrl;
     CreatorUserId = tutorial.CreatorUserId;
     Duration = tutorial.Duration;
+    VideoUrl = tutorial.VideoUrl;
 
     if (tutorial.Publications != null)
     {

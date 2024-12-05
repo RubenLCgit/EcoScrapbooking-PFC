@@ -25,6 +25,7 @@ public abstract class Activity
   public ICollection<Publication> Publications { get; set; } = new List<Publication>();
   public ICollection<User> Participants { get; set; } = new List<User>();
   public ICollection<Resource> ActivityResources { get; set; } = new List<Resource>();
+  public string ActivityType { get; protected set; }
   public int CreatorUserId { get; set; }
 
   [ForeignKey("CreatorUserId")] 

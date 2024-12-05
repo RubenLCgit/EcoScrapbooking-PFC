@@ -22,6 +22,7 @@ public class AddressUpdateDTO
   public string? Description { get; set; }
   [MinLength(9, ErrorMessage = "ContactPhone must be at least 9 characters long.")]
   public string? ContactPhone { get; set; }
+  public bool? IsMainDeliveryAddress { get; set; }
 
   public AddressUpdateDTO() { }
 
@@ -36,5 +37,6 @@ public class AddressUpdateDTO
     ZipCode = address.ZipCode;
     Description = address.Description;
     ContactPhone = address.ContactPhone;
+    IsMainDeliveryAddress = address.IsMainDeliveryAddress;
   }
 }

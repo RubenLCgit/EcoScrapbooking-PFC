@@ -19,7 +19,7 @@ public class UserController : ControllerBase
     _userService = userService;
   }
 
-  [Authorize (Roles = "Admin")]
+  [AllowAnonymous]
   [HttpGet]
   public ActionResult<List<UserGetDTO>> GetAll()
   {

@@ -7,27 +7,25 @@ namespace EcoScrapbookingAPI.Business.DTOs.TransactionDTOs;
 public class TransactionCreateDTO
 {
   [Required]
+  [MinLength(5)]
+  [MaxLength(100)]
+  public string ArticlesDescription { get; set; }
+  [Required]
   [EnumDataType(typeof(TransactionType))]
   public TransactionType Type { get; set; }
   [Required]
-  [EnumDataType(typeof(TransactionStatus))]
-  public TransactionStatus Status { get; set; }
-  [Required]
-  public DateTime DateInitiated { get; set; }
-  public DateTime? DateCompleted { get; set; }
-  [Required]
   public int InitiatorUserID { get; set; }
   public int? ReceiverUserID { get; set; }
+  public string ImageTransactionUrl { get; set; }
 
   public TransactionCreateDTO() { }
 
   public TransactionCreateDTO(Transaction transaction)
   {
+    ArticlesDescription = transaction.ArticlesDescription;
     Type = transaction.Type;
-    Status = transaction.Status;
-    DateInitiated = transaction.DateInitiated;
-    DateCompleted = transaction.DateCompleted;
     InitiatorUserID = transaction.InitiatorUserID;
     ReceiverUserID = transaction.ReceiverUserID;
+    ImageTransactionUrl = transaction.ImageTransactionUrl;
   }
 }

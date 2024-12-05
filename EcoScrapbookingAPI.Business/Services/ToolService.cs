@@ -35,7 +35,8 @@ public class ToolService : IToolService
     tool.Warranty = toolUpdateDTO.Warranty ?? tool.Warranty;
     tool.OwnerUserId = toolUpdateDTO.OwnerUserId ?? tool.OwnerUserId;
     tool.ImageResourceUrl = toolUpdateDTO.ImageResourceUrl ?? tool.ImageResourceUrl;
-    tool.TransactionId = toolUpdateDTO.TransactionId ?? tool.TransactionId;
+    tool.TransactionId = toolUpdateDTO.TransactionId;
+    tool.IsSent = toolUpdateDTO.IsSent ?? tool.IsSent;
     _toolRepository.UpdateEntity(tool);
     _toolRepository.SaveChanges();
   }

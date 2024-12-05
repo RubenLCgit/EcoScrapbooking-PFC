@@ -1,162 +1,172 @@
+using System.Security.Claims;
 using EcoScrapbookingAPI.Business.DTOs.TransactionDTOs;
 using EcoScrapbookingAPI.Business.Interfaces;
 using EcoScrapbookingAPI.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EcoScrapbookingAPI.Presentation.Controllers
+namespace EcoScrapbookingAPI.Presentation.Controllers;
+
+[Authorize]
+[ApiController]
+[Route("[controller]")]
+public class TransactionController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TransactionController : ControllerBase
-    {
-      private readonly ITransactionService _transactionService;
+  private readonly ITransactionService _transactionService;
 
-      public TransactionController(ITransactionService transactionService)
-      {
-          _transactionService = transactionService;
-      }
+  public TransactionController(ITransactionService transactionService)
+  {
+      _transactionService = transactionService;
+  }
 
-      [HttpGet]
-      public ActionResult<List<TransactionGetDTO>> GetAll()
+  [AllowAnonymous]
+  [HttpGet]
+  public ActionResult<List<TransactionGetDTO>> GetAll()
+  {
+      try
       {
-          try
-          {
-              var transactions = _transactionService.GetAllTransactions();
-              return Ok(transactions);
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          var transactions = _transactionService.GetAllTransactions(User.FindFirst(ClaimTypes.Role).Value);
+          return Ok(transactions);
       }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 
-      [HttpGet("{transactionId}")]
-      public ActionResult<TransactionGetDTO> Get(int transactionId)
+  [AllowAnonymous]
+  [HttpGet("{transactionId}")]
+  public ActionResult<TransactionGetDTO> Get(int transactionId)
+  {
+      try
       {
-          try
-          {
-              return Ok(_transactionService.GetTransaction(transactionId));
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          return Ok(_transactionService.GetTransaction(transactionId));
       }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 
-      [HttpPost]
-      public ActionResult<Transaction> Create([FromBody] TransactionCreateDTO transactionCreateDTO)
+  [AllowAnonymous]
+  [HttpPost]
+  public ActionResult<Transaction> Create([FromBody] TransactionCreateDTO transactionCreateDTO)
+  {
+      try
       {
-          try
-          {
-              var transaction = _transactionService.CreateTransaction(transactionCreateDTO);
-              return CreatedAtAction(nameof(Get), new { transactionId = transaction.TransactionID }, transaction);
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          var transaction = _transactionService.CreateTransaction(transactionCreateDTO);
+          return CreatedAtAction(nameof(Get), new { transactionId = transaction.TransactionID }, transaction);
       }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 
-      [HttpPut("{transactionId}")]
-      public ActionResult Update(int transactionId, [FromBody] TransactionUpdateDTO transactionUpdateDTO)
+  [AllowAnonymous]
+  [HttpPut("{transactionId}")]
+  public ActionResult Update(int transactionId, [FromBody] TransactionUpdateDTO transactionUpdateDTO)
+  {
+      try
       {
-          try
-          {
-              _transactionService.UpdateTransaction(transactionId, transactionUpdateDTO);
-              return NoContent();
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          _transactionService.UpdateTransaction(transactionId, transactionUpdateDTO);
+          return NoContent();
       }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 
-      [HttpDelete("{transactionId}")]
-      public ActionResult Delete(int transactionId)
+  [AllowAnonymous]
+  [HttpDelete("{transactionId}")]
+  public ActionResult Delete(int transactionId)
+  {
+      try
       {
-          try
-          {
-              _transactionService.DeleteTransaction(transactionId);
-              return NoContent();
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          _transactionService.DeleteTransaction(transactionId);
+          return NoContent();
       }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 
-      [HttpPatch("{transactionId}/accept")]
-      public ActionResult Accept(int transactionId)
+  [AllowAnonymous]
+  [HttpPatch("{transactionId}/accept/{receiverId}")]
+  public ActionResult Accept(int transactionId, int receiverId)
+  {
+      try
       {
-          try
-          {
-              _transactionService.AcceptedTransaction(transactionId);
-              return NoContent();
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          _transactionService.AcceptedTransaction(transactionId, receiverId);
+          return NoContent();
       }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 
-      [HttpPatch("{transactionId}/reject")]
-      public ActionResult Reject(int transactionId)
+  [AllowAnonymous]
+  [HttpPatch("{transactionId}/reject")]
+  public ActionResult Reject(int transactionId)
+  {
+      try
       {
-          try
-          {
-              _transactionService.RejectedTransaction(transactionId);
-              return NoContent();
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          _transactionService.RejectedTransaction(transactionId);
+          return NoContent();
       }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 
-      [HttpPatch("{transactionId}/complete")]
-      public ActionResult Complete(int transactionId)
+  [AllowAnonymous]
+  [HttpPatch("{transactionId}/complete")]
+  public ActionResult Complete(int transactionId)
+  {
+      try
       {
-          try
-          {
-              _transactionService.CompleteTransaction(transactionId);
-              return NoContent();
-          }
-          catch (ArgumentNullException anEx)
-          {
-              return NotFound(anEx.Message);
-          }
-          catch (Exception ex)
-          {
-              return BadRequest(ex.Message);
-          }
+          _transactionService.CompleteTransaction(transactionId);
+          return NoContent();
       }
-    }
+      catch (ArgumentNullException anEx)
+      {
+          return NotFound(anEx.Message);
+      }
+      catch (Exception ex)
+      {
+          return BadRequest(ex.Message);
+      }
+  }
 }

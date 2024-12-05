@@ -4,6 +4,7 @@ using EcoScrapbookingAPI.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoScrapbookingAPI.Data.Migrations
 {
     [DbContext(typeof(EcoScrapbookingDBContext))]
-    partial class EcoScrapbookingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241130134133_EditNewInitSeeds")]
+    partial class EditNewInitSeeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,9 +237,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsMainDeliveryAddress")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -270,7 +270,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-1234",
                             Country = "España",
                             Description = "Residencia Principal",
-                            IsMainDeliveryAddress = true,
                             Number = "123",
                             State = "Madrid",
                             Street = "Calle Falsa",
@@ -284,7 +283,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-5678",
                             Country = "España",
                             Description = "Oficina",
-                            IsMainDeliveryAddress = false,
                             Number = "742",
                             State = "Cataluña",
                             Street = "Avenida Siempre Viva",
@@ -298,7 +296,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-2345",
                             Country = "España",
                             Description = "Residencia Principal",
-                            IsMainDeliveryAddress = true,
                             Number = "45",
                             State = "Valencia",
                             Street = "Gran Vía",
@@ -312,7 +309,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-6789",
                             Country = "España",
                             Description = "Oficina",
-                            IsMainDeliveryAddress = false,
                             Number = "789",
                             State = "Andalucía",
                             Street = "Paseo de la Castellana",
@@ -326,7 +322,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-3456",
                             Country = "España",
                             Description = "Residencia Principal",
-                            IsMainDeliveryAddress = true,
                             Number = "10",
                             State = "País Vasco",
                             Street = "Calle de Alcalá",
@@ -340,7 +335,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-7890",
                             Country = "España",
                             Description = "Oficina",
-                            IsMainDeliveryAddress = false,
                             Number = "321",
                             State = "Aragón",
                             Street = "Ronda de Sant Antoni",
@@ -354,7 +348,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-4567",
                             Country = "España",
                             Description = "Residencia Principal",
-                            IsMainDeliveryAddress = true,
                             Number = "55",
                             State = "Andalucía",
                             Street = "Calle de las Flores",
@@ -368,7 +361,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-8901",
                             Country = "España",
                             Description = "Taller",
-                            IsMainDeliveryAddress = false,
                             Number = "88",
                             State = "Región de Murcia",
                             Street = "Avenida del Mediterráneo",
@@ -382,7 +374,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-5678",
                             Country = "España",
                             Description = "Residencia Principal",
-                            IsMainDeliveryAddress = true,
                             Number = "200",
                             State = "Andalucía",
                             Street = "Calle Mayor",
@@ -396,7 +387,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-9012",
                             Country = "España",
                             Description = "Estudio",
-                            IsMainDeliveryAddress = false,
                             Number = "150",
                             State = "Andalucía",
                             Street = "Plaza de España",
@@ -410,7 +400,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-6789",
                             Country = "España",
                             Description = "Residencia Principal",
-                            IsMainDeliveryAddress = true,
                             Number = "77",
                             State = "Comunidad Valenciana",
                             Street = "Calle del Sol",
@@ -424,7 +413,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             ContactPhone = "555-0123",
                             Country = "España",
                             Description = "Oficina",
-                            IsMainDeliveryAddress = false,
                             Number = "99",
                             State = "Canarias",
                             Street = "Avenida de la Paz",
@@ -655,17 +643,11 @@ namespace EcoScrapbookingAPI.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionID"));
 
-                    b.Property<string>("ArticlesDescription")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("DateCompleted")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateInitiated")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageTransactionUrl")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("InitiatorUserID")
                         .HasColumnType("int");
@@ -696,10 +678,8 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 1,
-                            ArticlesDescription = "Pegamento en barra para sellos sin apenas uso.",
                             DateCompleted = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInitiated = new DateTime(2024, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction1.com",
                             InitiatorUserID = 1,
                             IsActive = false,
                             ReceiverUserID = 2,
@@ -709,9 +689,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 2,
-                            ArticlesDescription = "Regla metálica y capsulas de cafe usadas.",
                             DateInitiated = new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction2.com",
                             InitiatorUserID = 1,
                             IsActive = true,
                             ReceiverUserID = 3,
@@ -721,10 +699,8 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 3,
-                            ArticlesDescription = "Tijeras de precisión muy usadas pero sin daños.",
                             DateCompleted = new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInitiated = new DateTime(2024, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction3.com",
                             InitiatorUserID = 2,
                             IsActive = false,
                             ReceiverUserID = 1,
@@ -734,9 +710,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 4,
-                            ArticlesDescription = "Cartones de embalaje para crear una caja de recuerdos.",
                             DateInitiated = new DateTime(2024, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction4.com",
                             InitiatorUserID = 2,
                             IsActive = true,
                             ReceiverUserID = 3,
@@ -746,10 +720,8 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 5,
-                            ArticlesDescription = "Pumones de colores + Botellas de plastico + Revistas de decoración viejas.",
                             DateCompleted = new DateTime(2024, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInitiated = new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction5.com",
                             InitiatorUserID = 3,
                             IsActive = false,
                             ReceiverUserID = 2,
@@ -759,9 +731,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 6,
-                            ArticlesDescription = "Maquina de coser, papel de revistas y latas de aluminio.",
                             DateInitiated = new DateTime(2024, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction6.com",
                             InitiatorUserID = 3,
                             IsActive = true,
                             ReceiverUserID = 5,
@@ -771,9 +741,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 7,
-                            ArticlesDescription = "Cuter electrico y cartulinas recicladas. Busco guillotina o laminadora.",
                             DateInitiated = new DateTime(2024, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction7.com",
                             InitiatorUserID = 4,
                             IsActive = true,
                             ReceiverUserID = 3,
@@ -783,9 +751,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 8,
-                            ArticlesDescription = "Laminadora sin apenas uso. Busco papel kraft o cintas recicladas.",
                             DateInitiated = new DateTime(2024, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction8.com",
                             InitiatorUserID = 4,
                             IsActive = true,
                             ReceiverUserID = 2,
@@ -795,9 +761,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 9,
-                            ArticlesDescription = "Pistola de calor para manualidades y packde papel kraft. Buso rotuladores de colores para scrapbooking.",
                             DateInitiated = new DateTime(2024, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction9.com",
                             InitiatorUserID = 5,
                             IsActive = true,
                             Status = "Pending",
@@ -806,9 +770,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 10,
-                            ArticlesDescription = "Citas recicladas para la mejor decoradora eco-friendly.",
                             DateInitiated = new DateTime(2024, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction10.com",
                             InitiatorUserID = 5,
                             IsActive = true,
                             ReceiverUserID = 6,
@@ -818,10 +780,8 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 11,
-                            ArticlesDescription = "Rotuladores de punta fina de colores. Necesito troqueladora.",
                             DateCompleted = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateInitiated = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction11.com",
                             InitiatorUserID = 6,
                             IsActive = false,
                             ReceiverUserID = 5,
@@ -831,9 +791,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 12,
-                            ArticlesDescription = "Pistola de pegamento caliente + pack de papel periódico. Busco compás de precisión.",
                             DateInitiated = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ImageTransactionUrl = "https://default-transaction12.com",
                             InitiatorUserID = 6,
                             IsActive = true,
                             ReceiverUserID = 1,
@@ -913,7 +871,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Pérez",
                             Name = "Juan",
                             Nickname = "juanito123",
-                            Password = "$2a$11$N/JKgQrlXiuTtno93aCojerKRqOikXx2kbmUmmBm8i2N61/KBt7i2",
+                            Password = "$2a$11$97FLVsw4wSJkMxEuSbBFROh1i/3VzM8ARcnwnELlEDSV6lrqzYwcG",
                             RegistrationDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Admin"
                         },
@@ -929,7 +887,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Gómez",
                             Name = "María",
                             Nickname = "maryg",
-                            Password = "$2a$11$LA0dgoQb150cyB6Ppe1lJOITf1QkjzBHvO/3h3OTnUmD8raMzTqlK",
+                            Password = "$2a$11$l3ux2gX22TcBdxj7xTrqVuDQhefNBbHEXYSaoIZRLEIru0eGx8Qm2",
                             RegistrationDate = new DateTime(2023, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -945,7 +903,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "López",
                             Name = "Carlos",
                             Nickname = "carlosl",
-                            Password = "$2a$11$UZi5nCUdIlCpNTYNHqAhWeac541rkRfuWqKeXptwlD8T5E4j83C32",
+                            Password = "$2a$11$ljivgwi7HgbHxhTO7aMZE.II.j2irElhnCyzPefQVHgDIxOF0gGMm",
                             RegistrationDate = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -961,7 +919,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Fernández",
                             Name = "Lucía",
                             Nickname = "luciaf",
-                            Password = "$2a$11$qebQlBHBhiDDv8c7L0PQdObeVwU6DSM5QkcpLY2iWQzyNtgiGu6gO",
+                            Password = "$2a$11$77GF3D3tT0/wikyP.XogG.rrt1WU7QlyvfXgC6Wpe0DVJiwQk1YeC",
                             RegistrationDate = new DateTime(2023, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -977,7 +935,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Ramírez",
                             Name = "Miguel",
                             Nickname = "miguelr",
-                            Password = "$2a$11$2CD4/Fje9GpVcj0GSrOVlOEX9ODtTkgJH.BuJENdy4kV3nxPXk5y.",
+                            Password = "$2a$11$aijPI8Kd1rAiXWu0ma217./Tjkhy3r6ckhX817yXcy7.9pUqYZ7.u",
                             RegistrationDate = new DateTime(2023, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -993,7 +951,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Quintero",
                             Name = "Sara",
                             Nickname = "saraq",
-                            Password = "$2a$11$ebfx7lNrGYFWt1LBPiIRXOD8x/Tx0LkKpppk07y/cOYJGyR0RJUVa",
+                            Password = "$2a$11$eOOL/9LclP2CqNm82X4vwebVPY3go9dBwHIDzzdvpX5XrvpWKV2fW",
                             RegistrationDate = new DateTime(2023, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         });

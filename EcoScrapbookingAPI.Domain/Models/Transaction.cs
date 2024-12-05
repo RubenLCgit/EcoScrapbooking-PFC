@@ -9,6 +9,8 @@ public class Transaction
 {
   [Key]
   public int TransactionID { get; set; }
+  public string ArticlesDescription { get; set; }
+  public bool IsActive { get; set; }
   [Required]
   public TransactionType Type { get; set; }
   [Required]
@@ -22,15 +24,19 @@ public class Transaction
   public int? ReceiverUserID { get; set; }
   [ForeignKey("ReceiverUserID")]
   public User ReceiverUser { get; set; }
+  public string ImageTransactionUrl { get; set; }
   public ICollection<Resource> Resources { get; set; } = new List<Resource>();
   public Transaction() { }
 
-  public Transaction(TransactionType type, int initiatorUserID, int? receiverUserID)
+  public Transaction(string articlesDescription,TransactionType type, int initiatorUserID, int? receiverUserID, string imageTransactionUrl)
   {
+    ArticlesDescription = articlesDescription;
     Type = type;
     Status = TransactionStatus.Pending;
     DateInitiated = DateTime.Now;
     InitiatorUserID = initiatorUserID;
     ReceiverUserID = receiverUserID;
+    IsActive = true;
+    ImageTransactionUrl = imageTransactionUrl;
   }
 }

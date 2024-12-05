@@ -16,6 +16,7 @@ public class ProjectGetDTO
   public string HomeImageUrl { get; set; }
   public int CreatorUserId { get; set; }
   public string ProjectType { get; set; }
+  public string ActivityType { get; private set; }
   public List<int> PublicationsIds { get; set; }
   public List<int> ParticipantsIds { get; set; }
   public List<ProjectResourceDTO> ProjectResources { get; set; }
@@ -36,6 +37,7 @@ public class ProjectGetDTO
     HomeImageUrl = project.HomeImageUrl;
     CreatorUserId = project.CreatorUserId;
     ProjectType = project.ProjectType;
+    ActivityType = project.ActivityType;
 
     if (project.Publications != null)
     {

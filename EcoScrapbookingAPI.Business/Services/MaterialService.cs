@@ -33,7 +33,8 @@ public class MaterialService : IMaterialService
     material.Description = materialUpdateDTO.Description ?? material.Description;
     material.OwnerUserId = materialUpdateDTO.OwnerUserId ?? material.OwnerUserId;
     material.ImageResourceUrl = materialUpdateDTO.ImageResourceUrl ?? material.ImageResourceUrl;
-    material.TransactionId = materialUpdateDTO.TransactionId ?? material.TransactionId;
+    material.TransactionId = materialUpdateDTO.TransactionId;
+    material.IsSent = materialUpdateDTO.IsSent ?? material.IsSent;
     _materialRepository.UpdateEntity(material);
     _materialRepository.SaveChanges();
   }

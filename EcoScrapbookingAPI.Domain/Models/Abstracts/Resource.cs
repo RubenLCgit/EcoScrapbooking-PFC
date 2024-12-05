@@ -31,6 +31,7 @@ public abstract class Resource
 
   [ForeignKey("TransactionId")]
   public Transaction Transaction { get; set; }
+  public bool IsSent { get; set; }
 
   public string ResourceType { get; protected set; }
 
@@ -46,5 +47,6 @@ public abstract class Resource
     OwnerUserId = ownerUserId;
     ImageResourceUrl = imageResourceUrl;
     TransactionId = transactionId;
+    IsSent = true;
   }
 }
