@@ -1,3 +1,4 @@
+using EcoScrapbookingAPI.Business.DTOs.ProjectDTOs;
 using EcoScrapbookingAPI.Domain.Models;
 
 namespace EcoScrapbookingAPI.Business.DTOs.TutorialsDTOs;
@@ -16,9 +17,10 @@ public class TutorialGetDTO
   public int CreatorUserId { get; set; }
   public int Duration { get; set; }
   public string VideoUrl { get; set; }
+  public string ActivityType { get; private set; }
   public List<int> PublicationsIds { get; set; }
   public List<int> ParticipantsIds { get; set; }
-  public List<int> ActivityResourcesIds { get; set; }
+  public List<ProjectResourceDTO> TutorialResources { get; set; }
 
   public TutorialGetDTO() { }
 
@@ -36,6 +38,7 @@ public class TutorialGetDTO
     CreatorUserId = tutorial.CreatorUserId;
     Duration = tutorial.Duration;
     VideoUrl = tutorial.VideoUrl;
+    ActivityType = tutorial.ActivityType;
 
     if (tutorial.Publications != null)
     {
@@ -47,7 +50,7 @@ public class TutorialGetDTO
     }
     if (tutorial.ActivityResources != null)
     {
-      ActivityResourcesIds = tutorial.ActivityResources.Select(r => r.ResourceId).ToList();
+      TutorialResources = tutorial.ActivityResources.Select(r => new ProjectResourceDTO(r.ResourceId, r.ResourceType)).ToList();
     }
   }
 }
