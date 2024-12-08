@@ -172,6 +172,7 @@ namespace EcoScrapbookingAPI.Data.Context
           BirthDate = new DateTime(1985, 5, 20),
           RegistrationDate = new DateTime(2023, 1, 10),
           IsActive = true,
+          IsBan = false,
           GreenPoints = 250.00m
         },
         new User
@@ -188,6 +189,7 @@ namespace EcoScrapbookingAPI.Data.Context
           BirthDate = new DateTime(1990, 8, 15),
           RegistrationDate = new DateTime(2023, 2, 5),
           IsActive = true,
+          IsBan = false,
           GreenPoints = 180.50m
         },
         new User
@@ -204,6 +206,7 @@ namespace EcoScrapbookingAPI.Data.Context
           BirthDate = new DateTime(1992, 12, 1),
           RegistrationDate = new DateTime(2023, 3, 12),
           IsActive = true,
+          IsBan = false,
           GreenPoints = 300.75m
         },
         new User
@@ -220,6 +223,7 @@ namespace EcoScrapbookingAPI.Data.Context
           BirthDate = new DateTime(1988, 7, 22),
           RegistrationDate = new DateTime(2023, 4, 18),
           IsActive = true,
+          IsBan = false,
           GreenPoints = 220.00m
         },
         new User
@@ -236,6 +240,7 @@ namespace EcoScrapbookingAPI.Data.Context
           BirthDate = new DateTime(1995, 3, 30),
           RegistrationDate = new DateTime(2023, 5, 25),
           IsActive = true,
+          IsBan = false,
           GreenPoints = 190.25m
         },
         new User
@@ -252,6 +257,7 @@ namespace EcoScrapbookingAPI.Data.Context
           BirthDate = new DateTime(1993, 11, 10),
           RegistrationDate = new DateTime(2023, 6, 30),
           IsActive = true,
+          IsBan = false,
           GreenPoints = 210.50m
         }
       );
@@ -440,7 +446,7 @@ namespace EcoScrapbookingAPI.Data.Context
         new Tool
         {
           ResourceId = 1,
-          TransactionId = null, // To be assigned in Transactions
+          TransactionId = 12,
           Name = "Tijeras de precisión",
           Type = "Corte",
           Brand = "CraftMaster",
@@ -670,7 +676,7 @@ namespace EcoScrapbookingAPI.Data.Context
         new Tool
         {
           ResourceId = 16,
-          TransactionId = 12,
+          TransactionId = null,
           Name = "Pistola de pegamento caliente",
           Type = "Adhesivo",
           Brand = "HotGluePro",
@@ -920,7 +926,7 @@ namespace EcoScrapbookingAPI.Data.Context
         new Material
         {
           ResourceId = 34,
-          TransactionId = 12,
+          TransactionId = null,
           Name = "Papel periódico",
           Type = "Reciclaje",
           Brand = "NewsPaper",
@@ -1426,15 +1432,16 @@ namespace EcoScrapbookingAPI.Data.Context
         },
         new Transaction
         {
-          ArticlesDescription = "Pistola de pegamento caliente + pack de papel periódico. Busco compás de precisión.",
+          ArticlesDescription = "Tijeras de precision nuevas y precintadas.",
           TransactionID = 12,
           Type = TransactionType.Gift,
           Status = TransactionStatus.Pending,
           DateInitiated = new DateTime(2024, 12, 15),
-          InitiatorUserID = 6,
-          ReceiverUserID = 1,
+          InitiatorUserID = 1,
+          ReceiverUserID = null,
           IsActive = true,
           ImageTransactionUrl = "https://default-transaction12.com",
+          GreenPointCost = 50,
         }
       );
 
@@ -1451,7 +1458,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 1, 5),
           FinishDate = new DateTime(2024, 6, 5),
           IsActive = true,
-          GreenPointsValue = 100.0m,
+          GreenPointsValue = 0,
           ProjectType = "Manualidades",
           CreatorUserId = 1,
           HomeImageUrl = "https://default-homepage.com",
@@ -1466,7 +1473,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 2, 10),
           FinishDate = new DateTime(2024, 5, 10),
           IsActive = true,
-          GreenPointsValue = 80.0m,
+          GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 1,
           HomeImageUrl = "https://default-homepage.com",
@@ -1480,7 +1487,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 3, 5),
           FinishDate = new DateTime(2024, 4, 15),
           IsActive = true,
-          GreenPointsValue = 60.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 1,
           HomeImageUrl = "https://default-homepage.com",
@@ -1495,7 +1502,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 4, 5),
           FinishDate = new DateTime(2024, 5, 20),
           IsActive = true,
-          GreenPointsValue = 70.0m,
+          GreenPointsValue = 0,
           ProjectType = "Tarjetas",
           CreatorUserId = 2,
           HomeImageUrl = "https://default-homepage.com",
@@ -1510,7 +1517,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 4, 20),
           FinishDate = new DateTime(2024, 6, 10),
           IsActive = true,
-          GreenPointsValue = 90.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 2,
           HomeImageUrl = "https://default-homepage.com",
@@ -1525,7 +1532,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 5, 5),
           FinishDate = new DateTime(2024, 7, 15),
           IsActive = true,
-          GreenPointsValue = 85.0m,
+          GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 2,
           HomeImageUrl = "https://default-homepage.com",
@@ -1540,7 +1547,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 6, 5),
           FinishDate = new DateTime(2024, 8, 20),
           IsActive = true,
-          GreenPointsValue = 95.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 3,
           HomeImageUrl = "https://default-homepage.com",
@@ -1555,7 +1562,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 6, 20),
           FinishDate = new DateTime(2024, 9, 25),
           IsActive = true,
-          GreenPointsValue = 75.0m,
+          GreenPointsValue = 0,
           ProjectType = "Collages",
           CreatorUserId = 3,
           HomeImageUrl = "https://default-homepage.com",
@@ -1570,7 +1577,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 7, 5),
           FinishDate = new DateTime(2024, 10, 10),
           IsActive = true,
-          GreenPointsValue = 100.0m,
+          GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 3,
           HomeImageUrl = "https://default-homepage.com",
@@ -1585,7 +1592,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 8, 5),
           FinishDate = new DateTime(2024, 9, 15),
           IsActive = true,
-          GreenPointsValue = 80.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 4,
           HomeImageUrl = "https://default-homepage.com",
@@ -1599,7 +1606,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 8, 20),
           FinishDate = new DateTime(2024, 10, 25),
           IsActive = true,
-          GreenPointsValue = 85.0m,
+          GreenPointsValue = 0,
           ProjectType = "Tarjetas",
           CreatorUserId = 4,
           HomeImageUrl = "https://default-homepage.com",
@@ -1614,7 +1621,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 9, 5),
           FinishDate = new DateTime(2024, 11, 10),
           IsActive = true,
-          GreenPointsValue = 90.0m,
+          GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 4,
           HomeImageUrl = "https://default-homepage.com",
@@ -1629,7 +1636,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 10, 5),
           FinishDate = new DateTime(2024, 12, 15),
           IsActive = true,
-          GreenPointsValue = 75.0m,
+          GreenPointsValue = 0,
           ProjectType = "Tarjetas",
           CreatorUserId = 5,
           HomeImageUrl = "https://default-homepage.com",
@@ -1643,7 +1650,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 10, 20),
           FinishDate = new DateTime(2025, 1, 25),
           IsActive = true,
-          GreenPointsValue = 80.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 5,
           HomeImageUrl = "https://default-homepage.com",
@@ -1657,7 +1664,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 11, 5),
           FinishDate = new DateTime(2025, 2, 10),
           IsActive = true,
-          GreenPointsValue = 85.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 5,
           HomeImageUrl = "https://default-homepage.com",
@@ -1673,7 +1680,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 12, 5),
           FinishDate = new DateTime(2025, 2, 15),
           IsActive = true,
-          GreenPointsValue = 90.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 6,
           HomeImageUrl = "https://default-homepage.com",
@@ -1687,7 +1694,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 12, 20),
           FinishDate = new DateTime(2025, 3, 25),
           IsActive = true,
-          GreenPointsValue = 95.0m,
+          GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 6,
           HomeImageUrl = "https://default-homepage.com",
@@ -1702,7 +1709,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2025, 1, 5),
           FinishDate = new DateTime(2025, 4, 10),
           IsActive = true,
-          GreenPointsValue = 100.0m,
+          GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 6,
           HomeImageUrl = "https://default-homepage.com",
@@ -1711,7 +1718,7 @@ namespace EcoScrapbookingAPI.Data.Context
 
       // Data seed for SustainableActivities
       modelBuilder.Entity<SustainableActivity>().HasData(
-        // Sustainable Activities for User 1
+        // Sustainable Activities only for Admin User
         new SustainableActivity
         {
           ActivityId = 19,
@@ -1744,7 +1751,6 @@ namespace EcoScrapbookingAPI.Data.Context
           AddressId = 2,
           CreatorUserId = 1
         },
-        // Sustainable Activities for User 2
         new SustainableActivity
         {
           ActivityId = 21,
@@ -1759,7 +1765,7 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoValencia",
           AddressId = 3,
-          CreatorUserId = 2
+          CreatorUserId = 1
         },
         new SustainableActivity
         {
@@ -1775,9 +1781,8 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoSevilla",
           AddressId = 4,
-          CreatorUserId = 2
+          CreatorUserId = 1
         },
-        // Sustainable Activities for User 3
         new SustainableActivity
         {
           ActivityId = 23,
@@ -1792,7 +1797,7 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoBilbao",
           AddressId = 5,
-          CreatorUserId = 3
+          CreatorUserId = 1
         },
         new SustainableActivity
         {
@@ -1808,9 +1813,8 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoZaragoza",
           AddressId = 6,
-          CreatorUserId = 3
+          CreatorUserId = 1
         },
-        // Sustainable Activities for User 4
         new SustainableActivity
         {
           ActivityId = 25,
@@ -1825,7 +1829,7 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoMálaga",
           AddressId = 7,
-          CreatorUserId = 4
+          CreatorUserId = 1
         },
         new SustainableActivity
         {
@@ -1841,9 +1845,8 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoMurcia",
           AddressId = 8,
-          CreatorUserId = 4
+          CreatorUserId = 1
         },
-        // Sustainable Activities for User 5
         new SustainableActivity
         {
           ActivityId = 27,
@@ -1858,7 +1861,7 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoGranada",
           AddressId = 9,
-          CreatorUserId = 5
+          CreatorUserId = 1
         },
         new SustainableActivity
         {
@@ -1874,9 +1877,8 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoCórdoba",
           AddressId = 10,
-          CreatorUserId = 5
+          CreatorUserId = 1
         },
-        // Sustainable Activities for User 6
         new SustainableActivity
         {
           ActivityId = 29,
@@ -1891,7 +1893,7 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoAlicante",
           AddressId = 11,
-          CreatorUserId = 6
+          CreatorUserId = 1
         },
         new SustainableActivity
         {
@@ -1907,7 +1909,7 @@ namespace EcoScrapbookingAPI.Data.Context
           HomeImageUrl = "https://default-homepage.com",
           NameCollaborator = "EcoLasPalmas",
           AddressId = 12,
-          CreatorUserId = 6
+          CreatorUserId = 1
         }
       );
 
@@ -1924,7 +1926,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 1, 25),
           FinishDate = new DateTime(2024, 1, 26),
           IsActive = true,
-          GreenPointsValue = 40.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 45,
           VideoUrl = "https://tutorials.com/album-reciclado",
@@ -1940,7 +1942,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 2, 15),
           FinishDate = new DateTime(2024, 2, 16),
           IsActive = true,
-          GreenPointsValue = 35.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 30,
           VideoUrl = "https://tutorials.com/capsulas-de-cafe",
@@ -1957,7 +1959,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 3, 25),
           FinishDate = new DateTime(2024, 3, 26),
           IsActive = true,
-          GreenPointsValue = 40.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 50,
           VideoUrl = "https://tutorials.com/tarjetas-reutilizadas",
@@ -1972,7 +1974,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 4, 15),
           FinishDate = new DateTime(2024, 4, 16),
           IsActive = true,
-          GreenPointsValue = 38.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 55,
           VideoUrl = "https://tutorials.com/marcos-reciclados",
@@ -1989,7 +1991,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 5, 25),
           FinishDate = new DateTime(2024, 5, 26),
           IsActive = true,
-          GreenPointsValue = 45.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 60,
           VideoUrl = "https://tutorials.com/collages-revistados",
@@ -2004,7 +2006,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 6, 15),
           FinishDate = new DateTime(2024, 6, 16),
           IsActive = true,
-          GreenPointsValue = 42.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 50,
           VideoUrl = "https://tutorials.com/latas-decorativas",
@@ -2021,7 +2023,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 7, 25),
           FinishDate = new DateTime(2024, 7, 26),
           IsActive = true,
-          GreenPointsValue = 35.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 40,
           VideoUrl = "https://tutorials.com/botones-scrapbooking",
@@ -2037,7 +2039,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 8, 15),
           FinishDate = new DateTime(2024, 8, 16),
           IsActive = true,
-          GreenPointsValue = 38.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 45,
           VideoUrl = "https://tutorials.com/cintas-decorativas",
@@ -2054,7 +2056,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 9, 25),
           FinishDate = new DateTime(2024, 9, 26),
           IsActive = true,
-          GreenPointsValue = 40.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 50,
           VideoUrl = "https://tutorials.com/sellos-personalizados",
@@ -2069,7 +2071,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 10, 15),
           FinishDate = new DateTime(2024, 10, 16),
           IsActive = true,
-          GreenPointsValue = 38.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 45,
           VideoUrl = "https://tutorials.com/sobres-papel-kraft",
@@ -2085,7 +2087,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 11, 25),
           FinishDate = new DateTime(2024, 11, 26),
           IsActive = true,
-          GreenPointsValue = 45.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 60,
           VideoUrl = "https://tutorials.com/mosaicos-cds",
@@ -2101,7 +2103,7 @@ namespace EcoScrapbookingAPI.Data.Context
           StartDate = new DateTime(2024, 12, 15),
           FinishDate = new DateTime(2024, 12, 16),
           IsActive = true,
-          GreenPointsValue = 42.0m,
+          GreenPointsValue = 0,
           HomeImageUrl = "https://default-homepage.com",
           Duration = 50,
           VideoUrl = "https://tutorials.com/botellas-decorativas",

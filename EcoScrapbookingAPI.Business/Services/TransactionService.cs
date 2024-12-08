@@ -22,7 +22,7 @@ public class TransactionService : ITransactionService
 
   public Transaction CreateTransaction(TransactionCreateDTO transactionCreateDTO)
   {
-    var transaction = new Transaction(transactionCreateDTO.ArticlesDescription,transactionCreateDTO.Type, transactionCreateDTO.InitiatorUserID, transactionCreateDTO.ReceiverUserID, transactionCreateDTO.ImageTransactionUrl);
+    var transaction = new Transaction(transactionCreateDTO.ArticlesDescription,transactionCreateDTO.Type, transactionCreateDTO.InitiatorUserID, transactionCreateDTO.ReceiverUserID, transactionCreateDTO.ImageTransactionUrl, transactionCreateDTO.GreenPointCost);
     _transactionRepository.AddEntity(transaction);
     _transactionRepository.SaveChanges();
     return transaction;
@@ -36,6 +36,7 @@ public class TransactionService : ITransactionService
     transaction.Type = transactionUpdateDTO.Type ?? transaction.Type;
     transaction.ReceiverUserID = transactionUpdateDTO.ReceiverUserID ?? transaction.ReceiverUserID;
     transaction.ImageTransactionUrl = transactionUpdateDTO.ImageTransactionUrl ?? transaction.ImageTransactionUrl;
+    transaction.GreenPointCost = transactionUpdateDTO.GreenPointCost ?? transaction.GreenPointCost;
     _transactionRepository.UpdateEntity(transaction);
     _transactionRepository.SaveChanges();
   }

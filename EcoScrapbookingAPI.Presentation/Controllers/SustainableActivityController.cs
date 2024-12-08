@@ -57,7 +57,8 @@ public class SustainableActivityController : ControllerBase
     try
     {
       var sustainableActivity = _sustainableActivityService.CreateSustainableActivity(sustainableActivityCreateDTO);
-      return CreatedAtAction(nameof(Get), new { sustainableActivityId = sustainableActivity.ActivityId }, sustainableActivity);
+      var response = new SustainableActivityGetDTO(sustainableActivity);
+      return CreatedAtAction(nameof(Get), new { sustainableActivityId = response.ActivityId }, response);
     }
     catch (ArgumentNullException anEx)
     {

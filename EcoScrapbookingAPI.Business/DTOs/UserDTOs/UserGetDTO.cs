@@ -16,6 +16,7 @@ public class UserGetDTO
   public DateTime BirthDate { get; set; }
   public DateTime RegistrationDate { get; set; }
   public bool IsActive { get; set; }
+  public bool IsBan { get; set; }
   public decimal GreenPoints { get; set; }
   public string AvatarImageUrl { get; set; }
 
@@ -41,6 +42,7 @@ public class UserGetDTO
     BirthDate = user.BirthDate;
     RegistrationDate = user.RegistrationDate;
     IsActive = user.IsActive;
+    IsBan = user.IsBan;
     GreenPoints = user.GreenPoints;
     AvatarImageUrl = user.AvatarImageUrl;
 

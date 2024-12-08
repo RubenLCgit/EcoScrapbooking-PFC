@@ -36,7 +36,6 @@ public class ProjectService : IProjectService
     project.StartDate = projectUpdateDTO.StartDate ?? project.StartDate;
     project.FinishDate = projectUpdateDTO.FinishDate ?? project.FinishDate;
     project.IsActive = projectUpdateDTO.IsActive ?? project.IsActive;
-    project.GreenPointsValue = projectUpdateDTO.GreenPointsValue ?? project.GreenPointsValue;
     project.HomeImageUrl = projectUpdateDTO.HomeImageUrl ?? project.HomeImageUrl;
     project.ProjectType = projectUpdateDTO.ProjectType ?? project.ProjectType;
     _projectRepository.UpdateEntity(project);

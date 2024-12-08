@@ -16,8 +16,6 @@ public class ProjectCreateDTO
   public DateTime StartDate { get; set; }
   [Required]
   public DateTime FinishDate { get; set; }
-  [Required]
-  [Range(0, int.MaxValue, ErrorMessage = "Green points value must be greater than or equal to 0.")]
   public decimal GreenPointsValue { get; set; }
   [Required]
   [Url(ErrorMessage = "Invalid URL.")]
@@ -37,7 +35,7 @@ public class ProjectCreateDTO
     MaxParticipants = project.MaxParticipants;
     StartDate = project.StartDate;
     FinishDate = project.FinishDate;
-    GreenPointsValue = project.GreenPointsValue;
+    GreenPointsValue = 0;
     HomeImageUrl = project.HomeImageUrl;
     CreatorUserId = project.CreatorUserId;
     ProjectType = project.ProjectType;

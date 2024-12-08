@@ -26,6 +26,7 @@ public class User
   public DateTime BirthDate { get; set; }
   public DateTime RegistrationDate { get; set; }
   public bool IsActive { get; set; }
+  public bool IsBan { get; set; }
   public decimal GreenPoints { get; set; }
   public string AvatarImageUrl { get; set; }
 
@@ -50,6 +51,7 @@ public class User
     BirthDate = birthDate;
     RegistrationDate = DateTime.Now;
     IsActive = true;
+    IsBan = false;
     GreenPoints = 0.0m;
     AvatarImageUrl = avatarImageUrl;
   }

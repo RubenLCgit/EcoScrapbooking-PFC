@@ -56,16 +56,12 @@ public class UserController : ControllerBase
     }
   }
 
-  [Authorize]
+  [AllowAnonymous]
   [HttpPut("{userId}")]
   public ActionResult Update(int userId, [FromBody] UserUpdateDTO userUpdateDTO)
   {
     try
     {
-      if(!ControlUserAccess.UserHasAccess(User.FindFirst(ClaimTypes.Role).Value, User.FindFirst(ClaimTypes.NameIdentifier).Value, userId))
-      {
-        return Unauthorized("You do not have access to update this user.");
-      }
       _userService.UpdateUser(userId, userUpdateDTO);
       return Ok(userUpdateDTO);
     }
@@ -138,4 +134,43 @@ public class UserController : ControllerBase
       return BadRequest(ex.Message);
     }
   }
+
+  [AllowAnonymous]
+  [HttpDelete("{userId}/ban")]
+  public ActionResult BanUser(int userId)
+  {
+    try
+    {
+      _userService.BanUser(userId);
+      return Ok();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+
+  [AllowAnonymous]
+  [HttpPatch("{userId}/unban")]
+  public ActionResult UnbanUser(int userId)
+  {
+    try
+    {
+      _userService.UnbanUser(userId);
+      return Ok();
+    }
+    catch (ArgumentNullException anEx)
+    {
+      return NotFound(anEx.Message);
+    }
+    catch (Exception ex)
+    {
+      return BadRequest(ex.Message);
+    }
+  }
+
 }
