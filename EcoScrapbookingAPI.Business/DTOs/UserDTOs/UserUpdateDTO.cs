@@ -19,8 +19,9 @@ public class UserUpdateDTO
   [DataType(DataType.Date)]
   [Range(typeof(DateTime), "1/1/1900", "1/1/2024", ErrorMessage = "Birthdate must be between {1} and {2}.")]
   public DateTime? BirthDate { get; set; }
+  public decimal? GreenPoints { get; set; }
 
-  [RegularExpression(@"^(Male|Female|Other)$", ErrorMessage = "Select a valid gender.")] 
+  [RegularExpression(@"^(Male|Female|Other)$", ErrorMessage = "Select a valid gender.")]
   public string? Gender { get; set; }
   [Url(ErrorMessage = "Invalid URL.")]
   public string? AvatarImageUrl { get; set; }
@@ -33,6 +34,7 @@ public class UserUpdateDTO
     Email = user.Email;
     Password = user.Password;
     BirthDate = user.BirthDate;
+    GreenPoints = user.GreenPoints;
     Gender = user.Gender;
     AvatarImageUrl = user.AvatarImageUrl;
   }

@@ -14,4 +14,6 @@ public interface IUserService
   void RecoverAccount(string userEmail, string userPassword);
   void AddUserToActivity(int userId, int activityId);
   void RemoveUserFromActivity(int userId, int activityId);
+  void BanUser(int userId);
+  void UnbanUser(int userId);
 }

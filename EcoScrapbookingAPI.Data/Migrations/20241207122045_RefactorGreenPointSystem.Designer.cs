@@ -4,6 +4,7 @@ using EcoScrapbookingAPI.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoScrapbookingAPI.Data.Migrations
 {
     [DbContext(typeof(EcoScrapbookingDBContext))]
-    partial class EcoScrapbookingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241207122045_RefactorGreenPointSystem")]
+    partial class RefactorGreenPointSystem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -664,9 +667,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                     b.Property<DateTime>("DateInitiated")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("GreenPointCost")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("ImageTransactionUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -834,12 +834,12 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 12,
-                            ArticlesDescription = "Tijeras de precision nuevas y precintadas.",
+                            ArticlesDescription = "Pistola de pegamento caliente + pack de papel periódico. Busco compás de precisión.",
                             DateInitiated = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GreenPointCost = 50m,
                             ImageTransactionUrl = "https://default-transaction12.com",
-                            InitiatorUserID = 1,
+                            InitiatorUserID = 6,
                             IsActive = true,
+                            ReceiverUserID = 1,
                             Status = "Pending",
                             Type = "Gift"
                         });
@@ -871,9 +871,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsBan")
                         .HasColumnType("bit");
 
                     b.Property<string>("Lastname")
@@ -916,11 +913,10 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Gender = "Masculino",
                             GreenPoints = 250.00m,
                             IsActive = true,
-                            IsBan = false,
                             Lastname = "Pérez",
                             Name = "Juan",
                             Nickname = "juanito123",
-                            Password = "$2a$11$LOJUSRsjdHE5G2Wz5qAMp.hHAl/6o2LrrkAeLjL1cHo4uGKrQxKx2",
+                            Password = "$2a$11$kQ1xHN69JpF8cZafw.Ip1OMtNyZIswsjhDSYjcavq/8mPU/Kknzdy",
                             RegistrationDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Admin"
                         },
@@ -933,11 +929,10 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Gender = "Femenino",
                             GreenPoints = 180.50m,
                             IsActive = true,
-                            IsBan = false,
                             Lastname = "Gómez",
                             Name = "María",
                             Nickname = "maryg",
-                            Password = "$2a$11$g1n7qrzaO8n4O/Zg9jYVxOQVvdyXdTGWuTsdHVaFmQoVebGN6E3xO",
+                            Password = "$2a$11$uQ6HUgtX7vWPDJx1ut3deu5AaXSC0n0f8lz4NwFcS7oLvt46vbMI2",
                             RegistrationDate = new DateTime(2023, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -950,11 +945,10 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Gender = "Masculino",
                             GreenPoints = 300.75m,
                             IsActive = true,
-                            IsBan = false,
                             Lastname = "López",
                             Name = "Carlos",
                             Nickname = "carlosl",
-                            Password = "$2a$11$XJLnaeOnORyar7kMUncHBO/S0JmOfIjcyIo5NKsLaaGR9fY64z2aG",
+                            Password = "$2a$11$k.TuDQiVxGt.2jz6dP1E9.yjhKdG9.Z87hkd71bVCGFZ6y5OIznS6",
                             RegistrationDate = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -967,11 +961,10 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Gender = "Femenino",
                             GreenPoints = 220.00m,
                             IsActive = true,
-                            IsBan = false,
                             Lastname = "Fernández",
                             Name = "Lucía",
                             Nickname = "luciaf",
-                            Password = "$2a$11$2V0mqCnpgptIyrya56ZLOuzbq20PeNPVEIkYGqCRVarmpHWn/gEOO",
+                            Password = "$2a$11$AIXDLSLnGjU1XXeSfv7a8.IiaDBIvS9livqnif6wexkywDKC.I4YW",
                             RegistrationDate = new DateTime(2023, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -984,11 +977,10 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Gender = "Masculino",
                             GreenPoints = 190.25m,
                             IsActive = true,
-                            IsBan = false,
                             Lastname = "Ramírez",
                             Name = "Miguel",
                             Nickname = "miguelr",
-                            Password = "$2a$11$89lwVeJyq44oeI6RdqaB9ur.XxzqLQODD4gDuDCz4IHFuXfZua.yq",
+                            Password = "$2a$11$CMVkAZy16MriOqhtvpZ3M.iStAotbdW03KPWf0gDfbagiYIKb7BJ6",
                             RegistrationDate = new DateTime(2023, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -1001,11 +993,10 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Gender = "Femenino",
                             GreenPoints = 210.50m,
                             IsActive = true,
-                            IsBan = false,
                             Lastname = "Quintero",
                             Name = "Sara",
                             Nickname = "saraq",
-                            Password = "$2a$11$pO7hlU5fPOQrdKmwwtqhUelBhvr4NFGLvkhYtMoDs5N9E2xv6fh62",
+                            Password = "$2a$11$tpkj85VURdDIr1PSewF6OupgM538IZcJ70zI6BvMKNsNENe/S8yka",
                             RegistrationDate = new DateTime(2023, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         });
@@ -2072,6 +2063,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Name = "Papel periódico",
                             OwnerUserId = 6,
                             Quantity = 300,
+                            TransactionId = 12,
                             Type = "Reciclaje"
                         },
                         new
@@ -2124,7 +2116,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Name = "Tijeras de precisión",
                             OwnerUserId = 1,
                             Quantity = 5,
-                            TransactionId = 12,
                             Type = "Corte",
                             Condition = "Nueva",
                             Warranty = true
@@ -2341,6 +2332,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Name = "Pistola de pegamento caliente",
                             OwnerUserId = 6,
                             Quantity = 3,
+                            TransactionId = 12,
                             Type = "Adhesivo",
                             Condition = "Nueva",
                             Warranty = true

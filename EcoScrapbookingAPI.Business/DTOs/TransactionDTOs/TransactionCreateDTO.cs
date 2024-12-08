@@ -16,6 +16,7 @@ public class TransactionCreateDTO
   [Required]
   public int InitiatorUserID { get; set; }
   public int? ReceiverUserID { get; set; }
+  public decimal? GreenPointCost { get; set; }
   public string ImageTransactionUrl { get; set; }
 
   public TransactionCreateDTO() { }
@@ -27,5 +28,6 @@ public class TransactionCreateDTO
     InitiatorUserID = transaction.InitiatorUserID;
     ReceiverUserID = transaction.ReceiverUserID;
     ImageTransactionUrl = transaction.ImageTransactionUrl;
+    GreenPointCost = transaction.GreenPointCost;
   }
 }

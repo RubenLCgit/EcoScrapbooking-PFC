@@ -25,10 +25,11 @@ public class Transaction
   [ForeignKey("ReceiverUserID")]
   public User ReceiverUser { get; set; }
   public string ImageTransactionUrl { get; set; }
+  public decimal? GreenPointCost { get; set; }
   public ICollection<Resource> Resources { get; set; } = new List<Resource>();
   public Transaction() { }
 
-  public Transaction(string articlesDescription,TransactionType type, int initiatorUserID, int? receiverUserID, string imageTransactionUrl)
+  public Transaction(string articlesDescription,TransactionType type, int initiatorUserID, int? receiverUserID, string imageTransactionUrl, decimal? greenPointCost)
   {
     ArticlesDescription = articlesDescription;
     Type = type;
@@ -38,5 +39,6 @@ public class Transaction
     ReceiverUserID = receiverUserID;
     IsActive = true;
     ImageTransactionUrl = imageTransactionUrl;
+    GreenPointCost = greenPointCost;
   }
 }

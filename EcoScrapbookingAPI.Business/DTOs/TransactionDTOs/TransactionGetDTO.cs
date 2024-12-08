@@ -16,6 +16,7 @@ public class TransactionGetDTO
   public int InitiatorUserID { get; set; }
   public int? ReceiverUserID { get; set; }
   public string ImageTransactionUrl { get; set; }
+  public decimal? GreenPointCost { get; set; }
 
   public List<ProjectResourceDTO> Resources { get; set; } = new List<ProjectResourceDTO>();
 
@@ -33,6 +34,7 @@ public class TransactionGetDTO
     InitiatorUserID = transaction.InitiatorUserID;
     ReceiverUserID = transaction.ReceiverUserID;
     ImageTransactionUrl = transaction.ImageTransactionUrl;
+    GreenPointCost = transaction.GreenPointCost;
 
     if (transaction.Resources != null)
     {

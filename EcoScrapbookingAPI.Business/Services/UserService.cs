@@ -25,13 +25,10 @@ public class UserService : IUserService
   {
     var user = _userRepository.GetAllEntities().FirstOrDefault(u => u.Email == userEmail);
     if (user == null) throw new ArgumentNullException("User not found.");
-    if (user.IsActive != false)
-    {
-      if (!BCrypt.Net.BCrypt.Verify(userPassword, user.Password)) throw new ArgumentException("Invalid password.");
-      return user;
-    }
-    
-    throw new ArgumentException("This account has been deleted. Please recover your account.");
+    if (user.IsBan == true) throw new ArgumentException("This account has been banned. For more information, please contact us at ecoScrapbookingContact@gmail.com");
+    if (user.IsActive == false) throw new ArgumentException("This account has been deleted. Please recover your account.");
+    if (!BCrypt.Net.BCrypt.Verify(userPassword, user.Password)) throw new ArgumentException("Invalid password.");
+    return user;
   }
 
   public void DeleteUser(int userId)
@@ -91,6 +88,7 @@ public class UserService : IUserService
     user.Password = userUpdateDTO.Password != null ? BCrypt.Net.BCrypt.HashPassword(userUpdateDTO.Password) : user.Password;
     user.Gender = userUpdateDTO.Gender ?? user.Gender;
     user.BirthDate = userUpdateDTO.BirthDate ?? user.BirthDate;
+    user.GreenPoints = userUpdateDTO.GreenPoints ?? user.GreenPoints;
     user.AvatarImageUrl = userUpdateDTO.AvatarImageUrl ?? user.AvatarImageUrl;
     _userRepository.UpdateEntity(user);
     _userRepository.SaveChanges();
@@ -184,6 +182,26 @@ public class UserService : IUserService
   private void AssignRole(User user)
   {
     user.Role = user.UserId == 1 ? "Admin" : "User";
+  }
+  public void BanUser(int userId)
+  {
+    if (userId == 1) throw new ArgumentException("You cannot ban the admin.");
+    var user = _userRepository.GetByIdEntity(userId);
+    if (user == null) throw new ArgumentNullException($"User with ID {userId} not found.");
+    user.IsBan = true;
+    user.IsActive = false;
+    _userRepository.UpdateEntity(user);
+    _userRepository.SaveChanges();
+  }
+
+  public void UnbanUser(int userId)
+  {
+    var user = _userRepository.GetByIdEntity(userId);
+    if (user == null) throw new ArgumentNullException($"User with ID {userId} not found.");
+    user.IsBan = false;
+    user.IsActive = true;
+    _userRepository.UpdateEntity(user);
+    _userRepository.SaveChanges();
   }
 }
 

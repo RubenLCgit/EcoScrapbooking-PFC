@@ -4,6 +4,7 @@ using EcoScrapbookingAPI.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoScrapbookingAPI.Data.Migrations
 {
     [DbContext(typeof(EcoScrapbookingDBContext))]
-    partial class EcoScrapbookingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241208112615_RefactorTransactionGiftCost")]
+    partial class RefactorTransactionGiftCost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -834,11 +837,11 @@ namespace EcoScrapbookingAPI.Data.Migrations
                         new
                         {
                             TransactionID = 12,
-                            ArticlesDescription = "Tijeras de precision nuevas y precintadas.",
+                            ArticlesDescription = "Pistola de pegamento caliente + pack de papel periódico. Busco compás de precisión.",
                             DateInitiated = new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GreenPointCost = 50m,
                             ImageTransactionUrl = "https://default-transaction12.com",
-                            InitiatorUserID = 1,
+                            InitiatorUserID = 6,
                             IsActive = true,
                             Status = "Pending",
                             Type = "Gift"
@@ -920,7 +923,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Pérez",
                             Name = "Juan",
                             Nickname = "juanito123",
-                            Password = "$2a$11$LOJUSRsjdHE5G2Wz5qAMp.hHAl/6o2LrrkAeLjL1cHo4uGKrQxKx2",
+                            Password = "$2a$11$wGzYU9jOdfEulWvsHjqEAujmByJl7Y0MxXmoB9iI49KsMm/AaSYzm",
                             RegistrationDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "Admin"
                         },
@@ -937,7 +940,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Gómez",
                             Name = "María",
                             Nickname = "maryg",
-                            Password = "$2a$11$g1n7qrzaO8n4O/Zg9jYVxOQVvdyXdTGWuTsdHVaFmQoVebGN6E3xO",
+                            Password = "$2a$11$BnkyPE2rxUTtCZp38HPhtuhEtP5n..htYODtEVGMpBp4QPAzKHUl6",
                             RegistrationDate = new DateTime(2023, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -954,7 +957,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "López",
                             Name = "Carlos",
                             Nickname = "carlosl",
-                            Password = "$2a$11$XJLnaeOnORyar7kMUncHBO/S0JmOfIjcyIo5NKsLaaGR9fY64z2aG",
+                            Password = "$2a$11$AZFI6ylRW7LHMMfkzMmtrOsnz8H1LW1YUNbRijCLnKcUMNLg/GDVm",
                             RegistrationDate = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -971,7 +974,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Fernández",
                             Name = "Lucía",
                             Nickname = "luciaf",
-                            Password = "$2a$11$2V0mqCnpgptIyrya56ZLOuzbq20PeNPVEIkYGqCRVarmpHWn/gEOO",
+                            Password = "$2a$11$HMrkx0alruk6RZGtpW893.71tBD1chNeUFdyTnYdK2A7UGoXs.9aG",
                             RegistrationDate = new DateTime(2023, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -988,7 +991,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Ramírez",
                             Name = "Miguel",
                             Nickname = "miguelr",
-                            Password = "$2a$11$89lwVeJyq44oeI6RdqaB9ur.XxzqLQODD4gDuDCz4IHFuXfZua.yq",
+                            Password = "$2a$11$EW7ymS5ylg.gCaRSPk2vSu.PkiccFmAwcgcTdc0KxcwjXl61CC9P.",
                             RegistrationDate = new DateTime(2023, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         },
@@ -1005,7 +1008,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Lastname = "Quintero",
                             Name = "Sara",
                             Nickname = "saraq",
-                            Password = "$2a$11$pO7hlU5fPOQrdKmwwtqhUelBhvr4NFGLvkhYtMoDs5N9E2xv6fh62",
+                            Password = "$2a$11$J3r1g8yaZPkKlAdThZzukeCmuaJSVoRJkKVZmGk2g7ulwJgKejGje",
                             RegistrationDate = new DateTime(2023, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Role = "User"
                         });
@@ -2072,6 +2075,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Name = "Papel periódico",
                             OwnerUserId = 6,
                             Quantity = 300,
+                            TransactionId = 12,
                             Type = "Reciclaje"
                         },
                         new
@@ -2124,7 +2128,6 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Name = "Tijeras de precisión",
                             OwnerUserId = 1,
                             Quantity = 5,
-                            TransactionId = 12,
                             Type = "Corte",
                             Condition = "Nueva",
                             Warranty = true
@@ -2341,6 +2344,7 @@ namespace EcoScrapbookingAPI.Data.Migrations
                             Name = "Pistola de pegamento caliente",
                             OwnerUserId = 6,
                             Quantity = 3,
+                            TransactionId = 12,
                             Type = "Adhesivo",
                             Condition = "Nueva",
                             Warranty = true

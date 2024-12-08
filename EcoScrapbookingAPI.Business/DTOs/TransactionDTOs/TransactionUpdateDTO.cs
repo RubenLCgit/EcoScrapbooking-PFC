@@ -13,6 +13,7 @@ namespace EcoScrapbookingAPI.Business.DTOs.TransactionDTOs
       public TransactionType? Type { get; set; }
       public int? ReceiverUserID { get; set; }
       public string? ImageTransactionUrl { get; set; }
+      public decimal? GreenPointCost { get; set; }
 
       public TransactionUpdateDTO() { }
 
@@ -21,6 +22,7 @@ namespace EcoScrapbookingAPI.Business.DTOs.TransactionDTOs
           Type = transaction.Type;
           ReceiverUserID = transaction.ReceiverUserID;
           ImageTransactionUrl = transaction.ImageTransactionUrl;
+          GreenPointCost = transaction.GreenPointCost;
       }
     }
 }

@@ -1,3 +1,4 @@
+using EcoScrapbookingAPI.Business.DTOs.ProjectDTOs;
 using EcoScrapbookingAPI.Domain.Models;
 
 namespace EcoScrapbookingAPI.Business.DTOs.SustainableActivityDTOs;
@@ -16,9 +17,10 @@ public class SustainableActivityGetDTO
   public string NameCollaborator { get; set; }
   public int? AddressId { get; set; }
   public int CreatorUserId { get; set; }
+  public string ActivityType { get; private set; }
   public List<int> PublicationsIds { get; set; }
   public List<int> ParticipantsIds { get; set; }
-  public List<int> ActivityResourcesIds { get; set; }
+  public List<ProjectResourceDTO> SustainableActivityResources { get; set; }
 
   public SustainableActivityGetDTO() { }
 
@@ -36,6 +38,7 @@ public class SustainableActivityGetDTO
     NameCollaborator = sustainableActivity.NameCollaborator;
     AddressId = sustainableActivity.AddressId;
     CreatorUserId = sustainableActivity.CreatorUserId;
+    ActivityType = sustainableActivity.ActivityType;
 
     if (sustainableActivity.Publications != null)
     {
@@ -47,7 +50,7 @@ public class SustainableActivityGetDTO
     }
     if (sustainableActivity.ActivityResources != null)
     {
-      ActivityResourcesIds = sustainableActivity.ActivityResources.Select(r => r.ResourceId).ToList();
+      SustainableActivityResources = sustainableActivity.ActivityResources.Select(r => new ProjectResourceDTO(r.ResourceId, r.ResourceType)).ToList();
     }
   }
 }

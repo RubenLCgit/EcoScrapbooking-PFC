@@ -24,8 +24,6 @@ builder.Services.AddCors(options =>
   });
 });
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<EcoScrapbookingDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ServerDB_localhost")));
@@ -33,7 +31,6 @@ builder.Services.AddDbContext<EcoScrapbookingDBContext>(options => options.UseSq
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add services to the container.
 builder.Services.AddScoped<IRepositoryGeneric<User>, UserRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<Address>, AddressRepository>();
 builder.Services.AddScoped<IRepositoryGeneric<SustainableActivity>, SustainableActivityRepository>();
@@ -103,8 +100,7 @@ var app = builder.Build();
 
 app.UseCors("MyPolicy");
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) // Delete if the API is in Docker
+if (app.Environment.IsDevelopment())
 {
   app.UseSwagger();
   app.UseSwaggerUI();

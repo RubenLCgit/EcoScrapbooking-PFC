@@ -65,6 +65,10 @@ public class AuthController : ControllerBase
       {
         return BadRequest(new { errorCode = "ACCOUNT_DELETED", message = "This account has been deleted. Please recover your account." });
       }
+      if (ex.Message.Contains("banned"))
+      {
+        return BadRequest(new { errorCode = "ACCOUNT_BANNED", message = "This account has been banned. For more information, please contact us at ecoScrapbookingContact@gmail.com." });
+      }
       return BadRequest(new { errorCode = "INVALID_PASSWORD", message = "Invalid password." });
     }
     catch (Exception)
