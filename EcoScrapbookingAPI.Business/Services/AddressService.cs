@@ -64,7 +64,7 @@ public class AddressService : IAddressService
     {
       var user = _userRepository.GetByIdEntity(addressCreateDTO.UserId.Value);
       if (user == null) throw new Exception("User not found");
-      user.Addresses.Add(newAddress);  //! Esto es necesario o ya se agrega al crear la relacion con newAddress.UserId = user.UserId; ?
+      user.Addresses.Add(newAddress);
       _userRepository.UpdateEntity(user);
     }
 

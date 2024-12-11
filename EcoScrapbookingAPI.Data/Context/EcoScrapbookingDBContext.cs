@@ -162,7 +162,7 @@ namespace EcoScrapbookingAPI.Data.Context
         {
           UserId = 1,
           Role = "Admin",
-          AvatarImageUrl = "https://juanito123.com/avatar.jpg",
+          AvatarImageUrl = "https://i.imgur.com/GZsmbw3.png",
           Name = "Juan",
           Lastname = "Pérez",
           Nickname = "juanito123",
@@ -179,7 +179,7 @@ namespace EcoScrapbookingAPI.Data.Context
         {
           UserId = 2,
           Role = "User",
-          AvatarImageUrl = "https://maryg.com/avatar.jpg",
+          AvatarImageUrl = "https://i.imgur.com/H7Ojfc8.png",
           Name = "María",
           Lastname = "Gómez",
           Nickname = "maryg",
@@ -196,7 +196,7 @@ namespace EcoScrapbookingAPI.Data.Context
         {
           UserId = 3,
           Role = "User",
-          AvatarImageUrl = "https://carlosl.com/avatar.jpg",
+          AvatarImageUrl = "https://i.imgur.com/vwPcIgi.png",
           Name = "Carlos",
           Nickname = "carlosl",
           Lastname = "López",
@@ -213,7 +213,7 @@ namespace EcoScrapbookingAPI.Data.Context
         {
           UserId = 4,
           Role = "User",
-          AvatarImageUrl = "https://luciaf.com/avatar.jpg",
+          AvatarImageUrl = "https://i.imgur.com/RZU7Vxs.png",
           Name = "Lucía",
           Lastname = "Fernández",
           Nickname = "luciaf",
@@ -230,7 +230,7 @@ namespace EcoScrapbookingAPI.Data.Context
         {
           UserId = 5,
           Role = "User",
-          AvatarImageUrl = "https://miguelr.com/avatar.jpg",
+          AvatarImageUrl = "https://i.imgur.com/ecMSpu8.png",
           Name = "Miguel",
           Lastname = "Ramírez",
           Nickname = "miguelr",
@@ -247,7 +247,7 @@ namespace EcoScrapbookingAPI.Data.Context
         {
           UserId = 6,
           Role = "User",
-          AvatarImageUrl = "https://saraq.com/avatar.jpg",
+          AvatarImageUrl = "https://i.imgur.com/hzyQibR.png",
           Name = "Sara",
           Lastname = "Quintero",
           Nickname = "saraq",
@@ -452,7 +452,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "CraftMaster",
           Quantity = 5,
           Description = "Tijeras ideales para cortes detallados en scrapbooking.",
-          ImageResourceUrl = "https://image-tijeras.com",
+          ImageResourceUrl = "https://i.imgur.com/YRIP355.jpeg",
           Condition = "Nueva",
           Warranty = true,
           OwnerUserId = 1,
@@ -467,7 +467,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "SharpEdge",
           Quantity = 3,
           Description = "Cúter de alta precisión para recortes complejos.",
-          ImageResourceUrl = "https://image-Cuter.com",
+          ImageResourceUrl = "https://i.imgur.com/tu5jRHa.jpeg",
           Condition = "Usada",
           Warranty = false,
           OwnerUserId = 1,
@@ -482,7 +482,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "MeasurePro",
           Quantity = 10,
           Description = "Regla de 30 cm para medidas exactas.",
-          ImageResourceUrl = "https://image-Regla.com",
+          ImageResourceUrl = "https://i.imgur.com/8nLKRp7.jpeg",
           Condition = "Nueva",
           Warranty = true,
           OwnerUserId = 1,
@@ -498,7 +498,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "GlueIt",
           Quantity = 20,
           Description = "Pegamento en barra sin tóxicos para scrapbooking.",
-          ImageResourceUrl = "https://image-Pegamento.com",
+          ImageResourceUrl = "https://i.imgur.com/u4BJksw.jpeg",
           Condition = "Nueva",
           Warranty = false,
           OwnerUserId = 2,
@@ -513,7 +513,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "HotGlue",
           Quantity = 2,
           Description = "Pistola de silicona para fijar materiales.",
-          ImageResourceUrl = "https://image-Pistola.com",
+          ImageResourceUrl = "https://i.imgur.com/cUtbYHD.jpeg",
           Condition = "Nueva",
           Warranty = true,
           OwnerUserId = 2,
@@ -528,7 +528,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "DecorTape",
           Quantity = 15,
           Description = "Cinta adhesiva con diseños para decoración.",
-          ImageResourceUrl = "https://image-Cinta.com",
+          ImageResourceUrl = "https://i.imgur.com/6jolzyi.jpeg",
           Condition = "Usada",
           Warranty = false,
           OwnerUserId = 2,
@@ -544,7 +544,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "StampMaster",
           Quantity = 10,
           Description = "Set de sellos de goma para personalizar álbumes.",
-          ImageResourceUrl = "https://image-Sellos.com",
+          ImageResourceUrl = "https://i.imgur.com/3blW083.jpg",
           Condition = "Nueva",
           Warranty = true,
           OwnerUserId = 3,
@@ -559,7 +559,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "SewEasy",
           Quantity = 1,
           Description = "Máquina de coser portátil para proyectos pequeños.",
-          ImageResourceUrl = "https://image-Maquina.com",
+          ImageResourceUrl = "https://i.imgur.com/5v6XHLe.jpg",
           Condition = "Usada",
           Warranty = false,
           OwnerUserId = 3,
@@ -574,7 +574,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "ColorArt",
           Quantity = 50,
           Description = "Plumones permanentes de varios colores.",
-          ImageResourceUrl = "https://image-Plumones.com",
+          ImageResourceUrl = "https://i.imgur.com/ub5uPjJ.jpg",
           Condition = "Nueva",
           Warranty = false,
           OwnerUserId = 3,
@@ -590,7 +590,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "ElectricCut",
           Quantity = 1,
           Description = "Cutter eléctrico para cortes rápidos y precisos.",
-          ImageResourceUrl = "https://image-Cutter.com",
+          ImageResourceUrl = "https://i.imgur.com/mJiiBaN.jpg",
           Condition = "Nueva",
           Warranty = true,
           OwnerUserId = 4,
@@ -605,7 +605,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "LamiPro",
           Quantity = 2,
           Description = "Laminadora para proteger y embellecer trabajos.",
-          ImageResourceUrl = "https://image-Laminadora.com",
+          ImageResourceUrl = "https://i.imgur.com/rMX4Ygn.jpg",
           Condition = "Usada",
           Warranty = false,
           OwnerUserId = 4,
@@ -620,7 +620,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "PunchMaster",
           Quantity = 1,
           Description = "Troqueladora para formas personalizadas.",
-          ImageResourceUrl = "https://image-Troqueladora.com",
+          ImageResourceUrl = "https://i.imgur.com/bg6XizY.jpeg",
           Condition = "Nueva",
           Warranty = true,
           OwnerUserId = 4,
@@ -636,7 +636,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "FlexiMeasure",
           Quantity = 10,
           Description = "Regla flexible para curvas y diseños complejos.",
-          ImageResourceUrl = "https://image-Regla.com",
+          ImageResourceUrl = "https://i.imgur.com/sD4Mevf.jpeg",
           Condition = "Nueva",
           Warranty = false,
           OwnerUserId = 5,
@@ -651,7 +651,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "FineLine",
           Quantity = 100,
           Description = "Rotuladores finos para detalles precisos.",
-          ImageResourceUrl = "https://image-Rotuladores.com",
+          ImageResourceUrl = "https://i.imgur.com/MBgm3Sg.jpg",
           Condition = "Nueva",
           Warranty = false,
           OwnerUserId = 5,
@@ -666,7 +666,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "HeatGlue",
           Quantity = 1,
           Description = "Pistola de calor para fusión de materiales.",
-          ImageResourceUrl = "https://image-Pistola.com",
+          ImageResourceUrl = "https://i.imgur.com/7NaLkxi.jpg",
           Condition = "Usada",
           Warranty = false,
           OwnerUserId = 5,
@@ -682,7 +682,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "HotGluePro",
           Quantity = 3,
           Description = "Pistola de pegamento caliente para proyectos rápidos.",
-          ImageResourceUrl = "https://image-Pistola.com",
+          ImageResourceUrl = "https://i.imgur.com/ayzflau.jpeg",
           Condition = "Nueva",
           Warranty = true,
           OwnerUserId = 6,
@@ -697,7 +697,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "PrecisionCompass",
           Quantity = 15,
           Description = "Compás de precisión para diseños circulares.",
-          ImageResourceUrl = "https://image-Compas.com",
+          ImageResourceUrl = "https://i.imgur.com/W9MHeZX.jpeg",
           Condition = "Nueva",
           Warranty = false,
           OwnerUserId = 6,
@@ -712,7 +712,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "StickerArt",
           Quantity = 200,
           Description = "Pegatinas decorativas para personalizar álbumes.",
-          ImageResourceUrl = "https://image-Pegatinas.com",
+          ImageResourceUrl = "https://i.imgur.com/ghbvTKb.jpeg",
           Condition = "Nueva",
           Warranty = false,
           OwnerUserId = 6,
@@ -732,7 +732,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "EcoCaps",
           Quantity = 100,
           Description = "Cápsulas de café recicladas para crear decoraciones.",
-          ImageResourceUrl = "https://image-Capsulas.com",
+          ImageResourceUrl = "https://i.imgur.com/wtZJ4KJ.jpeg",
           OwnerUserId = 1,
           IsSent = true,
         },
@@ -745,7 +745,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "EcoBox",
           Quantity = 50,
           Description = "Cajas de TetraBrik recicladas para proyectos de scrapbooking.",
-          ImageResourceUrl = "https://image-Cajas.com",
+          ImageResourceUrl = "https://i.imgur.com/TCbx9LA.jpeg",
           OwnerUserId = 1,
           IsSent = true,
         },
@@ -758,7 +758,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "RePaper",
           Quantity = 200,
           Description = "Papel reciclado para crear fondos y decoraciones.",
-          ImageResourceUrl = "https://image-Papel.com",
+          ImageResourceUrl = "https://i.imgur.com/0WfVSpy.jpeg",
           OwnerUserId = 1,
           IsSent = true,
         },
@@ -772,7 +772,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "EcoBottle",
           Quantity = 80,
           Description = "Botellas de plástico recicladas para crear accesorios.",
-          ImageResourceUrl = "https://image-Botellas.com",
+          ImageResourceUrl = "https://i.imgur.com/691hMyA.jpeg",
           OwnerUserId = 2,
           IsSent = false,
         },
@@ -785,7 +785,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "PackCard",
           Quantity = 150,
           Description = "Cartones de embalaje reciclados para bases de álbumes.",
-          ImageResourceUrl = "https://image-Cartones.com",
+          ImageResourceUrl = "https://i.imgur.com/jDVHfqe.jpg",
           OwnerUserId = 2,
           IsSent = true,
         },
@@ -798,7 +798,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "EcoCap",
           Quantity = 300,
           Description = "Tapas de botellas recicladas para decoraciones diversas.",
-          ImageResourceUrl = "https://image-Tapas.com",
+          ImageResourceUrl = "https://i.imgur.com/d54p3Yn.jpeg",
           OwnerUserId = 2,
           IsSent = false,
         },
@@ -812,7 +812,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "MagPaper",
           Quantity = 250,
           Description = "Papel de revistas recicladas para collages.",
-          ImageResourceUrl = "https://image-Papel.com",
+          ImageResourceUrl = "https://i.imgur.com/6JCkkgj.jpeg",
           OwnerUserId = 3,
           IsSent = true,
         },
@@ -825,7 +825,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "AluCan",
           Quantity = 120,
           Description = "Latas de aluminio recicladas para marcos y decoraciones.",
-          ImageResourceUrl = "https://image-Latas.com",
+          ImageResourceUrl = "https://i.imgur.com/VyKWn3k.jpeg",
           OwnerUserId = 3,
           IsSent = true,
         },
@@ -838,7 +838,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "SilkPaper",
           Quantity = 500,
           Description = "Papel de seda para crear fondos y detalles suaves.",
-          ImageResourceUrl = "https://image-Papel.com",
+          ImageResourceUrl = "https://i.imgur.com/aHilD8w.jpeg",
           OwnerUserId = 3,
           IsSent = false,
         },
@@ -852,7 +852,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "EcoCard",
           Quantity = 300,
           Description = "Cartulinas recicladas para tarjetas y decoraciones.",
-          ImageResourceUrl = "https://image-Cartulinas.com",
+          ImageResourceUrl = "https://i.imgur.com/YMuxc9g.jpeg",
           OwnerUserId = 4,
           IsSent = true,
         },
@@ -865,7 +865,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "OldMag",
           Quantity = 100,
           Description = "Revistas viejas para recortes y collages.",
-          ImageResourceUrl = "https://image-Revistas.com",
+          ImageResourceUrl = "https://i.imgur.com/lRLGl2Y.jpeg",
           OwnerUserId = 4,
           IsSent = true,
         },
@@ -878,7 +878,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "ReuseButtons",
           Quantity = 400,
           Description = "Botones reutilizados para adornar álbumes.",
-          ImageResourceUrl = "https://image-Botones.com",
+          ImageResourceUrl = "https://i.imgur.com/2ZRi0Uw.jpeg",
           OwnerUserId = 4,
           IsSent = true,
         },
@@ -892,7 +892,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "KraftPaper",
           Quantity = 200,
           Description = "Papel kraft reciclado para crear sobres y bases.",
-          ImageResourceUrl = "https://image-Papel.com",
+          ImageResourceUrl = "https://i.imgur.com/V1CYuZf.jpeg",
           OwnerUserId = 5,
           IsSent = true,
         },
@@ -905,7 +905,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "EcoRibbon",
           Quantity = 250,
           Description = "Cintas recicladas para atar y decorar.",
-          ImageResourceUrl = "https://image-Cintas.com",
+          ImageResourceUrl = "https://i.imgur.com/ehBew2v.jpg",
           OwnerUserId = 5,
           IsSent = true,
         },
@@ -918,7 +918,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "LabelReuse",
           Quantity = 500,
           Description = "Etiquetas de productos recicladas para personalizar.",
-          ImageResourceUrl = "https://image-Etiquetas.com",
+          ImageResourceUrl = "https://i.imgur.com/hwdVyWi.jpeg",
           OwnerUserId = 5,
           IsSent = true,
         },
@@ -932,7 +932,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "NewsPaper",
           Quantity = 300,
           Description = "Papel periódico para crear fondos y texturas.",
-          ImageResourceUrl = "https://image-Papel.com",
+          ImageResourceUrl = "https://i.imgur.com/4n2GyJp.jpeg",
           OwnerUserId = 6,
           IsSent = true,
         },
@@ -945,7 +945,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "GlassReuse",
           Quantity = 60,
           Description = "Botellas de vidrio pequeñas para crear decoraciones.",
-          ImageResourceUrl = "https://image-Botellas.com",
+          ImageResourceUrl = "https://i.imgur.com/zQjJJLp.jpeg",
           OwnerUserId = 6,
           IsSent = true,
         },
@@ -958,7 +958,7 @@ namespace EcoScrapbookingAPI.Data.Context
           Brand = "OldCD",
           Quantity = 100,
           Description = "CDs viejos para crear mosaicos y decoraciones brillantes.",
-          ImageResourceUrl = "https://image-CDs.com",
+          ImageResourceUrl = "https://i.imgur.com/47q9NQs.jpeg",
           OwnerUserId = 6,
           IsSent = true,
         }
@@ -1127,7 +1127,8 @@ namespace EcoScrapbookingAPI.Data.Context
           AuthorId = 4,
           CreatedAt = new DateTime(2023, 6, 15, 9, 15, 45),
           Category = "Decoración",
-          Title ="Cómo Utilizar Botones Reciclados",
+          Title ="Cómo Utilizar Botones en decoración",
+          ImagePostUrl = "https://i.imgur.com/8UVwkl4.jpg",
           Description = @"¡Hola creativos!
 
           Los botones reciclados son perfectos para decorar:
@@ -1239,6 +1240,7 @@ namespace EcoScrapbookingAPI.Data.Context
           CreatedAt = new DateTime(2023, 7, 15, 9, 30, 30),
           Category = "Decoración",
           Title = "Uso Creativo de CDs Viejos",
+          ImagePostUrl= "https://i.imgur.com/yNCGSfP.jpg",
           Description = @"¡Hola artesanos!
 
           Reutiliza tus CDs viejos con estas ideas:
@@ -1256,6 +1258,7 @@ namespace EcoScrapbookingAPI.Data.Context
           CreatedAt = new DateTime(2023, 7, 20, 14, 40, 40),
           Category = "Scrapbooking",
           Title = "Incorporando Botellas de Vidrio",
+          ImagePostUrl = "https://i.imgur.com/XMJ7sH2.jpeg",
           Description = @"¡Hola scrapbookers!
 
           Integra botellas de vidrio recicladas en tus álbumes con estas ideas:
@@ -1300,7 +1303,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 1,
           ReceiverUserID = 2,
           IsActive = false,
-          ImageTransactionUrl = "https://default-transaction1.com",
+          ImageTransactionUrl = "https://i.imgur.com/Ma95l7H.jpeg",
         },
         new Transaction
         {
@@ -1312,7 +1315,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 1,
           ReceiverUserID = 3,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction2.com",
+          ImageTransactionUrl = "https://i.imgur.com/8nLKRp7.jpeg",
         },
         // Transactions for User 2
         new Transaction
@@ -1326,7 +1329,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 2,
           ReceiverUserID = 1,
           IsActive = false,
-          ImageTransactionUrl = "https://default-transaction3.com",
+          ImageTransactionUrl = "https://i.imgur.com/YRIP355.jpeg",
         },
         new Transaction
         {
@@ -1338,12 +1341,12 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 2,
           ReceiverUserID = 3,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction4.com",
+          ImageTransactionUrl = "https://i.imgur.com/jDVHfqe.jpeg",
         },
         // Transactions for User 3
         new Transaction
         {
-          ArticlesDescription = "Pumones de colores + Botellas de plastico + Revistas de decoración viejas.",
+          ArticlesDescription = "Plumones de colores + Botellas de plastico + Revistas de decoración viejas.",
           TransactionID = 5,
           Type = TransactionType.Exchange,
           Status = TransactionStatus.Rejected,
@@ -1352,7 +1355,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 3,
           ReceiverUserID = 2,
           IsActive = false,
-          ImageTransactionUrl = "https://default-transaction5.com",
+          ImageTransactionUrl = "https://i.imgur.com/ub5uPjJ.jpeg",
         },
         new Transaction
         {
@@ -1364,7 +1367,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 3,
           ReceiverUserID = 5,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction6.com",
+          ImageTransactionUrl = "https://i.imgur.com/5v6XHLe.jpeg",
         },
         // Transactions for User 4
         new Transaction
@@ -1377,7 +1380,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 4,
           ReceiverUserID = 3,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction7.com",
+          ImageTransactionUrl = "https://i.imgur.com/mJiiBaN.jpeg",
         },
         new Transaction
         {
@@ -1389,7 +1392,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 4,
           ReceiverUserID = 2,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction8.com",
+          ImageTransactionUrl = "https://i.imgur.com/rMX4Ygn.jpeg",
         },
         // Transactions for User 5
         new Transaction
@@ -1402,7 +1405,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 5,
           ReceiverUserID = null,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction9.com",
+          ImageTransactionUrl = "https://i.imgur.com/7NaLkxi.jpeg",
         },
         new Transaction
         {
@@ -1414,7 +1417,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 5,
           ReceiverUserID = 6,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction10.com",
+          ImageTransactionUrl = "https://i.imgur.com/6jolzyi.jpeg",
         },
         // Transactions for User 6
         new Transaction
@@ -1428,7 +1431,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 6,
           ReceiverUserID = 5,
           IsActive = false,
-          ImageTransactionUrl = "https://default-transaction11.com",
+          ImageTransactionUrl = "https://i.imgur.com/MBgm3Sg.jpeg",
         },
         new Transaction
         {
@@ -1440,7 +1443,7 @@ namespace EcoScrapbookingAPI.Data.Context
           InitiatorUserID = 1,
           ReceiverUserID = null,
           IsActive = true,
-          ImageTransactionUrl = "https://default-transaction12.com",
+          ImageTransactionUrl = "https://i.imgur.com/N1Pzuv9.jpeg",
           GreenPointCost = 50,
         }
       );
@@ -1461,7 +1464,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Manualidades",
           CreatorUserId = 1,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/0yHl5vZ.jpeg",
         },
         new Project
         {
@@ -1476,7 +1479,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 1,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/RXNcWjz.jpeg",
         },
         new Project
         {
@@ -1490,7 +1493,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 1,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/EDVPy3l.jpeg",
         },
         // Projects for User 2
         new Project
@@ -1505,7 +1508,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Tarjetas",
           CreatorUserId = 2,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/gBnMvpc.jpeg",
         },
         new Project
         {
@@ -1520,7 +1523,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 2,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/1FhUoE2.jpeg",
         },
         new Project
         {
@@ -1535,7 +1538,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 2,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/VGivXwa.jpeg",
         },
         // Projects for User 3
         new Project
@@ -1550,7 +1553,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 3,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/zmfOrnW.jpeg",
         },
         new Project
         {
@@ -1565,7 +1568,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Collages",
           CreatorUserId = 3,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/ily2EwE.jpg",
         },
         new Project
         {
@@ -1580,7 +1583,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 3,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/GNtVqkA.jpeg",
         },
         // Projects for User 4
         new Project
@@ -1595,7 +1598,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 4,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/8UVwkl4.jpeg",
         },
         new Project
         {
@@ -1609,7 +1612,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Tarjetas",
           CreatorUserId = 4,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/wQKIjoF.jpeg",
         },
         new Project
         {
@@ -1624,7 +1627,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 4,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/rbS8rFb.jpeg",
         },
         // Projects for User 5
         new Project
@@ -1639,7 +1642,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Tarjetas",
           CreatorUserId = 5,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/afSQg3c.jpeg",
         },
         new Project
         {
@@ -1653,7 +1656,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 5,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/ehBew2v.jpeg",
         },
         new Project
         {
@@ -1667,7 +1670,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 5,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/3blW083.jpeg",
         },
         // Projects for User 6
         new Project
@@ -1683,7 +1686,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 6,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/yNCGSfP.jpeg",
         },
         new Project
         {
@@ -1697,7 +1700,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Decoración",
           CreatorUserId = 6,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/IPkMAkf.jpeg",
         },
         new Project
         {
@@ -1712,7 +1715,7 @@ namespace EcoScrapbookingAPI.Data.Context
           GreenPointsValue = 0,
           ProjectType = "Álbumes",
           CreatorUserId = 6,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/lZsbEn1.jpeg",
         }
       );
 
@@ -1730,7 +1733,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 1, 16),
           IsActive = true,
           GreenPointsValue = 50.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/mLiAiUd.jpeg",
           NameCollaborator = "EcoMadrid",
           AddressId = 1,
           CreatorUserId = 1
@@ -1746,7 +1749,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 2, 16),
           IsActive = true,
           GreenPointsValue = 55.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/F8Rzq62.jpeg",
           NameCollaborator = "EcoBarcelona",
           AddressId = 2,
           CreatorUserId = 1
@@ -1762,7 +1765,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 3, 16),
           IsActive = true,
           GreenPointsValue = 60.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/U1wcg58.jpeg",
           NameCollaborator = "EcoValencia",
           AddressId = 3,
           CreatorUserId = 1
@@ -1778,7 +1781,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 4, 21),
           IsActive = true,
           GreenPointsValue = 58.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/kxPy8jV.jpeg",
           NameCollaborator = "EcoSevilla",
           AddressId = 4,
           CreatorUserId = 1
@@ -1794,7 +1797,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 5, 16),
           IsActive = true,
           GreenPointsValue = 65.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/ofbNPLr.jpeg",
           NameCollaborator = "EcoBilbao",
           AddressId = 5,
           CreatorUserId = 1
@@ -1810,7 +1813,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 6, 21),
           IsActive = true,
           GreenPointsValue = 62.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/3Z8QGDt.jpeg",
           NameCollaborator = "EcoZaragoza",
           AddressId = 6,
           CreatorUserId = 1
@@ -1826,7 +1829,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 7, 16),
           IsActive = true,
           GreenPointsValue = 55.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/lZo4H1t.jpeg",
           NameCollaborator = "EcoMálaga",
           AddressId = 7,
           CreatorUserId = 1
@@ -1842,7 +1845,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 8, 21),
           IsActive = true,
           GreenPointsValue = 58.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/4s0zQoz.jpeg",
           NameCollaborator = "EcoMurcia",
           AddressId = 8,
           CreatorUserId = 1
@@ -1858,7 +1861,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 9, 16),
           IsActive = true,
           GreenPointsValue = 50.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/QaiUNFv.jpeg",
           NameCollaborator = "EcoGranada",
           AddressId = 9,
           CreatorUserId = 1
@@ -1874,7 +1877,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 10, 21),
           IsActive = true,
           GreenPointsValue = 52.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/FCoytq6.jpeg",
           NameCollaborator = "EcoCórdoba",
           AddressId = 10,
           CreatorUserId = 1
@@ -1890,7 +1893,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 11, 16),
           IsActive = true,
           GreenPointsValue = 60.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/huhlOfw.jpeg",
           NameCollaborator = "EcoAlicante",
           AddressId = 11,
           CreatorUserId = 1
@@ -1906,7 +1909,7 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 12, 21),
           IsActive = true,
           GreenPointsValue = 62.0m,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/jVIB3Wl.jpg",
           NameCollaborator = "EcoLasPalmas",
           AddressId = 12,
           CreatorUserId = 1
@@ -1927,9 +1930,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 1, 26),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/RZNF4mU.jpg",
           Duration = 45,
-          VideoUrl = "https://tutorials.com/album-reciclado",
+          VideoUrl = "https://www.youtube.com/watch?v=7a88YXIPSeo&t=2s&ab_channel=DulceManzana",
           CreatorUserId = 1
         },
         new Tutorial
@@ -1943,9 +1946,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 2, 16),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/af45ew0.jpeg",
           Duration = 30,
-          VideoUrl = "https://tutorials.com/capsulas-de-cafe",
+          VideoUrl = "https://www.youtube.com/watch?v=2tntZ4C14q8",
           CreatorUserId = 1
         },
         // Tutorials for User 2
@@ -1960,9 +1963,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 3, 26),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/KJaQG9l.jpeg",
           Duration = 50,
-          VideoUrl = "https://tutorials.com/tarjetas-reutilizadas",
+          VideoUrl = "https://www.youtube.com/watch?v=e0KaFvITsOg",
           CreatorUserId = 2
         },
         new Tutorial
@@ -1975,9 +1978,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 4, 16),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/lN1KpsF.jpeg",
           Duration = 55,
-          VideoUrl = "https://tutorials.com/marcos-reciclados",
+          VideoUrl = "https://www.youtube.com/watch?v=sDX_Y5a3ajM",
           CreatorUserId = 2
         },
         // Tutorials for User 3
@@ -1992,9 +1995,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 5, 26),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/2wORhTG.jpeg",
           Duration = 60,
-          VideoUrl = "https://tutorials.com/collages-revistados",
+          VideoUrl = "https://www.youtube.com/watch?v=emO1EJYVSKY",
           CreatorUserId = 3
         },
         new Tutorial
@@ -2007,9 +2010,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 6, 16),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/4GYAVEx.jpeg",
           Duration = 50,
-          VideoUrl = "https://tutorials.com/latas-decorativas",
+          VideoUrl = "https://www.youtube.com/watch?v=Rw4A9B1uK4w",
           CreatorUserId = 3
         },
         // Tutorials for User 4
@@ -2024,9 +2027,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 7, 26),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/RpqrqGn.jpeg",
           Duration = 40,
-          VideoUrl = "https://tutorials.com/botones-scrapbooking",
+          VideoUrl = "https://www.youtube.com/watch?v=zduMCHHrPCg",
           CreatorUserId = 4
         },
         new Tutorial
@@ -2040,9 +2043,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 8, 16),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/z03LCfQ.jpeg",
           Duration = 45,
-          VideoUrl = "https://tutorials.com/cintas-decorativas",
+          VideoUrl = "https://www.youtube.com/watch?v=0jMcIP02sRE",
           CreatorUserId = 4
         },
         // Tutorials for User 5
@@ -2057,9 +2060,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 9, 26),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/3VDzPwg.jpeg",
           Duration = 50,
-          VideoUrl = "https://tutorials.com/sellos-personalizados",
+          VideoUrl = "https://www.youtube.com/watch?v=Oi3LmDkFQhs",
           CreatorUserId = 5
         },
         new Tutorial
@@ -2072,9 +2075,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 10, 16),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/Vs8VdoX.jpeg",
           Duration = 45,
-          VideoUrl = "https://tutorials.com/sobres-papel-kraft",
+          VideoUrl = "https://www.youtube.com/watch?v=zsjVj8jkSSs",
           CreatorUserId = 5
         },
         // Tutorials for User 6
@@ -2088,9 +2091,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 11, 26),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/gAqI0Xi.jpeg",
           Duration = 60,
-          VideoUrl = "https://tutorials.com/mosaicos-cds",
+          VideoUrl = "https://www.youtube.com/watch?v=n4Xuk66fmDY",
           CreatorUserId = 6
         },
         new Tutorial
@@ -2104,9 +2107,9 @@ namespace EcoScrapbookingAPI.Data.Context
           FinishDate = new DateTime(2024, 12, 16),
           IsActive = true,
           GreenPointsValue = 0,
-          HomeImageUrl = "https://default-homepage.com",
+          HomeImageUrl = "https://i.imgur.com/aSKDoW4.jpeg",
           Duration = 50,
-          VideoUrl = "https://tutorials.com/botellas-decorativas",
+          VideoUrl = "https://www.youtube.com/watch?v=ghtOWkZfAG8",
           CreatorUserId = 6
         }
       );

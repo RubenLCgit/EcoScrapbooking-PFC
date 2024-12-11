@@ -63,7 +63,7 @@ public class UserController : ControllerBase
     try
     {
       _userService.UpdateUser(userId, userUpdateDTO);
-      return Ok(userUpdateDTO);
+      return Ok(_userService.GetUser(userId));
     }
     catch (ArgumentNullException anEx)
     {
