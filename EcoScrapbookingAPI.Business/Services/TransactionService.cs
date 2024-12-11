@@ -45,7 +45,24 @@ public class TransactionService : ITransactionService
   {
     var transaction = _transactionRepository.GetByIdEntity(transactionId);
     if (transaction == null) throw new Exception("Transaction not found");
-    transaction.IsActive = false;
+    foreach (var resource in transaction.Resources)
+    {
+      if (resource is Tool tool)
+      {
+        tool.TransactionId = null;
+        _toolRepository.UpdateEntity(tool);
+      }
+      else if (resource is Material material)
+      {
+        material.TransactionId = null;
+        _materialRepository.UpdateEntity(material);
+      }
+      else
+      {
+        throw new Exception("Unknown resource type.");
+      }
+    }
+      transaction.IsActive = false;
     _transactionRepository.UpdateEntity(transaction);
     _transactionRepository.SaveChanges();
   }
@@ -73,6 +90,13 @@ public class TransactionService : ITransactionService
   {
     var transaction = _transactionRepository.GetByIdEntity(transactionId);
     if (transaction == null) throw new Exception("Transaction not found");
+    if (transaction.Type == TransactionType.Gift)
+    {
+      foreach (var resource in transaction.Resources)
+      {
+        resource.OwnerUserId = receiverUserId;
+      }
+    }
     transaction.ReceiverUserID = receiverUserId;
     transaction.Status = TransactionStatus.Accepted;
     _transactionRepository.UpdateEntity(transaction);
@@ -85,7 +109,20 @@ public class TransactionService : ITransactionService
     if (transaction == null) throw new Exception("Transaction not found");
     foreach (var resource in transaction.Resources)
     {
-      resource.IsSent = true;
+      if (resource is Tool tool)
+      {
+        tool.OwnerUserId = transaction.InitiatorUserID;
+        _toolRepository.UpdateEntity(tool);
+      }
+      else if (resource is Material material)
+      {
+        material.OwnerUserId = transaction.InitiatorUserID;
+        _materialRepository.UpdateEntity(material);
+      }
+      else
+      {
+        throw new Exception("Unknown resource type.");
+      }
     }
     transaction.Status = TransactionStatus.Rejected;
     transaction.DateCompleted = DateTime.Now;
